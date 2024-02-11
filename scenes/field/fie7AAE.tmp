@@ -1,0 +1,92 @@
+[gd_scene load_steps=16 format=3 uid="uid://w1dfo1h66yxa"]
+
+[ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="1_8os84"]
+[ext_resource type="Script" path="res://scenes/field/clovers/clovers.gd" id="2_emqpg"]
+[ext_resource type="Script" path="res://scenes/field/clouds/clouds.gd" id="3_pliko"]
+[ext_resource type="Script" path="res://scenes/field/clouds/cloud.gd" id="4_31igx"]
+[ext_resource type="Texture2D" uid="uid://dl0kfb2esvuul" path="res://assets/textures/grass.png" id="5_iuk00"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
+sky_top_color = Color(0.529412, 0.807843, 0.921569, 1)
+sky_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
+ground_bottom_color = Color(0.905882, 0.960784, 0.984314, 1)
+ground_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
+
+[sub_resource type="Sky" id="Sky_3enxj"]
+sky_material = SubResource("ProceduralSkyMaterial_804lx")
+
+[sub_resource type="Environment" id="Environment_svy4g"]
+background_mode = 2
+sky = SubResource("Sky_3enxj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hpdkf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hcq1o"]
+material = SubResource("StandardMaterial3D_hpdkf")
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_isxbm"]
+vertices = PackedVector3Array(-4.5, 0.5, -4.5, -4.5, 0.5, 4.5, 4.5, 0.5, 4.5, 4.5, 0.5, -4.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+agent_height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nb1q"]
+albedo_texture = ExtResource("5_iuk00")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2xi41"]
+size = Vector2(10, 10)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1alc"]
+albedo_texture = ExtResource("5_iuk00")
+
+[sub_resource type="BoxMesh" id="BoxMesh_m73n1"]
+material = SubResource("StandardMaterial3D_q1alc")
+size = Vector3(10, 0.5, 10)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="OrbitControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8os84")
+_camera = NodePath("../Camera3D")
+max_polar_angle = 1.55334
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.415627, 0.572061, 0, 0.809017, 0.587785, -0.707107, -0.415627, 0.572061, 5, 5, 5)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 7.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_svy4g")
+
+[node name="Clovers" type="Node3D" parent="."]
+script = ExtResource("2_emqpg")
+min_distance = 0.0
+
+[node name="Clouds" type="Node3D" parent="."]
+script = ExtResource("3_pliko")
+
+[node name="Cloud" type="MeshInstance3D" parent="Clouds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+visible = false
+mesh = SubResource("BoxMesh_hcq1o")
+script = ExtResource("4_31igx")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_isxbm")
+
+[node name="Ground" type="MeshInstance3D" parent="NavigationRegion3D"]
+visible = false
+material_override = SubResource("StandardMaterial3D_4nb1q")
+mesh = SubResource("QuadMesh_2xi41")
+skeleton = NodePath("../..")
+
+[node name="Earth" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+mesh = SubResource("BoxMesh_m73n1")
+skeleton = NodePath("../..")

@@ -1,0 +1,188 @@
+[gd_scene load_steps=30 format=3 uid="uid://w1dfo1h66yxa"]
+
+[ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="1_8os84"]
+[ext_resource type="Script" path="res://scenes/field/clovers/clovers.gd" id="2_emqpg"]
+[ext_resource type="Script" path="res://scenes/field/clouds/clouds.gd" id="3_pliko"]
+[ext_resource type="Script" path="res://scenes/field/clouds/cloud.gd" id="4_31igx"]
+[ext_resource type="PackedScene" uid="uid://d0kd2qhdlyuj7" path="res://assets/models/heart.glb" id="5_cd2ia"]
+[ext_resource type="Texture2D" uid="uid://dl0kfb2esvuul" path="res://assets/textures/grass.png" id="5_iuk00"]
+[ext_resource type="ArrayMesh" uid="uid://3d3wnmocbdpe" path="res://assets/models/heart.obj" id="6_6ivio"]
+[ext_resource type="Texture2D" uid="uid://w6ahfb448wha" path="res://assets/textures/props/balloon1.png" id="7_w8tk4"]
+[ext_resource type="Texture2D" uid="uid://cmh5n3kfk2k30" path="res://assets/textures/petals/lessdetailedpetal.png" id="8_4koer"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
+sky_top_color = Color(1, 0.92549, 0.937255, 1)
+sky_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
+ground_bottom_color = Color(0.905882, 0.960784, 0.984314, 1)
+ground_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
+
+[sub_resource type="Sky" id="Sky_3enxj"]
+sky_material = SubResource("ProceduralSkyMaterial_804lx")
+
+[sub_resource type="Environment" id="Environment_svy4g"]
+background_mode = 2
+sky = SubResource("Sky_3enxj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hpdkf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hcq1o"]
+material = SubResource("StandardMaterial3D_hpdkf")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4nb1q"]
+albedo_texture = ExtResource("5_iuk00")
+
+[sub_resource type="QuadMesh" id="QuadMesh_2xi41"]
+size = Vector2(10, 10)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1alc"]
+albedo_texture = ExtResource("5_iuk00")
+
+[sub_resource type="BoxMesh" id="BoxMesh_m73n1"]
+material = SubResource("StandardMaterial3D_q1alc")
+size = Vector3(10, 0.5, 10)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_isxbm"]
+vertices = PackedVector3Array(-0.460451, 1.01629, -4.54913, -1.21045, 1.01629, -5.79913, -2.46045, 1.01629, -6.54913, -6.96045, 1.01629, -1.79913, -6.46045, 1.01629, -0.549133, -5.46045, 1.01629, 0.950867, 6.78955, 1.01629, -5.04913, 5.28955, 1.01629, -6.54913, 2.53955, 1.01629, -6.54913, 0.289549, 1.01629, -4.54913, 5.78955, 1.01629, 0.450867, 7.03955, 1.01629, -2.04913, -2.46045, 1.01629, -6.54913, -5.21045, 1.01629, -6.54913, -6.96045, 1.01629, -4.54913, -6.96045, 1.01629, -1.79913, -5.46045, 1.01629, 0.950867, -0.460451, 1.01629, -4.54913, 0.289549, 1.01629, -4.54913, -0.460451, 1.01629, -4.54913, -5.46045, 1.01629, 0.950867, -0.210451, 1.01629, 5.70087, 5.78955, 1.01629, 0.450867, -0.210451, 1.01629, 5.70087, -0.210451, 1.01629, 6.20087, 5.78955, 1.01629, 0.450867)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(7, 6, 8), PackedInt32Array(8, 6, 11), PackedInt32Array(8, 11, 9), PackedInt32Array(9, 11, 10), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(15, 12, 17), PackedInt32Array(15, 17, 16), PackedInt32Array(19, 18, 20), PackedInt32Array(20, 18, 21), PackedInt32Array(21, 18, 22), PackedInt32Array(25, 24, 23)]
+agent_height = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ff4oi"]
+albedo_color = Color(0.992157, 0.662745, 0.839216, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_igxg4"]
+points = PackedVector3Array(1.47953, 2.34971, 0.244523, 1.87777, -0.295202, 0.244571, 1.77066, 2.27808, 0.244523, 1.47953, 2.34971, -0.244571, -1.48002, 2.34971, 0.244523, 1.90747, -0.320158, 0.244571, 2.05547, 2.09506, 0.244523, 1.92548, 2.20043, 0.244523, -1.87826, -0.295202, 0.244571, 1.77066, 2.27808, -0.244571, -1.48002, 2.34971, -0.244571, -1.77115, 2.27808, 0.244523, 1.90747, -0.320158, -0.244571, 2.14164, 0.00242591, 0.244523, 2.31301, 0.302364, 0.244523, 2.43278, 0.629108, 0.244523, 2.46393, 0.800105, 0.244523, 2.48682, 0.963246, 0.244523, 2.48682, 1.15319, 0.244523, 2.46101, 1.30524, 0.244523, 2.42986, 1.47994, 0.244523, 2.36608, 1.66896, 0.244523, 2.28526, 1.81222, 0.244523, 2.1801, 1.96243, 0.244523, -0.000486851, -2.37166, 0.244571, 2.05547, 2.09506, -0.244571, 1.92548, 2.20043, -0.244571, -1.92597, 2.20043, 0.244523, -2.05596, 2.09506, 0.244523, -1.90796, -0.320158, 0.244571, -1.77115, 2.27808, -0.244571, 2.14164, 0.00242591, -0.244571, -0.000486851, -2.37166, -0.244571, 2.31301, 0.302364, -0.244571, 2.43278, 0.629108, -0.244571, 2.46393, 0.800105, -0.244571, 2.48682, 0.963246, -0.244571, 2.48682, 1.15319, -0.244571, 2.46101, 1.30524, -0.244571, 2.42986, 1.47994, -0.244571, 2.36608, 1.66896, -0.244571, 2.28526, 1.81222, -0.244571, 2.1801, 1.96243, -0.244571, -1.92597, 2.20043, -0.244571, -2.05596, 2.09506, -0.244571, -2.18108, 1.96243, 0.244523, -2.28575, 1.81222, 0.244523, -2.36657, 1.66896, 0.244523, -2.43034, 1.47994, 0.244523, -2.4615, 1.30524, 0.244523, -2.48682, 1.15319, 0.244523, -2.48682, 0.963246, 0.244523, -2.46442, 0.800105, 0.244523, -2.43326, 0.629108, 0.244523, -2.31399, 0.302364, 0.244523, -2.14262, 0.00242591, 0.244523, -1.90796, -0.320158, -0.244571, -2.18108, 1.96243, -0.244571, -2.28575, 1.81222, -0.244571, -2.36657, 1.66896, -0.244571, -2.43034, 1.47994, -0.244571, -2.4615, 1.30524, -0.244571, -2.48682, 1.15319, -0.244571, -2.48682, 0.963246, -0.244571, -2.46442, 0.800105, -0.244571, -2.43326, 0.629108, -0.244571, -2.31399, 0.302364, -0.244571, -2.14262, 0.00242591, -0.244571)
+
+[sub_resource type="Curve" id="Curve_fotu6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0387597, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ihyrv"]
+curve = SubResource("Curve_fotu6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_q3biy"]
+emission_shape_scale = Vector3(7.5, 0, 7.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, 0.5, 0)
+scale_min = 0.0
+scale_curve = SubResource("CurveTexture_ihyrv")
+turbulence_enabled = true
+turbulence_influence_min = 0.04
+turbulence_influence_max = 0.06
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oyi21"]
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("7_w8tk4")
+
+[sub_resource type="QuadMesh" id="QuadMesh_a53t3"]
+material = SubResource("StandardMaterial3D_oyi21")
+size = Vector2(1.5, 2)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88or0"]
+emission_shape_scale = Vector3(7.5, 1, 7.5)
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+gravity = Vector3(0, -0.25, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1img"]
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("8_4koer")
+
+[sub_resource type="QuadMesh" id="QuadMesh_5l13c"]
+material = SubResource("StandardMaterial3D_i1img")
+size = Vector2(0.25, 0.25)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="OrbitControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8os84")
+_camera = NodePath("../Camera3D")
+max_polar_angle = 1.55334
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.415627, 0.572061, 0, 0.809017, 0.587785, -0.707107, -0.415627, 0.572061, 5, 5, 5)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 7.5)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_svy4g")
+
+[node name="Clovers" type="Node3D" parent="."]
+script = ExtResource("2_emqpg")
+amount = 20
+min_distance = 0.0
+
+[node name="Clouds" type="Node3D" parent="."]
+script = ExtResource("3_pliko")
+
+[node name="Cloud" type="MeshInstance3D" parent="Clouds"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+visible = false
+mesh = SubResource("BoxMesh_hcq1o")
+script = ExtResource("4_31igx")
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+visible = false
+material_override = SubResource("StandardMaterial3D_4nb1q")
+mesh = SubResource("QuadMesh_2xi41")
+
+[node name="Earth" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+visible = false
+mesh = SubResource("BoxMesh_m73n1")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+navigation_mesh = SubResource("NavigationMesh_isxbm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0, 0)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Heart" type="MeshInstance3D" parent="NavigationRegion3D/StaticBody3D"]
+mesh = ExtResource("6_6ivio")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_ff4oi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_igxg4")
+
+[node name="Props" type="Node3D" parent="."]
+
+[node name="Heart Balloons" type="GPUParticles3D" parent="Props"]
+amount = 32
+lifetime = 5.0
+process_material = SubResource("ParticleProcessMaterial_q3biy")
+draw_pass_1 = SubResource("QuadMesh_a53t3")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.71466, 0)
+amount = 64
+lifetime = 3.0
+process_material = SubResource("ParticleProcessMaterial_88or0")
+draw_pass_1 = SubResource("QuadMesh_5l13c")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Props"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.279121, 0, 0)
+visible = false
+size = Vector3(10, 1, 10)
+
+[node name="heart" parent="Props" instance=ExtResource("5_cd2ia")]
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, -1.25, 0)
+visible = false
