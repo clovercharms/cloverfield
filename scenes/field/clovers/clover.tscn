@@ -20,6 +20,7 @@ material = SubResource("StandardMaterial3D_qaqow")
 size = Vector3(1, 1, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
+render_priority = 1
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_xukax"]
@@ -27,6 +28,7 @@ material = SubResource("StandardMaterial3D_i8frn")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5u84h"]
+render_priority = 1
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_4smp2"]
@@ -37,6 +39,7 @@ size = Vector2(0.6, 0.6)
 load_path = "res://.godot/imported/pfp.png-dccd34fd68249a268f8b50ec56487365.bptc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdc6v"]
+render_priority = 1
 shading_mode = 0
 albedo_texture = SubResource("CompressedTexture2D_ki72s")
 
@@ -45,6 +48,7 @@ material = SubResource("StandardMaterial3D_sdc6v")
 size = Vector2(0.5, 0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rcawr"]
+render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
@@ -53,6 +57,7 @@ material = SubResource("StandardMaterial3D_rcawr")
 size = Vector2(3, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wgnt"]
+render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
@@ -61,6 +66,7 @@ material = SubResource("StandardMaterial3D_4wgnt")
 size = Vector2(1.75, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4anxx"]
+render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
@@ -72,6 +78,7 @@ size = Vector2(0.2, 0.2)
 load_path = "res://.godot/imported/pfp.png-dccd34fd68249a268f8b50ec56487365.bptc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omhgx"]
+render_priority = 1
 no_depth_test = true
 shading_mode = 0
 albedo_texture = SubResource("CompressedTexture2D_g1e8j")
@@ -98,6 +105,7 @@ material = SubResource("StandardMaterial3D_p3710")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_mask = 2
 script = ExtResource("1_dhomg")
+wander_range = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_5qqbk")
@@ -115,18 +123,17 @@ shape = SubResource("BoxShape3D_qh6tn")
 
 [node name="MiniLabel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
-visible = false
 script = ExtResource("3_buv3s")
 
 [node name="Arrow" type="MeshInstance3D" parent="MiniLabel"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, -0.3, 0)
-visibility_range_end = 5.0
+visibility_range_end = 10.0
 visibility_range_end_margin = 0.1
 visibility_range_fade_mode = 1
 mesh = SubResource("QuadMesh_xukax")
 
 [node name="Background" type="MeshInstance3D" parent="MiniLabel"]
-visibility_range_end = 5.0
+visibility_range_end = 10.0
 visibility_range_end_margin = 0.1
 visibility_range_fade_mode = 1
 mesh = SubResource("QuadMesh_4smp2")
@@ -134,7 +141,7 @@ mesh = SubResource("QuadMesh_4smp2")
 [node name="Avatar" type="MeshInstance3D" parent="MiniLabel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0, 0.01)
 sorting_offset = 1.0
-visibility_range_end = 5.0
+visibility_range_end = 10.0
 visibility_range_end_margin = 0.1
 visibility_range_fade_mode = 1
 mesh = SubResource("QuadMesh_1c8sl")
@@ -163,7 +170,7 @@ mesh = SubResource("QuadMesh_32df4")
 [node name="Name" type="Label3D" parent="Label"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.83, 0.01)
 no_depth_test = true
-render_priority = 1
+render_priority = 2
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "@someone"
@@ -172,7 +179,7 @@ font = SubResource("SystemFont_jqkj2")
 [node name="Message" type="Label3D" parent="Label"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.3, 0.01)
 no_depth_test = true
-render_priority = 1
+render_priority = 2
 modulate = Color(0, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "Hey guys, did you know that in terms of male Lucky Charm and female leprechaun breeding, Fuyo is the most compatible leprechaun for humans? Not only are they in the short humanoid group, ..."

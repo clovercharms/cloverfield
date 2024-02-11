@@ -1,7 +1,7 @@
 extends Node3D
 
 @export var amount = 100
-@export var position_range = 10
+@export var position_range = 20
 @export var min_distance = 3.0
 
 @onready var clover: PackedScene = preload("res://scenes/field/clovers/clover.tscn")

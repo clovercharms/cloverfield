@@ -2,7 +2,6 @@ extends Node3D
 
 @export var amount := 50
 @export var position_range := Vector3(5, 0.5, 5)
-@export var height := 5.0
 
 func _ready():
 	for i in range(amount):
@@ -10,7 +9,7 @@ func _ready():
 		add_child(cloud)
 		cloud.global_position = Vector3(
 			randf_range(-position_range.x, position_range.x),
-			height + randf_range(-position_range.y, position_range.y),
+			global_position.y + randf_range(-position_range.y, position_range.y),
 			randf_range(-position_range.z, position_range.z),
 		)
 		cloud.rotation = Vector3(

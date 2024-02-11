@@ -1,13 +1,14 @@
 extends CharacterBody3D
 
-@export var jump_interval_ms = Vector2(2000, 3000)
-@export var jump_height = Vector2(0.2, 0.4)
-@export var jump_duration_s = Vector2(0.8, 1.2)
+@export var jump_interval_ms := Vector2(2000, 3000)
+@export var jump_height := Vector2(0.2, 0.4)
+@export var jump_duration_s := Vector2(0.8, 1.2)
 
-@export var speed = 1.0
-@export var accel = 1.0
+@export var speed := 1.0
+@export var accel := 1.0
 
-@export var interactivity_range = 9999.0
+@export var interactivity_range := 9999.0
+@export var wander_range := 5.0
 
 signal selected(instance: CharacterBody3D)
 signal deselected
@@ -48,16 +49,18 @@ func _process(delta):
 	# Generate random walking position
 	if destination == Vector3.ZERO || global_position.distance_to(destination) < 0.5:
 		destination = Vector3(
-			randf_range(-5, 5),
+			randf_range(-wander_range, wander_range),
 			0.5,
-			randf_range(-5, 5)
+			randf_range(-wander_range, wander_range)
 		)
+		destination = NavigationServer3D.map_get_closest_point(
+			NavigationServer3D.get_maps()[0],
+			destination
+		);
 		$NavigationAgent3D.target_position = destination
 	
-	#var direction = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
-	#velocity = velocity.lerp(direction * speed, accel * delta)
-	if !is_on_floor():
-		velocity.y -= 0.1 * delta
+	var direction = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
+	velocity = velocity.lerp(direction * speed, accel * delta)
 	
 	move_and_slide()
 	
