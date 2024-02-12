@@ -63,6 +63,7 @@ func _ready():
 
 func _process(delta):
 	_snap_camera()
+	#_billboard()
 	
 	_wander();
 	
@@ -74,50 +75,63 @@ func _process(delta):
 	_jump()
 	
 
-func _input(event):
-	if !event is InputEventMouseButton || event.button_mask == 0:
-		return
-	if selection_disabled:
-		return
-	
-	if is_selected:
-		camera_unsnap_started_ms = Time.get_ticks_msec()
-		unsnapping.emit()
+func _billboard():
+	$Body.rotation = camera.rotation
+	$Body.rotation.x = 0.0
+	$Body.rotation.z = 0.0
+
+#func _input(event):
+	#if !event is InputEventMouseButton || event.button_mask == 0:
+		#return
+	#if selection_disabled:
+		#return
+	#
+	#if is_selected:
+		#camera_unsnap_started_ms = Time.get_ticks_msec()
+		#unsnapping.emit()
 
 # Handle click event (selecting) the clover
-func _on_body_input_event(_camera, event, _position, _normal, _shape_idx):
-	# Check mouse button press
-	if !event is InputEventMouseButton || \
-		event.button_index != 1 || \
-		!event.pressed:
-			return
-	if selection_disabled || is_selected: return
-	
-	is_selected = !is_selected
-	selected.emit(self)
-	
-	# Y billboard label
-	$Label.rotation = camera.rotation
-	$Label.rotation.x = 0.0
-	$Label.rotation.z = 0.0
-	
-	# Store previous camera position to unsnap later
-	camera_unsnap_transform = camera.transform
-	# Start snap
-	camera_snap_started_ms = Time.get_ticks_msec()
+#func _on_body_input_event(_camera, event, _position, _normal, _shape_idx):
+	## Check mouse button press
+	#if !event is InputEventMouseButton || \
+		#event.button_index != 1 || \
+		#!event.pressed:
+			#return
+	#if selection_disabled || is_selected: return
+	#
+	#is_selected = !is_selected
+	#selected.emit(self)
+	#
+	## Y billboard label
+	#$Label.rotation = camera.rotation
+	#$Label.rotation.x = 0.0
+	#$Label.rotation.z = 0.0
+	#
+	## Store previous camera position to unsnap later
+	#camera_unsnap_transform = camera.transform
+	## Start snap
+	#camera_snap_started_ms = Time.get_ticks_msec()
+#
+## Update cursors on hover
+#func _on_body_mouse_entered():
+	#if selection_disabled: return
+	#
+	#Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	#hover_entered.emit()
+#
+#func _on_body_mouse_exited():
+	#if selection_disabled: return
+	#
+	#Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	#hover_exited.emit()
 
-# Update cursors on hover
-func _on_body_mouse_entered():
-	if selection_disabled: return
+func _on_body_entered(body):
+	if !body is Arrow || body.get_node("../../..") is Clover || body.freeze:
+		return
 	
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-	hover_entered.emit()
-
-func _on_body_mouse_exited():
-	if selection_disabled: return
+	if body.get_parent() != $Body/Projectiles:
+		body.reparent($Body/Projectiles, true)
 	
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	hover_exited.emit()
 
 func _jump():
 	if Time.get_ticks_msec() < next_jump_ms || \
@@ -197,4 +211,3 @@ func _snap_camera():
 		camera.global_transform = camera.global_transform.interpolate_with(
 			camera_unsnap_transform, transition_progress
 		)
-

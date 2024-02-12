@@ -12,13 +12,12 @@ size = Vector3(1, 1, 0.2)
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("2_ec0k1")
-billboard_mode = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_1liqx"]
 material = SubResource("StandardMaterial3D_qaqow")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qh6tn"]
-size = Vector3(1, 1, 0.5)
+size = Vector3(0.75, 0.75, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
 render_priority = 1
@@ -99,7 +98,7 @@ base_font = SubResource("SystemFont_neyu0")
 
 [node name="Clover" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-collision_mask = 2
+collision_layer = 4
 script = ExtResource("1_lxs11")
 wander_range = 10.0
 
@@ -113,9 +112,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00741577, 2.38419e-07, -0.
 mesh = SubResource("QuadMesh_1liqx")
 
 [node name="Area3D" type="Area3D" parent="Body"]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Area3D"]
 shape = SubResource("BoxShape3D_qh6tn")
+
+[node name="Projectiles" type="Node3D" parent="Body"]
 
 [node name="MiniLabel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -192,6 +195,8 @@ width = 300.0
 [connection signal="selected" from="." to="MiniLabel" method="_on_clover_selected"]
 [connection signal="selected" from="." to="Label" method="_on_clover_selected"]
 [connection signal="unsnapping" from="." to="Label" method="_on_clover_unsnapping"]
+[connection signal="area_entered" from="Body/Area3D" to="." method="_on_area_3d_area_entered"]
+[connection signal="body_entered" from="Body/Area3D" to="." method="_on_body_entered"]
 [connection signal="input_event" from="Body/Area3D" to="." method="_on_body_input_event"]
 [connection signal="mouse_entered" from="Body/Area3D" to="." method="_on_body_mouse_entered"]
 [connection signal="mouse_exited" from="Body/Area3D" to="." method="_on_body_mouse_exited"]

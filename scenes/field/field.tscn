@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://w1dfo1h66yxa"]
+[gd_scene load_steps=35 format=3 uid="uid://w1dfo1h66yxa"]
 
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="1_8os84"]
 [ext_resource type="Script" path="res://scenes/field/clovers.gd" id="2_emqpg"]
@@ -10,6 +10,9 @@
 [ext_resource type="Texture2D" uid="uid://dwjo1gql5g5s" path="res://assets/textures/petals/scattered.png" id="8_0pbfi"]
 [ext_resource type="Texture2D" uid="uid://cmh5n3kfk2k30" path="res://assets/textures/petals/lessdetailedpetal.png" id="8_4koer"]
 [ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="10_8u6v8"]
+[ext_resource type="PackedScene" uid="uid://cniaa1240sta0" path="res://assets/models/reaper_leviathan.glb" id="11_feu6f"]
+[ext_resource type="Script" path="res://assets/models/reaper_leviathan.gd" id="12_md3ax"]
+[ext_resource type="Script" path="res://scenes/field/bow.gd" id="14_0tman"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
 sky_top_color = Color(1, 0.92549, 0.937255, 1)
@@ -70,12 +73,9 @@ material = SubResource("StandardMaterial3D_oyi21")
 size = Vector2(1.5, 2)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88or0"]
-emission_shape_scale = Vector3(50, 1, 50)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 2.0
-emission_ring_inner_radius = 0.0
+emission_shape_scale = Vector3(25, 1, 25)
+emission_shape = 2
+emission_sphere_radius = 1.0
 gravity = Vector3(0, -1, 0)
 turbulence_enabled = true
 
@@ -106,8 +106,14 @@ albedo_texture = ExtResource("5_iuk00")
 material = SubResource("StandardMaterial3D_q1alc")
 size = Vector3(50, 0.5, 50)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qywpp"]
+data = PackedVector3Array(-25, 0.25, 25, 25, 0.25, 25, -25, -0.25, 25, 25, 0.25, 25, 25, -0.25, 25, -25, -0.25, 25, 25, 0.25, -25, -25, 0.25, -25, 25, -0.25, -25, -25, 0.25, -25, -25, -0.25, -25, 25, -0.25, -25, 25, 0.25, 25, 25, 0.25, -25, 25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, 25, -0.25, 25, -25, 0.25, -25, -25, 0.25, 25, -25, -0.25, -25, -25, 0.25, 25, -25, -0.25, 25, -25, -0.25, -25, 25, 0.25, 25, -25, 0.25, 25, 25, 0.25, -25, -25, 0.25, 25, -25, 0.25, -25, 25, 0.25, -25, -25, -0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, -0.25, 25, 25, -0.25, -25, -25, -0.25, -25)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ff4oi"]
 albedo_color = Color(0.992157, 0.662745, 0.839216, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuh6q"]
+size = Vector3(50, 50, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -129,6 +135,12 @@ shadow_enabled = true
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 7.5)
+
+[node name="Bow" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
+script = ExtResource("14_0tman")
+
+[node name="Projectiles" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_svy4g")
@@ -165,9 +177,9 @@ process_material = SubResource("ParticleProcessMaterial_q3biy")
 draw_pass_1 = SubResource("QuadMesh_a53t3")
 
 [node name="Sakura Petals" type="GPUParticles3D" parent="NavigationRegion3D/Props"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 sorting_offset = -1.0
-amount = 2048
+amount = 1024
 lifetime = 7.5
 fixed_fps = 10
 process_material = SubResource("ParticleProcessMaterial_88or0")
@@ -395,8 +407,35 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2021, 0)
 mesh = SubResource("BoxMesh_m73n1")
 skeleton = NodePath("../..")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Earth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Earth/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_qywpp")
+
 [node name="Heart" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, -0.6, 0)
 mesh = ExtResource("6_6ivio")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ff4oi")
+
+[node name="Sketchfab_Scene" parent="NavigationRegion3D" instance=ExtResource("11_feu6f")]
+transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 10, -200)
+script = ExtResource("12_md3ax")
+
+[node name="Cage" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -25)
+shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 25)
+shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 25, 0)
+shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 25, 0)
+shape = SubResource("BoxShape3D_iuh6q")
