@@ -1,16 +1,15 @@
-[gd_scene load_steps=31 format=3 uid="uid://w1dfo1h66yxa"]
+[gd_scene load_steps=30 format=3 uid="uid://w1dfo1h66yxa"]
 
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="1_8os84"]
-[ext_resource type="Script" path="res://scenes/field/clovers/clovers.gd" id="2_emqpg"]
-[ext_resource type="Script" path="res://scenes/field/clouds/clouds.gd" id="3_pliko"]
-[ext_resource type="Script" path="res://scenes/field/clouds/cloud.gd" id="4_31igx"]
+[ext_resource type="Script" path="res://scenes/field/clovers.gd" id="2_emqpg"]
+[ext_resource type="Script" path="res://scenes/field/clouds.gd" id="3_pliko"]
+[ext_resource type="Script" path="res://scenes/field/cloud/cloud.gd" id="4_31igx"]
 [ext_resource type="Texture2D" uid="uid://dl0kfb2esvuul" path="res://assets/textures/grass.png" id="5_iuk00"]
 [ext_resource type="ArrayMesh" uid="uid://3d3wnmocbdpe" path="res://assets/models/heart.obj" id="6_6ivio"]
 [ext_resource type="Texture2D" uid="uid://w6ahfb448wha" path="res://assets/textures/props/balloon1.png" id="7_w8tk4"]
 [ext_resource type="Texture2D" uid="uid://dwjo1gql5g5s" path="res://assets/textures/petals/scattered.png" id="8_0pbfi"]
 [ext_resource type="Texture2D" uid="uid://cmh5n3kfk2k30" path="res://assets/textures/petals/lessdetailedpetal.png" id="8_4koer"]
 [ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="10_8u6v8"]
-[ext_resource type="PackedScene" uid="uid://d1gkok6m60n1c" path="res://assets/models/mickey_mouse_retro.glb" id="10_tacuo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
 sky_top_color = Color(1, 0.92549, 0.937255, 1)
@@ -122,6 +121,7 @@ _camera = NodePath("../Camera3D")
 min_distance = 2.0
 max_distance = 20.0
 max_polar_angle = 1.55334
+enable_pan = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.707107, -0.415627, 0.572061, 0, 0.809017, 0.587785, -0.707107, -0.415627, 0.572061, 5, 5, 5)
@@ -400,6 +400,3 @@ transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, -0.
 mesh = ExtResource("6_6ivio")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ff4oi")
-
-[node name="Mickey" parent="." instance=ExtResource("10_tacuo")]
-transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, -4.363, -1213.72, -1500)
