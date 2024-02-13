@@ -10,20 +10,34 @@ var generated_positions: Array[Vector3] = []
 var instances: Array[PackedScene] = []
 var selection_active := false
 
-static var avatars: Array[Texture] = [
-	preload("res://assets/textures/avatars/0e748d5c03e9db4dcafbd0eb95cc04c5.png"),
-	preload("res://assets/textures/avatars/7bc5d82b2a758871c43a88c438a555d7.png"),
-	preload("res://assets/textures/avatars/37b1590dd0b8abdd195f6a316bfec185.png"),
-	preload("res://assets/textures/avatars/37cdacfcb198cc99a1f8e6e1ea9c8bf3.png"),
-	preload("res://assets/textures/avatars/a5e3a10c2a0fcfca7736df62b8c1ff23.png"),
-	preload("res://assets/textures/avatars/a199d21ed0a72874549a626190630f08.png"),
-	preload("res://assets/textures/avatars/a787a861b4a4781b7b5ba1c1df002909.png"),
-	preload("res://assets/textures/avatars/a_8aa68e655ee8d4b6cc50f1ab7c7516ee.png"),
-	preload("res://assets/textures/avatars/b3109c7e6e639d076b3e280b8ddf04d0.png"),
-	preload("res://assets/textures/avatars/f4e24f6258f24cbd94e139317d58c03a.png"),
-	preload("res://assets/textures/avatars/f7e694eb04dd6e04eb6fde8c9267fbbf.png"),
-	preload("res://assets/textures/avatars/pfp.png"),
-]
+var responses = preload("res://responses.csv")
+var generic_messages = preload("res://generic_charms.csv")
+
+#static var avatars: Array[Texture] = [
+	#preload("res://assets/textures/avatars/0e748d5c03e9db4dcafbd0eb95cc04c5.png"),
+	#preload("res://assets/textures/avatars/7bc5d82b2a758871c43a88c438a555d7.png"),
+	#preload("res://assets/textures/avatars/37b1590dd0b8abdd195f6a316bfec185.png"),
+	#preload("res://assets/textures/avatars/37cdacfcb198cc99a1f8e6e1ea9c8bf3.png"),
+	#preload("res://assets/textures/avatars/a5e3a10c2a0fcfca7736df62b8c1ff23.png"),
+	#preload("res://assets/textures/avatars/a199d21ed0a72874549a626190630f08.png"),
+	#preload("res://assets/textures/avatars/a787a861b4a4781b7b5ba1c1df002909.png"),
+	#preload("res://assets/textures/avatars/a_8aa68e655ee8d4b6cc50f1ab7c7516ee.png"),
+	#preload("res://assets/textures/avatars/b3109c7e6e639d076b3e280b8ddf04d0.png"),
+	#preload("res://assets/textures/avatars/f4e24f6258f24cbd94e139317d58c03a.png"),
+	#preload("res://assets/textures/avatars/f7e694eb04dd6e04eb6fde8c9267fbbf.png"),
+	#preload("res://assets/textures/avatars/pfp.png"),
+#]
+
+static var avatars = {
+	"default" : preload("res://assets/textures/clovers/cloverrose.png"),
+	"Awysu" : preload("res://assets/textures/avatars/awysu.jpg"),
+	"Firebreath" : preload("res://assets/textures/avatars/firebreath.jpg"),
+	"DWraith23" : preload("res://assets/textures/avatars/dwraith.png"),
+	"Herbie Cucumber" : preload("res://assets/textures/avatars/herbie_cucumber.jpg"),
+	"Necrozma" : preload("res://assets/textures/avatars/necrozma.png"),
+	"EB" : preload("res://assets/textures/avatars/eb.png"),
+	"That Guy Raz" : preload("res://assets/textures/avatars/raz.png")
+}
 
 static var bodies: Array[Texture] = [
 	preload("res://assets/textures/clovers/clover.png"),
@@ -44,6 +58,8 @@ func _toggle_selections(instance: CharacterBody3D, disabled: bool):
 		child.selection_disabled = disabled
 
 func _ready():
+	print(avatars.keys())
+	
 	for i in range(amount):
 		@warning_ignore("confusable_local_usage", "shadowed_variable")
 		var clover = clover.instantiate() as Node3D
@@ -53,9 +69,26 @@ func _ready():
 		clover.selected.connect(func(instance): _toggle_selections(instance, true))
 		# Re-enable selections on deselect
 		clover.deselected.connect(func(): _toggle_selections(null, false))
-		# Choose random body/avatar
-		clover.avatar = avatars[randi_range(0, avatars.size()-1)]
+		#Set name and message (and avatar apparently)
+		if i < responses.records.size():
+			clover.set_text(responses.records[i][1], responses.records[i][2].left(500))
+			# Choo-choo-choose an avatar
+			if responses.records[i][1] in avatars.keys():
+				clover.avatar = avatars[responses.records[i][1]]
+			else:
+				clover.avatar = avatars["default"]
+				clover.get_node("Label/Background2").visible = false
+		else:
+			clover.set_text("Lucky Charm", generic_messages.records[randi_range(0,generic_messages.records.size()-1)][0])
+			clover.get_node("MiniLabel/Avatar").visible = false
+			clover.get_node("MiniLabel/Arrow").visible = false
+			clover.get_node("MiniLabel/Background").visible = false
+			clover.get_node("Label/Background2").visible = false
+			clover.get_node("Label/Avatar").visible = false
+		# Choose random body
 		clover.body = bodies[randi_range(0, bodies.size()-1)]
+		
+		
 
 		# Keep generating random spawn positions until atleast min_distance from
 		# other clovers in the field
