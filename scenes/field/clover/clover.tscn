@@ -1,12 +1,31 @@
-[gd_scene load_steps=27 format=3 uid="uid://di6qsrcw5ql5t"]
+[gd_scene load_steps=32 format=3 uid="uid://di6qsrcw5ql5t"]
 
 [ext_resource type="Script" path="res://scenes/field/clover/clover.gd" id="1_lxs11"]
+[ext_resource type="Texture2D" uid="uid://nxi4taa5s431" path="res://assets/textures/particles/star01.png" id="2_7akt7"]
 [ext_resource type="Texture2D" uid="uid://dtyrc0imlajwd" path="res://assets/textures/clovers/clover.png" id="2_ec0k1"]
 [ext_resource type="Script" path="res://scenes/field/clover/mini_label.gd" id="3_cftf1"]
 [ext_resource type="Script" path="res://scenes/field/clover/label.gd" id="4_nrd2x"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t244o"]
 height = 0.1
+radius = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gwab"]
+gravity = Vector3(0, 2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4kmf"]
+render_priority = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+no_depth_test = true
+albedo_texture = ExtResource("2_7akt7")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_e4yvi"]
+material = SubResource("StandardMaterial3D_f4kmf")
+size = Vector2(0.25, 0.25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qaqow"]
 transparency = 4
@@ -17,8 +36,12 @@ billboard_mode = 2
 [sub_resource type="QuadMesh" id="QuadMesh_1liqx"]
 material = SubResource("StandardMaterial3D_qaqow")
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_eksc3"]
+height = 0.137
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
 render_priority = 1
+no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_xukax"]
@@ -27,6 +50,7 @@ size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5u84h"]
 render_priority = 1
+no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_4smp2"]
@@ -38,6 +62,7 @@ load_path = "res://.godot/imported/pfp.png-dccd34fd68249a268f8b50ec56487365.bptc
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdc6v"]
 render_priority = 1
+no_depth_test = true
 shading_mode = 0
 albedo_texture = SubResource("CompressedTexture2D_ki72s")
 
@@ -101,12 +126,17 @@ script = ExtResource("1_lxs11")
 wander_range = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_t244o")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
+[node name="HitParticles" type="GPUParticles3D" parent="."]
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_0gwab")
+draw_pass_1 = SubResource("QuadMesh_e4yvi")
+
 [node name="Body" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00741577, 2.38419e-07, -0.00152302)
 mesh = SubResource("QuadMesh_1liqx")
 
 [node name="Area3D" type="Area3D" parent="Body"]
@@ -118,6 +148,11 @@ collision_mask = 2
 shape = SubResource("CylinderShape3D_t244o")
 
 [node name="Projectiles" type="Node3D" parent="Body"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+mesh = SubResource("CylinderMesh_eksc3")
 
 [node name="MiniLabel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -189,6 +224,7 @@ autowrap_mode = 3
 width = 300.0
 
 [connection signal="deselected" from="." to="MiniLabel" method="_on_clover_deselected"]
+[connection signal="hit" from="." to="." method="_spin"]
 [connection signal="hover_entered" from="." to="MiniLabel" method="_on_clover_hover_entered"]
 [connection signal="hover_exited" from="." to="MiniLabel" method="_on_clover_hover_exited"]
 [connection signal="selected" from="." to="MiniLabel" method="_on_clover_selected"]

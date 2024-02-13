@@ -18,6 +18,7 @@ signal unsnapping
 signal deselect_started
 signal hover_entered
 signal hover_exited
+signal hit
 
 # Camera
 var camera: Camera3D
@@ -34,7 +35,8 @@ var orbit_controls: Control
 
 # Behavior
 var next_jump_ms = randf_range(0, jump_interval_ms.y)
-var tween: Tween
+var jump_tween: Tween
+var hit_tween: Tween
 var destination: Vector3
 
 # Attributes
@@ -73,50 +75,15 @@ func _process(delta):
 	
 	_jump()
 
+# Handle deselect mouse click
 func _input(event):
 	if !event is InputEventMouseButton || event.button_mask == 0:
 		return
-	if selection_disabled:
+	if selection_disabled || !is_selected:
 		return
 	
-	if is_selected:
-		camera_unsnap_started_ms = Time.get_ticks_msec()
-		unsnapping.emit()
-
-# Handle click event (selecting) the clover
-#func _on_body_input_event(_camera, event, _position, _normal, _shape_idx):
-	## Check mouse button press
-	#if !event is InputEventMouseButton || \
-		#event.button_index != 1 || \
-		#!event.pressed:
-			#return
-	#if selection_disabled || is_selected: return
-	#
-	#is_selected = !is_selected
-	#selected.emit(self)
-	#
-	## Y billboard label
-	#$Label.rotation = camera.rotation
-	#$Label.rotation.x = 0.0
-	#$Label.rotation.z = 0.0
-	#
-	## Store previous camera position to unsnap later
-	#camera_unsnap_transform = camera.transform
-	## Start snap
-	#camera_snap_started_ms = Time.get_ticks_msec()
-#
-## Update cursors on hover
-#func _on_body_mouse_entered():
-	#if selection_disabled: return
-	#
-	#Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
-	#hover_entered.emit()
-#
-#func _on_body_mouse_exited():
-	#if selection_disabled: return
-	#
-	#Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	#hover_exited.emit()
+	camera_unsnap_started_ms = Time.get_ticks_msec()
+	unsnapping.emit()
 
 func _handle_select():
 	if selection_disabled || is_selected: return
@@ -144,10 +111,11 @@ func _on_body_entered(body):
 		
 	body.despawn_disabled = true
 	_handle_select()
+	hit.emit()
 
 func _jump():
 	if Time.get_ticks_msec() < next_jump_ms || \
-		(tween != null && tween.is_running()):
+		(jump_tween != null && jump_tween.is_running()):
 			return
 	
 	next_jump_ms = Time.get_ticks_msec() + randf_range(
@@ -157,15 +125,15 @@ func _jump():
 	var init_position = $Body.position
 	var jump_duration = randf_range(jump_duration_s.x, jump_duration_s.y)
 	
-	tween = get_tree().create_tween()
-	tween.tween_property(
+	jump_tween = get_tree().create_tween()
+	jump_tween.tween_property(
 		$Body,
 		"position:y",
 		init_position.y + randf_range(jump_height.x, jump_height.y),
 		jump_duration / 2
 	).set_trans(Tween.TRANS_QUAD)
 	
-	tween.tween_property(
+	jump_tween.tween_property(
 		$Body,
 		"position:y",
 		init_position.y,
@@ -221,3 +189,42 @@ func _snap_camera():
 		camera.global_transform = camera.global_transform.interpolate_with(
 			camera_unsnap_transform, transition_progress
 		)
+
+func _spin():
+	if (hit_tween != null && hit_tween.is_running()):
+		return
+	
+	# Billboard clover
+	$Body.rotation = camera.rotation
+	$Body.rotation.x = 0.0
+	$Body.rotation.z = 0.0
+	
+	# Disable material Y-billboard
+	var material := $Body.get_active_material(0) as StandardMaterial3D
+	material.billboard_mode = BaseMaterial3D.BILLBOARD_DISABLED
+	
+	# Schedule jump
+	next_jump_ms = Time.get_ticks_msec()
+	
+	# Hit tween
+	hit_tween = get_tree().create_tween()
+	hit_tween.set_parallel(true)
+	
+	var flip_rotation = randi_range(0, 1) == 1
+	var body_rotation = PI * 4
+	if flip_rotation:
+		body_rotation = -body_rotation
+	body_rotation = camera.rotation.y + body_rotation
+	
+	hit_tween.tween_property(
+		$Body,
+		"rotation:y",
+		body_rotation,
+		1
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	
+	hit_tween.set_parallel(false)
+
+	hit_tween.tween_callback(func():
+		material.billboard_mode = BaseMaterial3D.BILLBOARD_FIXED_Y
+	)

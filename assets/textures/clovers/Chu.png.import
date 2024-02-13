@@ -16,7 +16,7 @@ dest_files=["res://.godot/imported/Chu.png-309347c12604f763616379ecf161838f.ctex
 [params]
 
 compress/mode=0
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

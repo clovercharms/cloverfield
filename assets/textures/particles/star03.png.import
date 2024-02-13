@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1k1f1p1vdhfa"
-path.s3tc="res://.godot/imported/petalbundle3.png-46216eb721d4d2a94c302c3457950efc.s3tc.ctex"
+uid="uid://088bervwikqv"
+path="res://.godot/imported/star03.png-9f624a91a95bd24a3e10980a2c988409.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/props/petalbundle3.png"
-dest_files=["res://.godot/imported/petalbundle3.png-46216eb721d4d2a94c302c3457950efc.s3tc.ctex"]
+source_file="res://assets/textures/particles/star03.png"
+dest_files=["res://.godot/imported/star03.png-9f624a91a95bd24a3e10980a2c988409.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

@@ -444,4 +444,3 @@ shape = SubResource("BoxShape3D_iuh6q")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_uw48u")
-autoplay = true
