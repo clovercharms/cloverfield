@@ -201,7 +201,3 @@ func _snap_camera():
 		camera.global_transform = camera.global_transform.interpolate_with(
 			camera_unsnap_transform, transition_progress
 		)
-
-func set_text (name, message):
-	$Label/Name.text = name
-	$Label/Message.text = message

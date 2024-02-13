@@ -71,7 +71,8 @@ func _ready():
 		clover.deselected.connect(func(): _toggle_selections(null, false))
 		#Set name and message (and avatar apparently)
 		if i < responses.records.size():
-			clover.set_text(responses.records[i][1], responses.records[i][2].left(500))
+			clover.get_node("Label/Name").text = responses.records[i][1]
+			clover.get_node("Label/Message").text = responses.records[i][2].left(500)
 			# Choo-choo-choose an avatar
 			if responses.records[i][1] in avatars.keys():
 				clover.avatar = avatars[responses.records[i][1]]
@@ -79,7 +80,8 @@ func _ready():
 				clover.avatar = avatars["default"]
 				clover.get_node("Label/Background2").visible = false
 		else:
-			clover.set_text("Lucky Charm", generic_messages.records[randi_range(0,generic_messages.records.size()-1)][0])
+			clover.get_node("Label/Name").text = "Lucky Charm"
+			clover.get_node("Label/Message").text = generic_messages.records[randi_range(0,generic_messages.records.size()-1)][0]
 			clover.get_node("MiniLabel/Avatar").visible = false
 			clover.get_node("MiniLabel/Arrow").visible = false
 			clover.get_node("MiniLabel/Background").visible = false
