@@ -63,7 +63,6 @@ func _ready():
 
 func _process(delta):
 	_snap_camera()
-	#_billboard()
 	
 	_wander();
 	
@@ -73,22 +72,16 @@ func _process(delta):
 	move_and_slide()
 	
 	_jump()
+
+func _input(event):
+	if !event is InputEventMouseButton || event.button_mask == 0:
+		return
+	if selection_disabled:
+		return
 	
-
-func _billboard():
-	$Body.rotation = camera.rotation
-	$Body.rotation.x = 0.0
-	$Body.rotation.z = 0.0
-
-#func _input(event):
-	#if !event is InputEventMouseButton || event.button_mask == 0:
-		#return
-	#if selection_disabled:
-		#return
-	#
-	#if is_selected:
-		#camera_unsnap_started_ms = Time.get_ticks_msec()
-		#unsnapping.emit()
+	if is_selected:
+		camera_unsnap_started_ms = Time.get_ticks_msec()
+		unsnapping.emit()
 
 # Handle click event (selecting) the clover
 #func _on_body_input_event(_camera, event, _position, _normal, _shape_idx):
@@ -125,13 +118,32 @@ func _billboard():
 	#Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	#hover_exited.emit()
 
+func _handle_select():
+	if selection_disabled || is_selected: return
+	
+	is_selected = !is_selected
+	selected.emit(self)
+	
+	# Y billboard label
+	$Label.rotation = camera.rotation
+	$Label.rotation.x = 0.0
+	$Label.rotation.z = 0.0
+	
+	# Store previous camera position to unsnap later
+	camera_unsnap_transform = camera.transform
+	# Start snap
+	camera_snap_started_ms = Time.get_ticks_msec()
+
+# Handle being hit by arrows
 func _on_body_entered(body):
 	if !body is Arrow || body.get_node("../../..") is Clover || body.freeze:
 		return
 	
 	if body.get_parent() != $Body/Projectiles:
 		body.reparent($Body/Projectiles, true)
-	
+		
+	body.despawn_disabled = true
+	_handle_select()
 
 func _jump():
 	if Time.get_ticks_msec() < next_jump_ms || \
@@ -198,8 +210,6 @@ func _snap_camera():
 		camera_unsnap_started_ms = 0
 		is_selected = false
 		deselected.emit()
-		# FIXME Die
-		queue_free()
 		return
 	
 	# Update camera interpolation

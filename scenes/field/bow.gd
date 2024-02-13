@@ -1,13 +1,15 @@
 extends Node3D
+class_name Bow
 
 @onready var orbit_controls: Control = get_node("../../OrbitControls")
 @onready var arrow := preload("res://scenes/field/arrow/arrow.tscn")
 @onready var projectiles: Node3D = get_node("../../Projectiles")
 @onready var camera: Camera3D = get_parent()
 @onready var ray_length := 100000.0;
+@export var disabled = false
 
 func _input(event):
-	if !event is InputEventMouseButton || event.button_mask != 1:
+	if !event is InputEventMouseButton || event.button_mask != 1 || disabled:
 		return
 	var mouse_position = _raycast_mouse()
 	if !mouse_position:

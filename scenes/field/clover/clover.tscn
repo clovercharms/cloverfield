@@ -1,23 +1,21 @@
-[gd_scene load_steps=28 format=3 uid="uid://di6qsrcw5ql5t"]
+[gd_scene load_steps=27 format=3 uid="uid://di6qsrcw5ql5t"]
 
 [ext_resource type="Script" path="res://scenes/field/clover/clover.gd" id="1_lxs11"]
 [ext_resource type="Texture2D" uid="uid://dtyrc0imlajwd" path="res://assets/textures/clovers/clover.png" id="2_ec0k1"]
 [ext_resource type="Script" path="res://scenes/field/clover/mini_label.gd" id="3_cftf1"]
 [ext_resource type="Script" path="res://scenes/field/clover/label.gd" id="4_nrd2x"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_5qqbk"]
-size = Vector3(1, 1, 0.2)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_t244o"]
+height = 0.1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qaqow"]
 transparency = 4
 cull_mode = 2
 albedo_texture = ExtResource("2_ec0k1")
+billboard_mode = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_1liqx"]
 material = SubResource("StandardMaterial3D_qaqow")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_qh6tn"]
-size = Vector3(0.75, 0.75, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
 render_priority = 1
@@ -103,7 +101,7 @@ script = ExtResource("1_lxs11")
 wander_range = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_5qqbk")
+shape = SubResource("CylinderShape3D_t244o")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -112,11 +110,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00741577, 2.38419e-07, -0.
 mesh = SubResource("QuadMesh_1liqx")
 
 [node name="Area3D" type="Area3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Body/Area3D"]
-shape = SubResource("BoxShape3D_qh6tn")
+shape = SubResource("CylinderShape3D_t244o")
 
 [node name="Projectiles" type="Node3D" parent="Body"]
 

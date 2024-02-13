@@ -3,6 +3,7 @@ extends Node3D
 @export var amount = 100
 @export var position_range = 20
 @export var min_distance = 3.0
+@export var bow: Bow
 
 @onready var clover: PackedScene = preload("res://scenes/field/clover/clover.tscn")
 var half_range = position_range / 2.0
@@ -38,6 +39,7 @@ static var bodies: Array[Texture] = [
 
 # Disable selection for all clovers on selection
 func _toggle_selections(instance: CharacterBody3D, disabled: bool):
+	bow.disabled = disabled
 	for child in get_children():
 		if child == instance: continue
 		

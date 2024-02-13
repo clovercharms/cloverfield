@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://w1dfo1h66yxa"]
+[gd_scene load_steps=36 format=3 uid="uid://w1dfo1h66yxa"]
 
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="1_8os84"]
 [ext_resource type="Script" path="res://scenes/field/clovers.gd" id="2_emqpg"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cniaa1240sta0" path="res://assets/models/reaper_leviathan.glb" id="11_feu6f"]
 [ext_resource type="Script" path="res://assets/models/reaper_leviathan.gd" id="12_md3ax"]
 [ext_resource type="Script" path="res://scenes/field/bow.gd" id="14_0tman"]
+[ext_resource type="AudioStream" uid="uid://qp2vc7mwopdl" path="res://assets/audio/Under_the_Tree_wip2.wav" id="14_uw48u"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
 sky_top_color = Color(1, 0.92549, 0.937255, 1)
@@ -145,10 +146,11 @@ script = ExtResource("14_0tman")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_svy4g")
 
-[node name="Clovers" type="Node3D" parent="."]
+[node name="Clovers" type="Node3D" parent="." node_paths=PackedStringArray("bow")]
 script = ExtResource("2_emqpg")
 amount = 20
 min_distance = 0.0
+bow = NodePath("../Camera3D/Bow")
 
 [node name="Clouds" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
@@ -439,3 +441,7 @@ shape = SubResource("BoxShape3D_iuh6q")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Cage"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 25, 0)
 shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_uw48u")
+autoplay = true
