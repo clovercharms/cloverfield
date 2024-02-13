@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i6mohotpddkt"
-path.bptc="res://.godot/imported/37b1590dd0b8abdd195f6a316bfec185.png-1aecadfd02a0787fc54c3cc3ae128e14.bptc.ctex"
+uid="uid://b5y6xpyaltrcs"
+path="res://.godot/imported/necrozma.png-82fdb3e99c99f13c4fae352c85034482.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/avatars/37b1590dd0b8abdd195f6a316bfec185.png"
-dest_files=["res://.godot/imported/37b1590dd0b8abdd195f6a316bfec185.png-1aecadfd02a0787fc54c3cc3ae128e14.bptc.ctex"]
+source_file="res://assets/textures/avatars/necrozma.png"
+dest_files=["res://.godot/imported/necrozma.png-82fdb3e99c99f13c4fae352c85034482.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

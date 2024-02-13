@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bce2cl7fmg747"
-path.bptc="res://.godot/imported/pfp.png-a0df50315644c4a70266b0da64e05855.bptc.ctex"
+uid="uid://bn64vg648kehc"
+path.bptc="res://.godot/imported/a199d21ed0a72874549a626190630f08.png-4f8235a9708333d29eb62d6d39361eae.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/avatars/pfp.png"
-dest_files=["res://.godot/imported/pfp.png-a0df50315644c4a70266b0da64e05855.bptc.ctex"]
+source_file="res://assets/textures/avatars_old/a199d21ed0a72874549a626190630f08.png"
+dest_files=["res://.godot/imported/a199d21ed0a72874549a626190630f08.png-4f8235a9708333d29eb62d6d39361eae.bptc.ctex"]
 
 [params]
 
@@ -22,7 +22,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +32,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

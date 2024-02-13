@@ -58,7 +58,6 @@ material = SubResource("StandardMaterial3D_5u84h")
 size = Vector2(0.6, 0.6)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ki72s"]
-load_path = "res://.godot/imported/pfp.png-dccd34fd68249a268f8b50ec56487365.bptc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdc6v"]
 render_priority = 1
@@ -74,6 +73,7 @@ size = Vector2(0.5, 0.5)
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
+albedo_color = Color(0.92549, 0.678431, 0.72549, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_vqnrs"]
 material = SubResource("StandardMaterial3D_rcawr")
@@ -83,6 +83,7 @@ size = Vector2(3, 2)
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
+albedo_color = Color(0.92549, 0.678431, 0.72549, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_rden4"]
 material = SubResource("StandardMaterial3D_4wgnt")
@@ -92,13 +93,13 @@ size = Vector2(1.75, 2)
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
+albedo_color = Color(0.92549, 0.678431, 0.72549, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_8jgto"]
 material = SubResource("StandardMaterial3D_4anxx")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1e8j"]
-load_path = "res://.godot/imported/pfp.png-dccd34fd68249a268f8b50ec56487365.bptc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omhgx"]
 render_priority = 1
@@ -189,6 +190,7 @@ mesh = SubResource("QuadMesh_vqnrs")
 skeleton = NodePath("../Background")
 
 [node name="Background" type="MeshInstance3D" parent="Label"]
+transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.755, 0, 0)
 mesh = SubResource("QuadMesh_rden4")
 
 [node name="Arrow" type="MeshInstance3D" parent="Label"]
@@ -196,12 +198,12 @@ transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 
 mesh = SubResource("QuadMesh_8jgto")
 
 [node name="Avatar" type="MeshInstance3D" parent="Label"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.65, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11262, 0.65, 0.01)
 sorting_offset = 1.0
 mesh = SubResource("QuadMesh_32df4")
 
 [node name="Name" type="Label3D" parent="Label"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.83, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.685693, 0.83, 0.01)
 no_depth_test = true
 render_priority = 2
 modulate = Color(0, 0, 0, 1)
@@ -210,10 +212,10 @@ text = "@someone"
 font = SubResource("SystemFont_jqkj2")
 
 [node name="Message" type="Label3D" parent="Label"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.3, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.415, 0.357604, 0.01)
 no_depth_test = true
 render_priority = 2
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0.52549, 0, 0, 1)
 outline_modulate = Color(0, 0, 0, 0)
 text = "Hey guys, did you know that in terms of male Lucky Charm and female leprechaun breeding, Fuyo is the most compatible leprechaun for humans? Not only are they in the short humanoid group, ..."
 font = SubResource("FontVariation_qjylm")
@@ -221,7 +223,7 @@ font_size = 24
 horizontal_alignment = 0
 vertical_alignment = 0
 autowrap_mode = 3
-width = 300.0
+width = 675.0
 
 [connection signal="deselected" from="." to="MiniLabel" method="_on_clover_deselected"]
 [connection signal="hit" from="." to="." method="_spin"]

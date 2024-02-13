@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1jiuckjuf7hp"
-path.bptc="res://.godot/imported/b3109c7e6e639d076b3e280b8ddf04d0.png-600fd2254905bdd21428063664632ef0.bptc.ctex"
+uid="uid://dgv65t4cmgwix"
+path="res://.godot/imported/dwraith.png-72a30590aebfd0a5a1212457c0baa008.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/avatars/b3109c7e6e639d076b3e280b8ddf04d0.png"
-dest_files=["res://.godot/imported/b3109c7e6e639d076b3e280b8ddf04d0.png-600fd2254905bdd21428063664632ef0.bptc.ctex"]
+source_file="res://assets/textures/avatars/dwraith.png"
+dest_files=["res://.godot/imported/dwraith.png-72a30590aebfd0a5a1212457c0baa008.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

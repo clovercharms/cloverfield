@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://oyvjpqj1b6c1"
-path.bptc="res://.godot/imported/7bc5d82b2a758871c43a88c438a555d7.png-0e3aa3bcf05c6d7bcf362fc04f54b40a.bptc.ctex"
+uid="uid://d2lhmcwo01ij1"
+path="res://.godot/imported/herbie_cucumber.jpg-ec48e8178ec5d298588c9a8eea3d7ff1.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/avatars/7bc5d82b2a758871c43a88c438a555d7.png"
-dest_files=["res://.godot/imported/7bc5d82b2a758871c43a88c438a555d7.png-0e3aa3bcf05c6d7bcf362fc04f54b40a.bptc.ctex"]
+source_file="res://assets/textures/avatars/herbie_cucumber.jpg"
+dest_files=["res://.godot/imported/herbie_cucumber.jpg-ec48e8178ec5d298588c9a8eea3d7ff1.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

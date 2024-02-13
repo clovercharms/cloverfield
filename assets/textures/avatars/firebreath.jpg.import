@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfrg2aqv4qkak"
-path.bptc="res://.godot/imported/a_8aa68e655ee8d4b6cc50f1ab7c7516ee.png-a262e620926ccf2aa592e76f4b7eee52.bptc.ctex"
+uid="uid://d0b4rcu7bp2h6"
+path="res://.godot/imported/firebreath.jpg-c3bdce0b4f2b478cf84125db176adfe5.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/avatars/a_8aa68e655ee8d4b6cc50f1ab7c7516ee.png"
-dest_files=["res://.godot/imported/a_8aa68e655ee8d4b6cc50f1ab7c7516ee.png-a262e620926ccf2aa592e76f4b7eee52.bptc.ctex"]
+source_file="res://assets/textures/avatars/firebreath.jpg"
+dest_files=["res://.godot/imported/firebreath.jpg-c3bdce0b4f2b478cf84125db176adfe5.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

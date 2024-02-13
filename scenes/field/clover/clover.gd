@@ -59,6 +59,10 @@ func _ready():
 	material2.albedo_texture = avatar
 	$MiniLabel/Avatar.material_override = material2
 	
+	var material3: StandardMaterial3D = $MiniLabel/Avatar.mesh.surface_get_material(0).duplicate()
+	material3.albedo_texture = avatar
+	$Label/Background2.material_override = material3
+	
 	var body_material: StandardMaterial3D = $Body.mesh.surface_get_material(0).duplicate()
 	body_material.albedo_texture = body
 	$Body.material_override = body_material

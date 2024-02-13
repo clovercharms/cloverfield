@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cb70jlatra67c"
-path.bptc="res://.godot/imported/a787a861b4a4781b7b5ba1c1df002909.png-a0366af1bcf65559de9fc4a2abcec2cb.bptc.ctex"
+uid="uid://d0i5oux4ming5"
+path.bptc="res://.godot/imported/a5e3a10c2a0fcfca7736df62b8c1ff23.png-4fedacb359f46d112eebd772fde6aa74.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/avatars/a787a861b4a4781b7b5ba1c1df002909.png"
-dest_files=["res://.godot/imported/a787a861b4a4781b7b5ba1c1df002909.png-a0366af1bcf65559de9fc4a2abcec2cb.bptc.ctex"]
+source_file="res://assets/textures/avatars_old/a5e3a10c2a0fcfca7736df62b8c1ff23.png"
+dest_files=["res://.godot/imported/a5e3a10c2a0fcfca7736df62b8c1ff23.png-4fedacb359f46d112eebd772fde6aa74.bptc.ctex"]
 
 [params]
 

@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bn64vg648kehc"
-path.bptc="res://.godot/imported/a199d21ed0a72874549a626190630f08.png-2189cac67bcd2ce75065a45fdf6d0277.bptc.ctex"
+uid="uid://c4bepsr7uktyu"
+path="res://.godot/imported/awysu.jpg-667d879213fa8eace480c3e2e09fe503.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/avatars/a199d21ed0a72874549a626190630f08.png"
-dest_files=["res://.godot/imported/a199d21ed0a72874549a626190630f08.png-2189cac67bcd2ce75065a45fdf6d0277.bptc.ctex"]
+source_file="res://assets/textures/avatars/awysu.jpg"
+dest_files=["res://.godot/imported/awysu.jpg-667d879213fa8eace480c3e2e09fe503.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

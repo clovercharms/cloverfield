@@ -2,22 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://sw30wprmuy7b"
-path.bptc="res://.godot/imported/f7e694eb04dd6e04eb6fde8c9267fbbf.png-5f97fbd42573161ddc144dd312fee2af.bptc.ctex"
+uid="uid://bng7pqqwe61tp"
+path="res://.godot/imported/eb.png-4543da15bfd92941a613242d75142871.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/avatars/f7e694eb04dd6e04eb6fde8c9267fbbf.png"
-dest_files=["res://.godot/imported/f7e694eb04dd6e04eb6fde8c9267fbbf.png-5f97fbd42573161ddc144dd312fee2af.bptc.ctex"]
+source_file="res://assets/textures/avatars/eb.png"
+dest_files=["res://.godot/imported/eb.png-4543da15bfd92941a613242d75142871.ctex"]
 
 [params]
 
-compress/mode=2
-compress/high_quality=true
+compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
