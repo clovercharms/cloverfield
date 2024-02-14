@@ -1,9 +1,11 @@
-[gd_scene load_steps=36 format=3 uid="uid://w1dfo1h66yxa"]
+[gd_scene load_steps=51 format=3 uid="uid://w1dfo1h66yxa"]
 
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="1_8os84"]
 [ext_resource type="Script" path="res://scenes/field/clovers.gd" id="2_emqpg"]
 [ext_resource type="Script" path="res://scenes/field/clouds.gd" id="3_pliko"]
+[ext_resource type="AudioStream" uid="uid://bi7xpfx657js" path="res://assets/audio/Bow_Shot_2.mp3" id="3_y73jp"]
 [ext_resource type="Script" path="res://scenes/field/cloud/cloud.gd" id="4_31igx"]
+[ext_resource type="FontFile" uid="uid://b2rb2n0xt52yx" path="res://assets/fonts/IndieFlower-Regular.ttf" id="4_kppy5"]
 [ext_resource type="Texture2D" uid="uid://dl0kfb2esvuul" path="res://assets/textures/grass.png" id="5_iuk00"]
 [ext_resource type="ArrayMesh" uid="uid://3d3wnmocbdpe" path="res://assets/models/heart.obj" id="6_6ivio"]
 [ext_resource type="Texture2D" uid="uid://w6ahfb448wha" path="res://assets/textures/props/balloon1.png" id="7_w8tk4"]
@@ -11,9 +13,16 @@
 [ext_resource type="Texture2D" uid="uid://cmh5n3kfk2k30" path="res://assets/textures/petals/lessdetailedpetal.png" id="8_4koer"]
 [ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="10_8u6v8"]
 [ext_resource type="PackedScene" uid="uid://cniaa1240sta0" path="res://assets/models/reaper_leviathan.glb" id="11_feu6f"]
-[ext_resource type="Script" path="res://assets/models/reaper_leviathan.gd" id="12_md3ax"]
+[ext_resource type="Texture2D" uid="uid://bxgtrowsin2wq" path="res://assets/textures/da_boof.png" id="12_g26ns"]
+[ext_resource type="Script" path="res://scenes/field/booth.gd" id="13_vntwo"]
 [ext_resource type="Script" path="res://scenes/field/bow.gd" id="14_0tman"]
+[ext_resource type="Texture2D" uid="uid://mjp0ng7ap4du" path="res://assets/textures/button.png" id="14_c7brm"]
 [ext_resource type="AudioStream" uid="uid://qp2vc7mwopdl" path="res://assets/audio/Under_the_Tree_wip2.wav" id="14_uw48u"]
+[ext_resource type="AudioStream" uid="uid://gdvjkwxiv8xn" path="res://assets/audio/Reaper_Leviathan_Roar_1.mp3" id="15_f3vda"]
+[ext_resource type="PackedScene" path="res://assets/models/single_stem_rose.glb" id="18_dvh8p"]
+[ext_resource type="PackedScene" uid="uid://bjmtdpfnmbt12" path="res://assets/models/margarita_flower.glb" id="19_46jux"]
+[ext_resource type="PackedScene" uid="uid://ue2nairp2hc2" path="res://assets/models/sunflower_low_poly.glb" id="20_gcu8g"]
+[ext_resource type="PackedScene" uid="uid://qismqnre6r7p" path="res://scenes/sunflower.tscn" id="20_ngjdl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
 sky_top_color = Color(1, 0.92549, 0.937255, 1)
@@ -28,9 +37,15 @@ sky_material = SubResource("ProceduralSkyMaterial_804lx")
 background_mode = 2
 sky = SubResource("Sky_3enxj")
 fog_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
+fog_light_color = Color(0.784314, 1, 1, 1)
 fog_density = 0.004
 volumetric_fog_emission = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_384t6"]
+font = ExtResource("4_kppy5")
+font_size = 48
+outline_size = 8
+outline_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sb1m"]
 
@@ -100,6 +115,24 @@ albedo_texture = ExtResource("8_0pbfi")
 material = SubResource("StandardMaterial3D_xnvvu")
 size = Vector2(5, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jfbp"]
+transparency = 4
+albedo_texture = ExtResource("12_g26ns")
+
+[sub_resource type="QuadMesh" id="QuadMesh_t2miw"]
+material = SubResource("StandardMaterial3D_2jfbp")
+size = Vector2(1.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_18fxk"]
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_760ar"]
+transparency = 4
+albedo_texture = ExtResource("14_c7brm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3smiu"]
+material = SubResource("StandardMaterial3D_760ar")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1alc"]
 albedo_texture = ExtResource("5_iuk00")
 
@@ -127,7 +160,7 @@ script = ExtResource("1_8os84")
 _camera = NodePath("../Camera3D")
 min_distance = 2.0
 max_distance = 20.0
-max_polar_angle = 1.55334
+max_polar_angle = 1.39626
 enable_pan = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -141,14 +174,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 7.5)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
 script = ExtResource("14_0tman")
 
+[node name="SFX" type="AudioStreamPlayer" parent="Camera3D/Bow"]
+stream = ExtResource("3_y73jp")
+
 [node name="Projectiles" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_svy4g")
 
+[node name="Counter" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 410.0
+offset_bottom = 97.0
+text = "Messages read: 0/48"
+label_settings = SubResource("LabelSettings_384t6")
+
 [node name="Clovers" type="Node3D" parent="." node_paths=PackedStringArray("bow")]
 script = ExtResource("2_emqpg")
-amount = 20
+amount = 50
 min_distance = 0.0
 bow = NodePath("../Camera3D/Bow")
 
@@ -404,6 +448,292 @@ transform = Transform3D(1.5, -2.62268e-07, -1.14641e-14, 3.17637e-22, -6.55671e-
 cast_shadow = 0
 mesh = SubResource("QuadMesh_ruf1v")
 
+[node name="Booth" type="MeshInstance3D" parent="NavigationRegion3D/Props"]
+transform = Transform3D(9.465, 0, 0, 0, 9.465, 0, 0, 0, 9.465, -1, 3.5, -25)
+layers = 8193
+mesh = SubResource("QuadMesh_t2miw")
+script = ExtResource("13_vntwo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Props/Booth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Props/Booth/StaticBody3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.2, 0, 0.1)
+shape = SubResource("BoxShape3D_18fxk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Props/Booth/StaticBody3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.2, 0, 0.1)
+mesh = SubResource("QuadMesh_3smiu")
+skeleton = NodePath("../..")
+
+[node name="Reaper" parent="NavigationRegion3D/Props/Booth" instance=ExtResource("11_feu6f")]
+transform = Transform3D(52.8262, 0, 0, 0, 52.8262, 0, 0, 0, 52.8262, 0.106, 1.109, -75)
+
+[node name="SFX" type="Node3D" parent="NavigationRegion3D/Props/Booth"]
+
+[node name="Roar1" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Props/Booth/SFX"]
+stream = ExtResource("15_f3vda")
+volume_db = 10.0
+
+[node name="Flowers" type="Node3D" parent="NavigationRegion3D/Props"]
+
+[node name="Sketchfab_Scene" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64017, 0.0479005, -7.70547)
+
+[node name="Sketchfab_Scene4" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.882184, 0, -0.470904, 0, 1, 0, 0.470904, 0, 0.882184, 7.89702, 0.0479005, -7.70547)
+
+[node name="Sketchfab_Scene6" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.991685, 0, -0.128692, 0, 1, 0, 0.128692, 0, 0.991685, 6.70644, 0.0479005, -11.8186)
+
+[node name="Sketchfab_Scene44" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, 1.02538, 0.0479005, -15.7522)
+
+[node name="Sketchfab_Scene45" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, -3.36235, 0.0479005, -20.7772)
+
+[node name="Sketchfab_Scene46" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, 7.00614, 0.0479005, -20.6937)
+
+[node name="Sketchfab_Scene47" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, 7.00614, 0.0479005, -20.6937)
+
+[node name="Sketchfab_Scene7" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.990812, 0, 0.135249, 0, 1, 0, -0.135249, 0, 0.990812, 8.90556, 0.047901, -14.5846)
+
+[node name="Sketchfab_Scene8" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 15.0557, 0.047901, -11.2962)
+
+[node name="Sketchfab_Scene9" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 15.3103, 0.047901, -6.53139)
+
+[node name="Sketchfab_Scene10" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 12.2622, 0.047901, 0.284017)
+
+[node name="Sketchfab_Scene11" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 10.2346, 0.0479014, 4.69836)
+
+[node name="Sketchfab_Scene12" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.987175, 0, 0.15964, 0, 1, 0, -0.15964, 0, 0.987175, 5.73141, 0.0479014, 7.14836)
+
+[node name="Sketchfab_Scene13" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.987175, 0, 0.15964, 0, 1, 0, -0.15964, 0, 0.987175, -5.49128, 0.0479014, 9.02834)
+
+[node name="Sketchfab_Scene16" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.97501, 0, 0.222161, 0, 1, 0, -0.222161, 0, 0.97501, 3.61199, 0.0479014, 12.3985)
+
+[node name="Sketchfab_Scene26" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.997459, 0, -0.0712364, 0, 1, 0, 0.0712364, 0, 0.997459, 3.63436, 0.0479014, 17.9603)
+
+[node name="Sketchfab_Scene17" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.97501, 0, 0.222161, 0, 1, 0, -0.222161, 0, 0.97501, -2.7794, 0.0479014, 14.2187)
+
+[node name="Sketchfab_Scene18" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.944376, 0, 0.328867, 0, 1, 0, -0.328867, 0, 0.944376, -8.77628, 0.0479024, 14.293)
+
+[node name="Sketchfab_Scene19" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.978115, 0, 0.208065, 0, 1, 0, -0.208065, 0, 0.978115, 10.7337, 0.0479024, 11.4696)
+
+[node name="Sketchfab_Scene20" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.999819, 0, -0.019023, 0, 1, 0, 0.019023, 0, 0.999819, 18.3269, 0.0479024, 14.6798)
+
+[node name="Sketchfab_Scene21" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.999819, 0, -0.019023, 0, 1, 0, 0.019023, 0, 0.999819, 19.514, 0.0479024, -5.72992)
+
+[node name="Sketchfab_Scene22" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.999821, 0, 0.0189008, 0, 1, 0, -0.0189008, 0, 0.999821, -19.0312, 0.0479024, -6.50804)
+
+[node name="Sketchfab_Scene23" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.995227, 0, 0.0975829, 0, 1, 0, -0.0975829, 0, 0.995227, -17.4054, 0.0479024, 5.38162)
+
+[node name="Sketchfab_Scene14" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.987175, 0, 0.15964, 0, 1, 0, -0.15964, 0, 0.987175, -9.27281, 0.0479014, 4.88395)
+
+[node name="Sketchfab_Scene15" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.946616, 0, 0.322365, 0, 1, 0, -0.322365, 0, 0.946616, -12.2728, 0.0479014, -3.11605)
+
+[node name="Sketchfab_Scene5" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.946345, 0, -0.323158, 0, 1, 0, 0.323158, 0, 0.946345, 9.35648, 0.0479005, -11.7966)
+
+[node name="Sketchfab_Scene2" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.986638, 0, -0.16293, 0, 1, 0, 0.16293, 0, 0.986638, -8.50589, 0.0479005, -13.0279)
+
+[node name="Sketchfab_Scene24" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.997358, 0, 0.0726464, 0, 1, 0, -0.0726464, 0, 0.997358, -7.75074, 0.0478995, -20.174)
+
+[node name="Sketchfab_Scene25" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.966573, 0, 0.256391, 0, 1, 0, -0.256391, 0, 0.966573, -14.7783, 0.0478995, -19.998)
+
+[node name="Sketchfab_Scene3" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3365, 0.0479005, -6.46787)
+
+[node name="Sketchfab_Scene27" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -10.2382, 0.0479019, 6.65722)
+
+[node name="Sketchfab_Scene29" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -11.331, 0.0479024, -2.52489)
+
+[node name="Sketchfab_Scene30" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -10.0781, 0.0479024, -10.1415)
+
+[node name="Sketchfab_Scene31" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -6.8078, 0.0479024, -15.2108)
+
+[node name="Sketchfab_Scene32" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 4.85956, 0.0479029, -8.10045)
+
+[node name="Sketchfab_Scene33" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 9.36763, 0.0479029, -4.33506)
+
+[node name="Sketchfab_Scene35" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 8.98767, 0.0479029, 6.37701)
+
+[node name="Sketchfab_Scene36" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 8.955, 0.0479024, 9.52502)
+
+[node name="Sketchfab_Scene37" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 5.24485, 0.0479033, 14.3059)
+
+[node name="Sketchfab_Scene38" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -4.41027, 0.0479043, 11.1799)
+
+[node name="Sketchfab_Scene39" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -8.38332, 0.0479038, 10.1355)
+
+[node name="Sketchfab_Scene40" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 1.65173, 0.0479038, -12.4678)
+
+[node name="Sketchfab_Scene42" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 1.60155, 0.0479038, -20.0535)
+
+[node name="Sketchfab_Scene48" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 4.69835, 0.0479038, -15.8899)
+
+[node name="Sketchfab_Scene49" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -2.11788, 0.0479038, -19.2711)
+
+[node name="Sketchfab_Scene50" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -12.7078, 0.0479038, -17.7433)
+
+[node name="Sketchfab_Scene51" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 13.0379, 0.0479038, -7.92283)
+
+[node name="Sketchfab_Scene52" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 6.08446, 0.0479038, 10.4535)
+
+[node name="Sketchfab_Scene53" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -6.37268, 0.0479038, 16.4957)
+
+[node name="Sketchfab_Scene60" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0.0173187, 0.0479038, 20.294)
+
+[node name="Sketchfab_Scene61" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 17.189, 0.0479038, 9.18836)
+
+[node name="Sketchfab_Scene54" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 3.74376, 0.0479038, 19.6487)
+
+[node name="Sketchfab_Scene55" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -7.37154, 0.0479029, 19.7574)
+
+[node name="Sketchfab_Scene56" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -16.7694, 0.0479029, 11.6589)
+
+[node name="Sketchfab_Scene59" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -16.9188, 0.0479029, -4.77388)
+
+[node name="Sketchfab_Scene57" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -16.7694, -3.36766, -5.47669)
+
+[node name="Sketchfab_Scene58" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -12.8352, -3.36766, -17.4004)
+
+[node name="Sketchfab_Scene43" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 1.60155, 0.0479038, -20.0535)
+
+[node name="Sketchfab_Scene28" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -8.01651, 0.0479, 9.0152)
+
+[node name="Sketchfab_Scene34" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -11.2995, 0.0479, 0.201324)
+
+[node name="Sketchfab_Scene41" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 6.98523, 0.0479, 8.17192)
+
+[node name="Sketchfab_Scene62" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 5.94378, 0.0479, 12.5826)
+
+[node name="Sketchfab_Scene63" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 10.3532, 0.0479, -2.42309)
+
+[node name="Sketchfab_Scene64" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 10.3971, 0.0479, -10.1399)
+
+[node name="Sketchfab_Scene65" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 3.4806, 0.0478995, -14.7535)
+
+[node name="Sketchfab_Scene66" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -8.86841, 0.0478995, -17.2696)
+
+[node name="Sketchfab_Scene67" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 1.65576, 0.0478995, -21.0555)
+
+[node name="Sketchfab_Scene68" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 9.15872, 0.0478995, -18.6962)
+
+[node name="Sketchfab_Scene69" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -14.8413, 0.0478995, -22.6962)
+
+[node name="Sketchfab_Scene70" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, 11.0445, 0.0479014, 19.2778)
+
+[node name="Sketchfab_Scene73" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -9.12321, 0.0479014, 17.2996)
+
+[node name="Sketchfab_Scene74" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, 0.256841, 0.0479014, 17.155)
+
+[node name="Sketchfab_Scene75" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -14.5325, 0.0479014, 17.8534)
+
+[node name="Sketchfab_Scene76" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -18.9711, 0.0479019, 12.3351)
+
+[node name="Sketchfab_Scene77" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -18.7058, 0.0479019, -2.15552)
+
+[node name="Sketchfab_Scene78" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -15.3689, 0.0479019, -12.8834)
+
+[node name="Sketchfab_Scene71" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 18.2325, 0.0479014, -10.5383)
+
+[node name="Sketchfab_Scene72" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 16.0796, 0.0479014, 8.35748)
+
+[node name="MeshInstance3D" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3831, 0.753417, -15.4073)
+
+[node name="MeshInstance3D2" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2167, 0.753417, -6.13513)
+
+[node name="MeshInstance3D3" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5872, 0.753417, 7.28501)
+
+[node name="MeshInstance3D4" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37466, 0.753417, 18.1136)
+
+[node name="MeshInstance3D5" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5537, 0.753418, 9.16317)
+
+[node name="MeshInstance3D6" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7308, 0.753418, 0.93359)
+
+[node name="MeshInstance3D7" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0819, 0.753418, -13.3036)
+
+[node name="MeshInstance3D8" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.587, 0.753418, -22.1963)
+
 [node name="Earth" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2021, 0)
 mesh = SubResource("BoxMesh_m73n1")
@@ -415,14 +745,10 @@ skeleton = NodePath("../..")
 shape = SubResource("ConcavePolygonShape3D_qywpp")
 
 [node name="Heart" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, -0.6, 0)
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, -0.66492, 0)
 mesh = ExtResource("6_6ivio")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ff4oi")
-
-[node name="Sketchfab_Scene" parent="NavigationRegion3D" instance=ExtResource("11_feu6f")]
-transform = Transform3D(500, 0, 0, 0, 500, 0, 0, 0, 500, 0, 10, -200)
-script = ExtResource("12_md3ax")
 
 [node name="Cage" type="StaticBody3D" parent="."]
 
@@ -442,5 +768,9 @@ shape = SubResource("BoxShape3D_iuh6q")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 25, 0)
 shape = SubResource("BoxShape3D_iuh6q")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_uw48u")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="input_event" from="NavigationRegion3D/Props/Booth/StaticBody3D" to="NavigationRegion3D/Props/Booth" method="_on_static_body_3d_input_event"]

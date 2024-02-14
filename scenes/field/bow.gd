@@ -15,6 +15,10 @@ func _input(event):
 	if !mouse_position:
 		return
 	
+	# SFX
+	$SFX.play()
+	
+	# Instantiate arrow
 	var arrow: RigidBody3D = arrow.instantiate()
 	projectiles.add_child(arrow)
 	arrow.global_position = global_position

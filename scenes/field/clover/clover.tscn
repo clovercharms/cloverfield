@@ -1,43 +1,64 @@
-[gd_scene load_steps=32 format=3 uid="uid://di6qsrcw5ql5t"]
+[gd_scene load_steps=35 format=3 uid="uid://di6qsrcw5ql5t"]
 
 [ext_resource type="Script" path="res://scenes/field/clover/clover.gd" id="1_lxs11"]
 [ext_resource type="Texture2D" uid="uid://nxi4taa5s431" path="res://assets/textures/particles/star01.png" id="2_7akt7"]
-[ext_resource type="Texture2D" uid="uid://dtyrc0imlajwd" path="res://assets/textures/clovers/clover.png" id="2_ec0k1"]
+[ext_resource type="AudioStream" uid="uid://darbm2uloamu8" path="res://assets/audio/UAGH_2.mp3" id="2_grodq"]
+[ext_resource type="Texture2D" uid="uid://d2vqvuimnk0vl" path="res://assets/textures/particles/cloud01.png" id="3_87s64"]
+[ext_resource type="AudioStream" uid="uid://kct37wr27pgu" path="res://assets/audio/HEUH_2.mp3" id="3_bk3qj"]
 [ext_resource type="Script" path="res://scenes/field/clover/mini_label.gd" id="3_cftf1"]
+[ext_resource type="AudioStream" uid="uid://b64wbbp2s7ecd" path="res://assets/audio/The_Classic_Wow.mp3" id="3_dachs"]
 [ext_resource type="Script" path="res://scenes/field/clover/label.gd" id="4_nrd2x"]
+[ext_resource type="AudioStream" uid="uid://w4tk44ly4u56" path="res://assets/audio/Open_Text_box.mp3" id="5_ghnrc"]
+[ext_resource type="AudioStream" uid="uid://dyxpvoybug7ep" path="res://assets/audio/Close_Text_box.mp3" id="6_agph3"]
+[ext_resource type="FontFile" uid="uid://b2rb2n0xt52yx" path="res://assets/fonts/IndieFlower-Regular.ttf" id="7_tcpww"]
+[ext_resource type="Texture2D" uid="uid://b43g7fjnnfhnd" path="res://assets/textures/clovers/cloverrose.png" id="9_cd152"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_t244o"]
 height = 0.1
 radius = 0.4
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0gwab"]
-gravity = Vector3(0, 2, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(0, 1, 0)
+radial_velocity_min = 1.0
+radial_velocity_max = 2.0
+gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4kmf"]
-render_priority = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20v0i"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 cull_mode = 2
-no_depth_test = true
+shading_mode = 0
 albedo_texture = ExtResource("2_7akt7")
 billboard_mode = 1
 
-[sub_resource type="QuadMesh" id="QuadMesh_e4yvi"]
+[sub_resource type="QuadMesh" id="QuadMesh_juntk"]
+material = SubResource("StandardMaterial3D_20v0i")
+size = Vector2(0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4kmf"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+shading_mode = 0
+albedo_texture = ExtResource("3_87s64")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_i4pcy"]
 material = SubResource("StandardMaterial3D_f4kmf")
-size = Vector2(0.25, 0.25)
+size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qaqow"]
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("2_ec0k1")
+albedo_texture = ExtResource("9_cd152")
 billboard_mode = 2
 
 [sub_resource type="QuadMesh" id="QuadMesh_1liqx"]
 material = SubResource("StandardMaterial3D_qaqow")
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_eksc3"]
-height = 0.137
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
 render_priority = 1
@@ -48,77 +69,57 @@ shading_mode = 0
 material = SubResource("StandardMaterial3D_i8frn")
 size = Vector2(0.2, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5u84h"]
-render_priority = 1
-no_depth_test = true
-shading_mode = 0
-
 [sub_resource type="QuadMesh" id="QuadMesh_4smp2"]
-material = SubResource("StandardMaterial3D_5u84h")
+material = SubResource("StandardMaterial3D_i8frn")
 size = Vector2(0.6, 0.6)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ki72s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdc6v"]
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
-albedo_texture = SubResource("CompressedTexture2D_ki72s")
 
 [sub_resource type="QuadMesh" id="QuadMesh_1c8sl"]
 material = SubResource("StandardMaterial3D_sdc6v")
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rcawr"]
-render_priority = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yevov"]
 no_depth_test = true
 shading_mode = 0
-albedo_color = Color(0.92549, 0.678431, 0.72549, 1)
+albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_vqnrs"]
-material = SubResource("StandardMaterial3D_rcawr")
-size = Vector2(3, 2)
+[sub_resource type="QuadMesh" id="QuadMesh_oolr2"]
+material = SubResource("StandardMaterial3D_yevov")
+size = Vector2(3.6, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wgnt"]
-render_priority = 1
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2voyi"]
+render_priority = 4
 no_depth_test = true
 shading_mode = 0
-albedo_color = Color(0.92549, 0.678431, 0.72549, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_rden4"]
-material = SubResource("StandardMaterial3D_4wgnt")
-size = Vector2(1.75, 2)
+material = SubResource("StandardMaterial3D_2voyi")
+size = Vector2(3.6, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4anxx"]
-render_priority = 1
-no_depth_test = true
-shading_mode = 0
-albedo_color = Color(0.92549, 0.678431, 0.72549, 1)
+[sub_resource type="QuadMesh" id="QuadMesh_imdp7"]
+material = SubResource("StandardMaterial3D_yevov")
+size = Vector2(3, 3)
+
+[sub_resource type="QuadMesh" id="QuadMesh_hpkyq"]
+material = SubResource("StandardMaterial3D_2voyi")
+size = Vector2(3, 3)
 
 [sub_resource type="QuadMesh" id="QuadMesh_8jgto"]
-material = SubResource("StandardMaterial3D_4anxx")
+material = SubResource("StandardMaterial3D_2voyi")
 size = Vector2(0.2, 0.2)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1e8j"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omhgx"]
-render_priority = 1
+render_priority = 5
 no_depth_test = true
 shading_mode = 0
-albedo_texture = SubResource("CompressedTexture2D_g1e8j")
 
 [sub_resource type="QuadMesh" id="QuadMesh_32df4"]
 material = SubResource("StandardMaterial3D_omhgx")
 size = Vector2(0.5, 0.5)
-
-[sub_resource type="SystemFont" id="SystemFont_jqkj2"]
-font_names = PackedStringArray("Arial")
-
-[sub_resource type="SystemFont" id="SystemFont_neyu0"]
-font_names = PackedStringArray("Arial")
-
-[sub_resource type="FontVariation" id="FontVariation_qjylm"]
-base_font = SubResource("SystemFont_neyu0")
 
 [node name="Clover" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
@@ -126,16 +127,52 @@ collision_layer = 4
 script = ExtResource("1_lxs11")
 wander_range = 10.0
 
+[node name="SFX" type="Node3D" parent="."]
+
+[node name="Hit" type="Node3D" parent="SFX"]
+
+[node name="UAGH_2" type="AudioStreamPlayer3D" parent="SFX/Hit"]
+stream = ExtResource("2_grodq")
+
+[node name="Wow" type="AudioStreamPlayer3D" parent="SFX/Hit"]
+stream = ExtResource("3_dachs")
+
+[node name="HEUH_2" type="AudioStreamPlayer3D" parent="SFX/Hit"]
+stream = ExtResource("3_bk3qj")
+
+[node name="Open_Close" type="Node3D" parent="SFX"]
+
+[node name="Open" type="AudioStreamPlayer3D" parent="SFX/Open_Close"]
+stream = ExtResource("5_ghnrc")
+
+[node name="Close" type="AudioStreamPlayer3D" parent="SFX/Open_Close"]
+stream = ExtResource("6_agph3")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_t244o")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
-[node name="HitParticles" type="GPUParticles3D" parent="."]
-amount = 3
+[node name="Particles" type="Node3D" parent="."]
+
+[node name="Stars" type="GPUParticles3D" parent="Particles"]
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 0.5
+fixed_fps = 0
 process_material = SubResource("ParticleProcessMaterial_0gwab")
-draw_pass_1 = SubResource("QuadMesh_e4yvi")
+draw_pass_1 = SubResource("QuadMesh_juntk")
+
+[node name="Clouds" type="GPUParticles3D" parent="Particles"]
+emitting = false
+amount = 4
+one_shot = true
+explosiveness = 0.5
+fixed_fps = 0
+process_material = SubResource("ParticleProcessMaterial_0gwab")
+draw_pass_1 = SubResource("QuadMesh_i4pcy")
 
 [node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_1liqx")
@@ -150,11 +187,6 @@ shape = SubResource("CylinderShape3D_t244o")
 
 [node name="Projectiles" type="Node3D" parent="Body"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("CylinderMesh_eksc3")
-
 [node name="MiniLabel" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
 script = ExtResource("3_cftf1")
@@ -162,21 +194,20 @@ script = ExtResource("3_cftf1")
 [node name="Arrow" type="MeshInstance3D" parent="MiniLabel"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, -0.3, 0)
 visibility_range_end = 10.0
-visibility_range_end_margin = 0.1
+visibility_range_end_margin = 0.5
 visibility_range_fade_mode = 1
 mesh = SubResource("QuadMesh_xukax")
 
 [node name="Background" type="MeshInstance3D" parent="MiniLabel"]
 visibility_range_end = 10.0
-visibility_range_end_margin = 0.1
+visibility_range_end_margin = 0.5
 visibility_range_fade_mode = 1
 mesh = SubResource("QuadMesh_4smp2")
 
 [node name="Avatar" type="MeshInstance3D" parent="MiniLabel"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0, 0.01)
-sorting_offset = 1.0
 visibility_range_end = 10.0
-visibility_range_end_margin = 0.1
+visibility_range_end_margin = 0.5
 visibility_range_fade_mode = 1
 mesh = SubResource("QuadMesh_1c8sl")
 
@@ -184,49 +215,61 @@ mesh = SubResource("QuadMesh_1c8sl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("4_nrd2x")
 
-[node name="Background2" type="MeshInstance3D" parent="Label"]
-transform = Transform3D(0.968713, 0, -0.248183, 0, 1, 0, 0.248183, 0, 0.968713, 2.59783, 0, 0.336716)
-mesh = SubResource("QuadMesh_vqnrs")
-skeleton = NodePath("../Background")
+[node name="BackgroundBorder" type="MeshInstance3D" parent="Label"]
+transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, -0.755, 0.5, 0)
+mesh = SubResource("QuadMesh_oolr2")
 
 [node name="Background" type="MeshInstance3D" parent="Label"]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1, -0.755, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.755, 0.5, 0)
 mesh = SubResource("QuadMesh_rden4")
+
+[node name="ArtBorder" type="MeshInstance3D" parent="Label"]
+transform = Transform3D(0.985244, 0, -0.263995, 0, 1.02, 0, 0.263995, 0, 0.985244, 2.696, 0.5, 0.4)
+mesh = SubResource("QuadMesh_imdp7")
+
+[node name="Art" type="MeshInstance3D" parent="Label"]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 2.696, 0.5, 0.4)
+mesh = SubResource("QuadMesh_hpkyq")
 
 [node name="Arrow" type="MeshInstance3D" parent="Label"]
 transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("QuadMesh_8jgto")
 
 [node name="Avatar" type="MeshInstance3D" parent="Label"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.11262, 0.65, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.19276, 1.67043, 0.01)
 sorting_offset = 1.0
 mesh = SubResource("QuadMesh_32df4")
 
 [node name="Name" type="Label3D" parent="Label"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.685693, 0.83, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.88434, 1.84391, 0.01)
 no_depth_test = true
-render_priority = 2
-modulate = Color(0, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "@someone"
-font = SubResource("SystemFont_jqkj2")
+render_priority = 6
+outline_render_priority = 6
+modulate = Color(0.133333, 0.133333, 0.133333, 1)
+outline_modulate = Color(0.133333, 0.133333, 0.133333, 1)
+text = "WWWWWWWWWWWWWWWWWWWWWWWWWW"
+font = ExtResource("7_tcpww")
+outline_size = 2
+horizontal_alignment = 0
 
 [node name="Message" type="Label3D" parent="Label"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.415, 0.357604, 0.01)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.44376, 1.34443, 0.01)
 no_depth_test = true
-render_priority = 2
-modulate = Color(0.52549, 0, 0, 1)
-outline_modulate = Color(0, 0, 0, 0)
-text = "Hey guys, did you know that in terms of male Lucky Charm and female leprechaun breeding, Fuyo is the most compatible leprechaun for humans? Not only are they in the short humanoid group, ..."
-font = SubResource("FontVariation_qjylm")
+render_priority = 6
+outline_render_priority = 6
+modulate = Color(0.133333, 0.133333, 0.133333, 1)
+outline_modulate = Color(0.133333, 0.133333, 0.133333, 1)
+text = "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+font = ExtResource("7_tcpww")
 font_size = 24
+outline_size = 2
 horizontal_alignment = 0
 vertical_alignment = 0
 autowrap_mode = 3
-width = 675.0
+width = 666.0
 
 [connection signal="deselected" from="." to="MiniLabel" method="_on_clover_deselected"]
-[connection signal="hit" from="." to="." method="_spin"]
+[connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="hover_entered" from="." to="MiniLabel" method="_on_clover_hover_entered"]
 [connection signal="hover_exited" from="." to="MiniLabel" method="_on_clover_hover_exited"]
 [connection signal="selected" from="." to="MiniLabel" method="_on_clover_selected"]

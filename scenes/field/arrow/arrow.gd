@@ -8,6 +8,9 @@ func launch(direction: Vector3):
 	apply_central_impulse(direction * force)
 
 func _on_static_body_3d_body_entered(body):
+	if !freeze:
+		$SFX/Hit.play()
+	
 	freeze = true
 	$StaticBody3D.set_deferred("monitoring", false)
 	$StaticBody3D/CollisionShape3D.set_deferred("disabled", true)

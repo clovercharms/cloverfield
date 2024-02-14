@@ -41,31 +41,45 @@ var destination: Vector3
 
 # Attributes
 var avatar: Texture
-var body: Texture
+var body: Body
+var art: Texture
 
 # State
 var is_selected := false
-var selection_disabled := false
+var is_dummy := false
+var selection_disabled := false:
+	set(disabled):
+		if !is_dummy:
+			# HACK Fade minilabels when selection made
+			if is_selected || disabled:
+				$MiniLabel._on_clover_selected(null)
+			else:
+				$MiniLabel._on_clover_deselected()
+		
+		selection_disabled = disabled
+	get:
+		return selection_disabled
+var has_been_selected := false
 
 func _ready():
 	$Label.camera = camera
 	$MiniLabel.camera = camera
 	
-	var material: StandardMaterial3D = $Label/Avatar.mesh.surface_get_material(0).duplicate()
-	material.albedo_texture = avatar
-	$Label/Avatar.material_override = material
+	# Avatar
+	var avatar_material: StandardMaterial3D = $Label/Avatar.mesh.surface_get_material(0).duplicate()
+	avatar_material.albedo_texture = avatar
+	$Label/Avatar.material_override = avatar_material
+	$MiniLabel/Avatar.material_override = avatar_material
 	
-	var material2: StandardMaterial3D = $MiniLabel/Avatar.mesh.surface_get_material(0).duplicate()
-	material2.albedo_texture = avatar
-	$MiniLabel/Avatar.material_override = material2
-	
-	var material3: StandardMaterial3D = $MiniLabel/Avatar.mesh.surface_get_material(0).duplicate()
-	material3.albedo_texture = avatar
-	$Label/Background2.material_override = material3
-	
+	# Body
 	var body_material: StandardMaterial3D = $Body.mesh.surface_get_material(0).duplicate()
-	body_material.albedo_texture = body
+	body_material.albedo_texture = body.regular
 	$Body.material_override = body_material
+	
+	# Art
+	var art_material: StandardMaterial3D = $Label/Art.mesh.surface_get_material(0).duplicate()
+	art_material.albedo_texture = art
+	$Label/Art.material_override = art_material
 
 func _process(delta):
 	_snap_camera()
@@ -81,11 +95,14 @@ func _process(delta):
 
 # Handle deselect mouse click
 func _input(event):
-	if !event is InputEventMouseButton || event.button_mask == 0:
+	if !event is InputEventMouseButton || event.button_mask != 1:
 		return
 	if selection_disabled || !is_selected:
 		return
 	
+	$SFX/Open_Close/Close.play()
+	
+	# Trigger unsnap
 	camera_unsnap_started_ms = Time.get_ticks_msec()
 	unsnapping.emit()
 
@@ -94,6 +111,7 @@ func _handle_select():
 	
 	is_selected = !is_selected
 	selected.emit(self)
+	has_been_selected = true
 	
 	# Y billboard label
 	$Label.rotation = camera.rotation
@@ -112,9 +130,14 @@ func _on_body_entered(body):
 	
 	if body.get_parent() != $Body/Projectiles:
 		body.reparent($Body/Projectiles, true)
-		
+	
+	# Disable despawn on arrow
 	body.despawn_disabled = true
-	_handle_select()
+	
+	# Don't select dummys, just spin
+	if !is_dummy:
+		_handle_select()
+	
 	hit.emit()
 
 func _jump():
@@ -194,7 +217,27 @@ func _snap_camera():
 			camera_unsnap_transform, transition_progress
 		)
 
-func _spin():
+func _on_hit():
+	# SFX
+	var sfxs = $SFX/Hit.get_children()
+	var sfx = sfxs[randi_range(0, sfxs.size()-1)]
+	sfx.play()
+	
+	if !is_dummy:
+		$SFX/Open_Close/Open.play()
+	
+	# Dizzy Texture
+	var dizzy_body_material: StandardMaterial3D = $Body.mesh.surface_get_material(0).duplicate()
+	dizzy_body_material.albedo_texture = body.dizzy
+	$Body.material_override = dizzy_body_material
+	
+	# Particles
+	for child in $Particles.get_children():
+		if !child is GPUParticles3D:
+			continue
+		child.emitting = true
+	
+	# Jump
 	if (hit_tween != null && hit_tween.is_running()):
 		return
 	
