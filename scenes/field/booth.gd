@@ -27,3 +27,4 @@ func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
 		PI * 8,
 		5
 	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	

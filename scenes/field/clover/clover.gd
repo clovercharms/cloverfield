@@ -47,6 +47,7 @@ var art: Texture
 # State
 var is_selected := false
 var is_dummy := false
+var is_attacking := false
 var selection_disabled := false:
 	set(disabled):
 		if !is_dummy:
@@ -83,14 +84,14 @@ func _ready():
 
 func _process(delta):
 	_snap_camera()
-	
+
 	_wander();
-	
+
 	var direction = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
 	velocity = velocity.lerp(direction * speed, accel * delta)
-	
+
 	move_and_slide()
-	
+
 	_jump()
 
 # Handle deselect mouse click

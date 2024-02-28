@@ -96,6 +96,9 @@ static var bodies: Array[Body] = [
 	)
 ]
 
+#clover container
+var clover_container : Array[Clover]
+
 # Disable selection for all clovers on selection
 func _toggle_selections(instance: CharacterBody3D, disabled: bool):
 	bow.disabled = disabled
@@ -183,4 +186,36 @@ func _ready():
 		if randi_range(0, 1) == 0:
 			clover.get_node("Body").rotation.y = PI
 		
+		clover_container.append(clover)
+		
 		add_child(clover)
+
+
+
+#func _on_static_body_3d_input_event(camera, event, position, normal, shape_idx):
+	#await get_tree().create_timer(6).timeout
+	## Clovers, attack!
+	#for clover in clover_container:
+		#clover.is_attacking = true
+		#clover.velocity = Vector3(0,0,0)
+		#var tween = get_tree().create_tween()
+		#tween.set_parallel(true)
+		#tween.tween_property(
+			#clover.get_node("Body"),
+			#"position:z",
+			#-40,
+			#1
+		#).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		#tween.tween_property(
+			#clover.get_node("Body"),
+			#"position:x",
+			#0.206+randi_range(-2,2),
+			#1
+		#).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		#tween.tween_property(
+			#clover.get_node("Body"),
+			#"position:y",
+			#3.109+randi_range(-2,2),
+			#1
+		#).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	
