@@ -12,10 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="10_8u6v8"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
-sky_top_color = Color(1, 0.92549, 0.937255, 1)
-sky_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
-ground_bottom_color = Color(0.905882, 0.960784, 0.984314, 1)
-ground_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+sky_cover_modulate = Color(0, 0, 0, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Sky" id="Sky_3enxj"]
 sky_material = SubResource("ProceduralSkyMaterial_804lx")
@@ -23,8 +24,9 @@ sky_material = SubResource("ProceduralSkyMaterial_804lx")
 [sub_resource type="Environment" id="Environment_svy4g"]
 background_mode = 2
 sky = SubResource("Sky_3enxj")
-fog_enabled = true
-fog_light_color = Color(1, 1, 1, 1)
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+fog_light_color = Color(2.63215e-08, 0, 0.0585019, 1)
 fog_density = 0.004
 volumetric_fog_emission = Color(1, 1, 1, 1)
 
