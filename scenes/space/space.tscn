@@ -1,4 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=10 format=3 uid="uid://c7vweyfl2bkm2"]
+
+[ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
+[ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
+[ext_resource type="PackedScene" uid="uid://cf0kerida4ex4" path="res://scenes/space/charm_prison.tscn" id="4_inpb6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3vskk"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -13,8 +17,44 @@ sky_material = SubResource("ProceduralSkyMaterial_3vskk")
 [sub_resource type="Environment" id="Environment_uvixq"]
 background_mode = 2
 sky = SubResource("Sky_2wdu0")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
 
-[node name="Node3D" type="Node3D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncmjl"]
+lifetime_randomness = 0.5
+emission_shape_scale = Vector3(10, 10, 10)
+emission_shape = 1
+emission_sphere_radius = 50.0
+gravity = Vector3(0, 0, 0)
+scale_min = 100.0
+scale_max = 100.0
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7wmx"]
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_e78pj")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_w1kuo"]
+material = SubResource("StandardMaterial3D_l7wmx")
+
+[node name="Space" type="Node3D"]
+script = ExtResource("1_0ype4")
+
+[node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uvixq")
+
+[node name="Stars" type="GPUParticles3D" parent="."]
+gi_mode = 0
+amount = 1000
+lifetime = 10.0
+explosiveness = 0.25
+randomness = 0.5
+visibility_aabb = AABB(-488.524, -490.506, -486.248, 957.523, 966.392, 979.165)
+process_material = SubResource("ParticleProcessMaterial_ncmjl")
+draw_pass_1 = SubResource("QuadMesh_w1kuo")
+
+[node name="Charm Prison" parent="." instance=ExtResource("4_inpb6")]

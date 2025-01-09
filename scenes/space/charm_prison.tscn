@@ -1,0 +1,66 @@
+[gd_scene load_steps=12 format=3 uid="uid://cf0kerida4ex4"]
+
+[ext_resource type="Script" path="res://scenes/space/CharmPrison.cs" id="1_47ruj"]
+[ext_resource type="Texture2D" uid="uid://dl0kfb2esvuul" path="res://assets/textures/grass.png" id="1_dda68"]
+[ext_resource type="PackedScene" uid="uid://duwgxnosivpya" path="res://scenes/space/lucky_charm.tscn" id="2_im5oa"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_napqs"]
+geometry_parsed_geometry_type = 2
+agent_radius = 50.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nuf4s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_8pl6c"]
+material = SubResource("ShaderMaterial_nuf4s")
+radius = 25.0
+height = 50.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8raop"]
+albedo_texture = ExtResource("1_dda68")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8j40x"]
+material = SubResource("StandardMaterial3D_8raop")
+radius = 25.0
+height = 50.0
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pdjca"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_acjr1"]
+radius = 25.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ico23"]
+radius = 25.0
+
+[node name="Charm Prison" type="Node3D"]
+script = ExtResource("1_47ruj")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_napqs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+mesh = SubResource("SphereMesh_8pl6c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_8j40x")
+
+[node name="Collision Area" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_pdjca")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision Area"]
+shape = SubResource("SphereShape3D_acjr1")
+
+[node name="Gravity Area" type="Area3D" parent="."]
+gravity_space_override = 3
+gravity_point = true
+gravity_point_unit_distance = 25.0
+gravity_point_center = Vector3(0, 0, 0)
+gravity_direction = Vector3(0, 0, 0)
+linear_damp_space_override = 3
+angular_damp_space_override = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Gravity Area"]
+shape = SubResource("SphereShape3D_ico23")
+
+[node name="Lucky Charm2" parent="." instance=ExtResource("2_im5oa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 0)
+Acceleration = 0.5

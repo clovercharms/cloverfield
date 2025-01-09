@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://duwgxnosivpya"]
+
+[ext_resource type="Texture2D" uid="uid://dtyrc0imlajwd" path="res://assets/textures/clovers/clover.png" id="1_4ghrg"]
+[ext_resource type="Script" path="res://scenes/space/LuckyCharm.cs" id="1_vdoey"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn0pt"]
+transparency = 1
+albedo_texture = ExtResource("1_4ghrg")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_t56yg"]
+material = SubResource("StandardMaterial3D_pn0pt")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4p2i7"]
+size = Vector3(1, 0.881348, 0.1)
+
+[node name="Lucky Charm" type="CharacterBody3D" node_paths=PackedStringArray("Navigation")]
+script = ExtResource("1_vdoey")
+Navigation = NodePath("NavigationAgent3D")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_t56yg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0593262, 0)
+shape = SubResource("BoxShape3D_4p2i7")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
