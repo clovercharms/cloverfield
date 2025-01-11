@@ -15,6 +15,7 @@ public partial class LuckyCharm : CharacterBody3D
 
     public override void _PhysicsProcess(double delta)
     {
+        
         Vector3 velocity = Velocity;
 
         // Add the gravity.
@@ -25,46 +26,34 @@ public partial class LuckyCharm : CharacterBody3D
 
         Wander();
 
-        // // Handle Jump.
-        // if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-        // {
-        //     velocity.Y = JumpVelocity;
-        // }
+        // var direction = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
+        // velocity = velocity.lerp(direction * speed, accel * delta)
 
-        // Get the input direction and handle the movement/deceleration.
-        // As good practice, you should replace UI actions with custom gameplay actions.
-        // Vector2 inputDir = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-        // Vector3 direction = (Transform.Basis * new Vector3(inputDir.X, 0, inputDir.Y)).Normalized();
-        // if (direction != Vector3.Zero)
-        // {
-        //     velocity.X = direction.X * Speed;
-        //     velocity.Z = direction.Z * Speed;
-        // }
-        // else
-        // {
-        //     velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-        //     velocity.Z = Mathf.MoveToward(Velocity.Z, 0, Speed);
-        // }
+        var direction = (Navigation.GetNextPathPosition() - GlobalPosition).Normalized();
+        Velocity = Velocity.Lerp(direction * Speed, (float)(Acceleration * delta));
 
-        Velocity = velocity;
         MoveAndSlide();
     }
 
     private void Wander()
     {
-        GD.Print($"Destination: {Destination} | GlobalPosition: {GlobalPosition} | Distance: {GlobalPosition.DistanceTo(Destination)}");
         if (Destination != Vector3.Zero && GlobalPosition.DistanceTo(Destination) > 0.5f) return;
+        GD.Print("Fuck");
         if (NavigationServer3D.MapGetIterationId(NavigationServer3D.GetMaps()[0]) == 0) return;
+        GD.Print("AAAAAA");
+        GD.Print($"Destination: {Destination} | GlobalPosition: {GlobalPosition} | Distance: {GlobalPosition.DistanceTo(Destination)}");
+        GD.Print($"|    Velocity: {Velocity}");
 
         var theta = GD.RandRange(0, Math.PI * 2);
-        var phi = GD.RandRange(0, Math.PI);
-        var radius = 50f;
+        var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN?
+        var radius = 50f;       // WHAT THE FUCK WAS THIS BULLSHIT?!
 
         var x = (float)(radius * Math.Sin(theta) * Math.Cos(phi));
         var y = (float)(radius * Math.Sin(theta) * Math.Sin(phi));
         var z = (float)(radius * Math.Cos(theta));
 
         Destination = new Vector3(x, y, z);
+        
         GD.Print($"|    Destination: {Destination}");
         Destination = NavigationServer3D.MapGetClosestPoint(NavigationServer3D.GetMaps()[0], Destination);
         GD.Print($"|    Destination after MapGetClosestPoint: {Destination}");

@@ -1,30 +1,32 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=12 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
+[ext_resource type="Texture2D" uid="uid://yudxcyiu36x" path="res://assets/eso0932a.jpg" id="2_83cen"]
 [ext_resource type="PackedScene" uid="uid://cf0kerida4ex4" path="res://scenes/space/charm_prison.tscn" id="4_inpb6"]
+[ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="4_wkhvl"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3vskk"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0.0155371, 1.17138e-05, 0.108241, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0.0156863, 0, 0.109804, 1)
-sun_angle_max = 0.0
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_vmjdo"]
+panorama = ExtResource("2_83cen")
 
 [sub_resource type="Sky" id="Sky_2wdu0"]
-sky_material = SubResource("ProceduralSkyMaterial_3vskk")
+sky_material = SubResource("PanoramaSkyMaterial_vmjdo")
 
 [sub_resource type="Environment" id="Environment_uvixq"]
 background_mode = 2
 sky = SubResource("Sky_2wdu0")
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
+fog_light_color = Color(0, 0, 0, 1)
+fog_height_density = 16.0
+fog_depth_begin = 0.0
+fog_depth_end = 5.0
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncmjl"]
 lifetime_randomness = 0.5
 emission_shape_scale = Vector3(10, 10, 10)
 emission_shape = 1
-emission_sphere_radius = 50.0
+emission_sphere_radius = 75.0
 gravity = Vector3(0, 0, 0)
 scale_min = 100.0
 scale_max = 100.0
@@ -58,3 +60,17 @@ process_material = SubResource("ParticleProcessMaterial_ncmjl")
 draw_pass_1 = SubResource("QuadMesh_w1kuo")
 
 [node name="Charm Prison" parent="." instance=ExtResource("4_inpb6")]
+
+[node name="OrbitControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_wkhvl")
+_camera = NodePath("../Camera3D")
+min_distance = 26.0
+max_distance = 50.0
+max_polar_angle = 1.55334
+enable_pan = false
+
+[node name="Camera3D" type="Camera3D" parent="."]

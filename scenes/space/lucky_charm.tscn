@@ -17,6 +17,7 @@ size = Vector3(1, 0.881348, 0.1)
 [node name="Lucky Charm" type="CharacterBody3D" node_paths=PackedStringArray("Navigation")]
 script = ExtResource("1_vdoey")
 Navigation = NodePath("NavigationAgent3D")
+Acceleration = 10.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_t56yg")
@@ -27,5 +28,3 @@ shape = SubResource("BoxShape3D_4p2i7")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 debug_enabled = true
-
-[node name="Camera3D" type="Camera3D" parent="."]
