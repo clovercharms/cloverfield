@@ -6,25 +6,43 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn0pt"]
 transparency = 1
 albedo_texture = ExtResource("1_4ghrg")
-billboard_mode = 2
+billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_t56yg"]
 material = SubResource("StandardMaterial3D_pn0pt")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_4p2i7"]
-size = Vector3(1, 0.881348, 0.1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_snchh"]
 
-[node name="Lucky Charm" type="CharacterBody3D" node_paths=PackedStringArray("Navigation")]
+[node name="Lucky Charm" type="CharacterBody3D" node_paths=PackedStringArray("Navigation", "Body", "Collider", "VisibilityChecker", "RayCast", "MessageLabel", "MiniLabel")]
+collision_layer = 2
 script = ExtResource("1_vdoey")
-Navigation = NodePath("NavigationAgent3D")
+Navigation = NodePath("Navigator")
+Body = NodePath("Body")
+Collider = NodePath("Collider")
+VisibilityChecker = NodePath("Visibility Checker")
+RayCast = NodePath("")
+MessageLabel = NodePath("")
+MiniLabel = NodePath("")
 Acceleration = 10.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Body" type="MeshInstance3D" parent="."]
 mesh = SubResource("QuadMesh_t56yg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0593262, 0)
-shape = SubResource("BoxShape3D_4p2i7")
+shape = SubResource("SphereShape3D_snchh")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
+[node name="Navigator" type="NavigationAgent3D" parent="."]
+
+[node name="Visibility Checker" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.882353, 0.694118, 0, 1)
+omni_range = 2.0
+
+[connection signal="input_event" from="." to="." method="OnBodyInputEvent"]
+[connection signal="mouse_entered" from="." to="." method="OnBodyMouseEntered"]
+[connection signal="mouse_exited" from="." to="." method="OnBodyMouseExited"]
+[connection signal="screen_entered" from="Visibility Checker" to="." method="OnEnteredScreen"]
+[connection signal="screen_exited" from="Visibility Checker" to="." method="OnExitedScreen"]

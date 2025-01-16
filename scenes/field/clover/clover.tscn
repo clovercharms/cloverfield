@@ -20,82 +20,82 @@ material = SubResource("StandardMaterial3D_qaqow")
 [sub_resource type="BoxShape3D" id="BoxShape3D_qh6tn"]
 size = Vector3(1, 1, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2xgxm"]
 render_priority = 1
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_xukax"]
-material = SubResource("StandardMaterial3D_i8frn")
+material = SubResource("StandardMaterial3D_2xgxm")
 size = Vector2(0.2, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5u84h"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w8d3d"]
 render_priority = 1
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_4smp2"]
-material = SubResource("StandardMaterial3D_5u84h")
+material = SubResource("StandardMaterial3D_w8d3d")
 size = Vector2(0.6, 0.6)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ki72s"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdc6v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lb5b6"]
 render_priority = 1
 shading_mode = 0
 albedo_texture = SubResource("CompressedTexture2D_ki72s")
 
 [sub_resource type="QuadMesh" id="QuadMesh_1c8sl"]
-material = SubResource("StandardMaterial3D_sdc6v")
+material = SubResource("StandardMaterial3D_lb5b6")
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rcawr"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k2j0y"]
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_vqnrs"]
-material = SubResource("StandardMaterial3D_rcawr")
+material = SubResource("StandardMaterial3D_k2j0y")
 size = Vector2(3, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wgnt"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l2dkm"]
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_rden4"]
-material = SubResource("StandardMaterial3D_4wgnt")
+material = SubResource("StandardMaterial3D_l2dkm")
 size = Vector2(1.75, 2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4anxx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pd7wf"]
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_8jgto"]
-material = SubResource("StandardMaterial3D_4anxx")
+material = SubResource("StandardMaterial3D_pd7wf")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_g1e8j"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omhgx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e28o0"]
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
 albedo_texture = SubResource("CompressedTexture2D_g1e8j")
 
 [sub_resource type="QuadMesh" id="QuadMesh_32df4"]
-material = SubResource("StandardMaterial3D_omhgx")
+material = SubResource("StandardMaterial3D_e28o0")
 size = Vector2(0.5, 0.5)
 
 [sub_resource type="SystemFont" id="SystemFont_jqkj2"]
 font_names = PackedStringArray("Arial")
 subpixel_positioning = 0
 
-[sub_resource type="SystemFont" id="SystemFont_neyu0"]
+[sub_resource type="SystemFont" id="SystemFont_5egsa"]
 font_names = PackedStringArray("Arial")
 subpixel_positioning = 0
 
 [sub_resource type="FontVariation" id="FontVariation_qjylm"]
-base_font = SubResource("SystemFont_neyu0")
+base_font = SubResource("SystemFont_5egsa")
 
 [node name="Clover" type="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
