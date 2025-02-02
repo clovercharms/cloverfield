@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=14 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="4_wkhvl"]
 [ext_resource type="PackedScene" uid="uid://b2aiqkh3ha6lr" path="res://scenes/space/mitty_cam.tscn" id="6_vgivq"]
 [ext_resource type="PackedScene" uid="uid://d1yjtkbiyq1wo" path="res://scenes/space/charm_summoner.tscn" id="7_6byia"]
+[ext_resource type="AudioStream" uid="uid://bgcgb0jui654b" path="res://assets/05_Mitty valentines 25 bgm_space_1.mp3" id="7_rr2ua"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jl760"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -81,3 +82,7 @@ enable_pan = false
 [node name="Mitty Cam" parent="." instance=ExtResource("6_vgivq")]
 
 [node name="Charm Summoner" parent="." instance=ExtResource("7_6byia")]
+
+[node name="BGM" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_rr2ua")
+autoplay = true
