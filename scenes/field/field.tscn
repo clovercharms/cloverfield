@@ -1,23 +1,34 @@
-[gd_scene load_steps=34 format=3 uid="uid://w1dfo1h66yxa"]
+[gd_scene load_steps=51 format=3 uid="uid://w1dfo1h66yxa"]
 
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="1_8os84"]
 [ext_resource type="Script" path="res://scenes/field/clovers.gd" id="2_emqpg"]
 [ext_resource type="Script" path="res://scenes/field/clouds.gd" id="3_pliko"]
+[ext_resource type="AudioStream" uid="uid://bi7xpfx657js" path="res://assets/audio/Bow_Shot_2.mp3" id="3_y73jp"]
 [ext_resource type="Script" path="res://scenes/field/cloud/cloud.gd" id="4_31igx"]
-[ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="5_fncvu"]
+[ext_resource type="FontFile" uid="uid://b2rb2n0xt52yx" path="res://assets/fonts/IndieFlower-Regular.ttf" id="4_kppy5"]
 [ext_resource type="Texture2D" uid="uid://dl0kfb2esvuul" path="res://assets/textures/grass.png" id="5_iuk00"]
 [ext_resource type="ArrayMesh" uid="uid://3d3wnmocbdpe" path="res://assets/models/heart.obj" id="6_6ivio"]
 [ext_resource type="Texture2D" uid="uid://w6ahfb448wha" path="res://assets/textures/props/balloon1.png" id="7_w8tk4"]
 [ext_resource type="Texture2D" uid="uid://dwjo1gql5g5s" path="res://assets/textures/petals/scattered.png" id="8_0pbfi"]
 [ext_resource type="Texture2D" uid="uid://cmh5n3kfk2k30" path="res://assets/textures/petals/lessdetailedpetal.png" id="8_4koer"]
 [ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="10_8u6v8"]
+[ext_resource type="PackedScene" uid="uid://cniaa1240sta0" path="res://assets/models/reaper_leviathan.glb" id="11_feu6f"]
+[ext_resource type="Texture2D" uid="uid://bxgtrowsin2wq" path="res://assets/textures/da_boof.png" id="12_g26ns"]
+[ext_resource type="Script" path="res://scenes/field/booth.gd" id="13_vntwo"]
+[ext_resource type="Script" path="res://scenes/field/bow.gd" id="14_0tman"]
+[ext_resource type="Texture2D" uid="uid://mjp0ng7ap4du" path="res://assets/textures/button.png" id="14_c7brm"]
+[ext_resource type="AudioStream" uid="uid://qp2vc7mwopdl" path="res://assets/audio/Under_the_Tree_wip2.wav" id="14_uw48u"]
+[ext_resource type="AudioStream" uid="uid://gdvjkwxiv8xn" path="res://assets/audio/Reaper_Leviathan_Roar_1.mp3" id="15_f3vda"]
+[ext_resource type="PackedScene" path="res://assets/models/single_stem_rose.glb" id="18_dvh8p"]
+[ext_resource type="PackedScene" uid="uid://bjmtdpfnmbt12" path="res://assets/models/margarita_flower.glb" id="19_46jux"]
+[ext_resource type="PackedScene" uid="uid://ue2nairp2hc2" path="res://assets/models/sunflower_low_poly.glb" id="20_gcu8g"]
+[ext_resource type="PackedScene" uid="uid://qismqnre6r7p" path="res://scenes/sunflower.tscn" id="20_ngjdl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_804lx"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-sky_cover_modulate = Color(0, 0, 0, 1)
-ground_bottom_color = Color(0, 0, 0, 1)
-ground_horizon_color = Color(0, 0, 0, 1)
+sky_top_color = Color(1, 0.92549, 0.937255, 1)
+sky_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
+ground_bottom_color = Color(0.905882, 0.960784, 0.984314, 1)
+ground_horizon_color = Color(0.905882, 0.960784, 0.984314, 1)
 
 [sub_resource type="Sky" id="Sky_3enxj"]
 sky_material = SubResource("ProceduralSkyMaterial_804lx")
@@ -25,34 +36,22 @@ sky_material = SubResource("ProceduralSkyMaterial_804lx")
 [sub_resource type="Environment" id="Environment_svy4g"]
 background_mode = 2
 sky = SubResource("Sky_3enxj")
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 1, 1)
-fog_light_color = Color(2.63215e-08, 0, 0.0585019, 1)
+fog_enabled = true
+fog_light_color = Color(0.784314, 1, 1, 1)
 fog_density = 0.004
 volumetric_fog_emission = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_384t6"]
+font = ExtResource("4_kppy5")
+font_size = 48
+outline_size = 8
+outline_color = Color(0.133333, 0.133333, 0.133333, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5sb1m"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0f1xf"]
 material = SubResource("StandardMaterial3D_5sb1m")
 size = Vector3(2, 2, 2)
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ouo1"]
-emission_shape_offset = Vector3(1000, 1000, 1000)
-emission_shape = 1
-emission_sphere_radius = 1.0
-scale_min = 265.37
-scale_max = 265.37
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vawau"]
-transparency = 4
-cull_mode = 2
-albedo_texture = ExtResource("5_fncvu")
-billboard_mode = 1
-
-[sub_resource type="QuadMesh" id="QuadMesh_g6ky0"]
-material = SubResource("StandardMaterial3D_vawau")
-size = Vector2(0.25, 0.25)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_isxbm"]
 vertices = PackedVector3Array(-24.5, 0.416287, -16.5185, -18.75, 0.416287, -16.5185, -18.75, 0.416287, -17.2685, -24.5, 0.416287, -16.5185, -18.75, 0.416287, -17.2685, -17.75, 0.416287, -17.7685, -17.75, 0.416287, -24.5185, -24.5, 0.416287, -24.5185, -16.75, 0.416287, -16.0185, -17.25, 0.416287, -15.7685, -17, 0.416287, -14.5185, -16.5, 0.416287, -13.7685, 13.75, 0.416287, -14.2685, 14.25, 0.416287, -14.5185, 14.25, 0.416287, -15.7685, 13, 0.416287, -16.0185, -12.25, 0.416287, 0.981474, 13, 0.416287, -16.0185, 13, 0.416287, -17.5185, -12.25, 0.416287, 0.981474, 13, 0.416287, 0.981474, 13, 0.416287, 0.481474, 13.75, 0.416287, -13.5185, 13.75, 0.416287, -14.2685, 13, 0.416287, -16.0185, -16.75, 0.416287, -17.2685, -16.75, 0.416287, -16.0185, -16.5, 0.416287, -13.7685, -13.5, 0.416287, -0.0185261, -12.5, 0.416287, -0.0185261, 13, 0.416287, -17.5185, 13.75, 0.416287, -17.7685, 13.75, 0.416287, -24.5185, -17.75, 0.416287, -24.5185, -17.75, 0.416287, -17.7685, -16.75, 0.416287, -17.2685, 14, 0.416287, -0.0185261, 14.25, 0.416287, -13.2685, 13.75, 0.416287, -13.5185, 13, 0.416287, 0.481474, 14, 0.416287, -0.0185261, 13.75, 0.416287, -13.5185, 13, 0.416287, -16.0185, -12.25, 0.416287, 0.981474, -16.75, 0.416287, -17.2685, -12.5, 0.416287, -0.0185261, -12.25, 0.416287, 0.981474, 13, 0.416287, -17.5185, 13.75, 0.416287, -24.5185, -17.75, 0.416287, -24.5185, 13.75, 0.416287, -24.5185, 13.75, 0.416287, -17.7685, 14.5, 0.416287, -17.7685, 13.75, 0.416287, -24.5185, 14.5, 0.416287, -17.7685, 15, 0.416287, -17.0185, 24.5, 0.416287, -17.0185, 24.5, 0.416287, -24.5185, 11.75, 11.1663, -19.7685, 11.75, 11.1663, -19.2685, 12.25, 11.4163, -19.5185, 12.25, 11.4163, -20.0185, -10.75, 7.41629, -18.5185, -10.75, 7.66629, -17.7685, -10.25, 7.66629, -18.2685, -10.25, 7.16629, -19.0185, 14.25, 0.416287, -15.7685, 14.25, 0.416287, -14.5185, 14.75, 0.416287, -14.5185, 15, 0.416287, -16.0185, 24.5, 0.416287, -17.0185, 15, 0.416287, -17.0185, 15, 0.416287, -16.0185, 15, 0.416287, -16.0185, 14.75, 0.416287, -14.5185, 15, 0.416287, -13.7685, 24.5, 0.416287, -13.7685, 24.5, 0.416287, -17.0185, -17.75, 0.416287, -14.2685, -17, 0.416287, -14.5185, -17.25, 0.416287, -15.7685, -18.5, 0.416287, -15.7685, -13.5, 0.416287, -0.0185261, -16.5, 0.416287, -13.7685, -16.75, 0.416287, -13.2685, -17.75, 0.416287, -13.5185, -17.75, 0.416287, -14.2685, -18.5, 0.416287, -15.7685, -18.5, 0.416287, -15.7685, -18.75, 0.416287, -16.5185, -24.5, 0.416287, -16.5185, -17.75, 0.416287, -13.5185, -18.5, 0.416287, -15.7685, -24.5, 0.416287, -16.5185, -24.5, 0.416287, 1.23147, -14.25, 0.416287, 0.481474, -13.5, 0.416287, -0.0185261, -24.5, 0.416287, 1.23147, -14.25, 0.416287, 1.23147, -14.25, 0.416287, 0.481474, -13.5, 0.416287, -0.0185261, -16.75, 0.416287, -13.2685, -17.75, 0.416287, -13.5185, -20.25, 11.9163, -15.2685, -20.25, 11.6663, -14.7685, -19.5, 11.9163, -15.0185, 24.5, 0.416287, -13.7685, 15, 0.416287, -13.7685, 14.25, 0.416287, -13.2685, 14, 0.416287, -0.0185261, 15, 0.416287, 0.731474, 24.5, 0.416287, 0.731474, -14.75, 13.9163, -11.7685, -13.75, 14.1663, -11.2685, -13.75, 14.6663, -12.0185, 17, 13.9163, -11.7685, 18, 14.1663, -11.2685, 18, 14.4163, -11.7685, -19, 5.41629, -11.2685, -18.75, 5.91629, -10.5185, -18.25, 5.66629, -11.0185, -18.25, 5.41629, -11.5185, 12.75, 5.41629, -11.2685, 13, 5.91629, -10.5185, 13.5, 5.66629, -11.2685, 17.5, 13.1663, -9.76853, 16.5, 12.9163, -9.51853, 17, 12.9163, -8.76853, 18.75, 13.1663, -9.26853, 18.75, 14.4163, -11.0185, 18.25, 14.4163, -11.2685, 17.5, 13.1663, -9.76853, 18.75, 13.1663, -9.26853, 20, 10.1663, -11.2685, 20, 10.1663, -10.7685, 20.75, 10.6663, -11.0185, -14, 13.1663, -9.76853, -15.25, 12.9163, -9.51853, -14.75, 12.9163, -8.76853, -13, 12.9163, -9.01853, -13, 14.1663, -10.7685, -13.5, 14.1663, -11.0185, -14, 13.1663, -9.76853, -13, 12.9163, -9.01853, -18.5, 10.6663, -9.26853, -18, 10.6663, -9.26853, -18.25, 10.6663, -10.2685, -19, 10.4163, -8.26853, -18.5, 10.1663, -8.26853, -18.5, 10.6663, -9.26853, -19.5, 10.4163, -10.0185, -19, 10.4163, -8.26853, -18.5, 10.6663, -9.26853, -18.25, 10.6663, -10.2685, 13.25, 10.6663, -9.26853, 14, 10.6663, -9.26853, 13.5, 10.6663, -10.2685, 12.25, 10.4163, -10.0185, 12.75, 10.4163, -8.01853, 13.25, 10.1663, -8.26853, 13.25, 10.6663, -9.26853, 12.25, 10.4163, -10.0185, 11.75, 11.1663, -2.01853, 11.75, 11.1663, -1.51853, 12.25, 11.4163, -1.76853, 12.25, 11.4163, -2.26853, -6.25, 7.41629, -0.768526, -6.25, 7.91629, -0.0185261, -5.75, 7.66629, -0.0185261, -5.75, 7.16629, -1.01853, 14.25, 0.416287, 1.98147, 14.25, 0.416287, 3.23147, 15, 0.416287, 3.48147, 24.5, 0.416287, 4.23147, 24.5, 0.416287, 0.731474, 15, 0.416287, 1.73147, 24.5, 0.416287, 0.731474, 15, 0.416287, 0.731474, 15, 0.416287, 1.73147, 15, 0.416287, 3.48147, 15, 0.416287, 4.23147, 24.5, 0.416287, 4.23147, -12.25, 0.416287, 1.73147, -12.75, 0.416287, 1.98147, -12.5, 0.416287, 3.23147, -12, 0.416287, 3.48147, 13.75, 0.416287, 3.48147, 14.25, 0.416287, 3.23147, 14.25, 0.416287, 1.98147, 13.25, 0.416287, 1.98147, -12, 0.416287, 4.48147, -12.5, 0.416287, 4.73147, 8.75, 0.416287, 13.7315, -12, 0.416287, 3.48147, -12, 0.416287, 4.48147, 8.75, 0.416287, 13.7315, 13.75, 0.416287, 4.23147, 13.75, 0.416287, 3.48147, 13.25, 0.416287, 1.98147, -12.25, 0.416287, 0.981474, -12.25, 0.416287, 1.73147, -12, 0.416287, 3.48147, 13.75, 0.416287, 4.23147, 13.25, 0.416287, 1.98147, 13, 0.416287, 0.981474, 8.75, 0.416287, 13.7315, 9.5, 0.416287, 13.7315, 13.75, 0.416287, 4.23147, 13, 0.416287, 0.981474, -12.25, 0.416287, 0.981474, -12, 0.416287, 3.48147, -13.25, 0.416287, 3.48147, -12.5, 0.416287, 3.23147, -12.75, 0.416287, 1.98147, -14, 0.416287, 1.98147, -14.25, 0.416287, 14.7315, -13.75, 0.416287, 13.7315, -13.25, 0.416287, 4.48147, -14.25, 0.416287, 1.23147, -24.5, 0.416287, 1.23147, -24.5, 0.416287, 14.7315, -13.25, 0.416287, 4.48147, -13.25, 0.416287, 3.48147, -14, 0.416287, 1.98147, -13.25, 0.416287, 4.48147, -14, 0.416287, 1.98147, -14.25, 0.416287, 1.23147, -13.75, 0.416287, 13.7315, -13, 0.416287, 13.7315, -12.75, 0.416287, 4.73147, -13.25, 0.416287, 4.48147, -9.5, 9.91629, 3.73147, -9.5, 9.91629, 4.23147, -9, 9.66629, 3.98147, -9, 9.91629, 3.48147, 24.5, 0.416287, 4.23147, 15, 0.416287, 4.23147, 14.75, 0.416287, 4.73147, 14, 0.416287, 4.73147, 13.75, 0.416287, 4.23147, 9.5, 0.416287, 13.7315, 14.75, 0.416287, 4.73147, 14, 0.416287, 4.73147, 9.5, 0.416287, 13.7315, 14.75, 0.416287, 4.73147, 9.5, 0.416287, 13.7315, 10.25, 0.416287, 14.4815, 24.5, 0.416287, 13.7315, 24.5, 0.416287, 4.23147, -12.25, 0.416287, 15.4815, -12.75, 0.416287, 15.7315, -12.5, 0.416287, 16.9815, -12, 0.416287, 17.2315, 9, 0.416287, 17.2315, 9.5, 0.416287, 16.9815, 9.5, 0.416287, 15.7315, 8.25, 0.416287, 15.4815, -12.5, 0.416287, 4.73147, -12.25, 0.416287, 14.2315, -12, 0.416287, 17.2315, 8.25, 0.416287, 13.9815, 8.75, 0.416287, 13.7315, 8.25, 0.416287, 15.4815, 8.25, 0.416287, 13.9815, -12, 0.416287, 17.2315, -12, 0.416287, 18.2315, 9, 0.416287, 18.2315, 9, 0.416287, 17.2315, 8.25, 0.416287, 15.4815, -12.25, 0.416287, 14.2315, -12.25, 0.416287, 15.4815, -12, 0.416287, 17.2315, -12, 0.416287, 18.2315, -12.5, 0.416287, 18.4815, -12.5, 0.416287, 24.7315, 9.5, 0.416287, 24.7315, 9, 0.416287, 18.2315, 8.25, 0.416287, 15.4815, 9.5, 0.416287, 24.7315, 9.5, 0.416287, 18.4815, 9, 0.416287, 18.2315, -12.5, 0.416287, 4.73147, -12.75, 0.416287, 4.73147, -13, 0.416287, 13.7315, -12.25, 0.416287, 14.2315, -10.25, 13.9163, 5.98147, -9.25, 14.1663, 6.48147, -9.25, 14.6663, 5.73147, 17, 13.9163, 5.98147, 18, 14.1663, 6.48147, 18, 14.4163, 5.98147, -14.25, 5.41629, 6.48147, -14.25, 5.91629, 7.23147, -13.75, 5.66629, 6.73147, -13.75, 5.41629, 6.23147, -7.25, 10.1663, 6.48147, -6.5, 10.6663, 6.98147, -6.5, 10.4163, 6.48147, 12.75, 5.41629, 6.48147, 13.25, 5.91629, 7.23147, 13.25, 5.41629, 6.48147, 17.75, 13.1663, 7.98147, 16.5, 12.9163, 8.23147, 17, 12.9163, 8.98147, 18.75, 12.9163, 8.73147, 18.75, 14.4163, 6.73147, 18.25, 14.4163, 6.48147, 17.75, 13.1663, 7.98147, 18.75, 12.9163, 8.73147, 18.75, 13.1663, 7.73147, 20, 10.1663, 6.48147, 20, 10.1663, 6.98147, 20.75, 10.6663, 6.73147, -8.5, 13.9163, 7.23147, -9, 13.9163, 6.98147, -9.5, 13.1663, 7.98147, -8.5, 12.9163, 8.73147, -10.5, 12.9163, 9.23147, -8.5, 12.9163, 8.73147, -9.5, 13.1663, 7.98147, -10.75, 12.9163, 8.23147, 13.25, 10.6663, 8.48147, 13.75, 10.6663, 8.48147, 13.5, 10.6663, 7.48147, 12.25, 10.4163, 7.73147, 12.75, 10.4163, 9.73147, 13.25, 10.1663, 9.48147, 13.25, 10.6663, 8.48147, 12.25, 10.4163, 7.73147, 7, 11.1663, 11.7315, 7, 11.1663, 12.2315, 7.5, 11.4163, 12.2315, 7.5, 11.4163, 11.7315, -6.25, 7.41629, 12.9815, -6.25, 7.66629, 13.7315, -5.75, 7.66629, 13.7315, -5.75, 7.16629, 12.7315, 10.25, 0.416287, 15.4815, 9.5, 0.416287, 15.7315, 9.5, 0.416287, 16.9815, 10.25, 0.416287, 17.2315, 24.5, 0.416287, 13.7315, 24.5, 0.416287, 13.7315, 10.25, 0.416287, 17.2315, 10.25, 0.416287, 18.2315, 10.25, 0.416287, 18.2315, 9.5, 0.416287, 18.4815, 9.5, 0.416287, 24.7315, 24.5, 0.416287, 24.7315, 24.5, 0.416287, 13.7315, 24.5, 0.416287, 13.7315, 10.25, 0.416287, 14.4815, 10.25, 0.416287, 15.4815, -13.25, 0.416287, 17.2315, -12.5, 0.416287, 16.9815, -12.75, 0.416287, 15.7315, -14, 0.416287, 15.7315, -12.5, 0.416287, 24.7315, -14, 0.416287, 15.7315, -14.25, 0.416287, 14.7315, -24.5, 0.416287, 14.7315, -24.5, 0.416287, 24.7315, -13.25, 0.416287, 18.2315, -13.25, 0.416287, 17.2315, -14, 0.416287, 15.7315, -12.5, 0.416287, 24.7315, -12.5, 0.416287, 18.4815, -13.25, 0.416287, 18.2315, -12.5, 0.416287, 24.7315, -13.25, 0.416287, 18.2315, -14, 0.416287, 15.7315, -9.5, 9.91629, 17.4815, -9.5, 9.91629, 17.9815, -9, 9.66629, 17.7315, -9, 9.91629, 17.2315, 12.75, 9.91629, 17.4815, 12.75, 9.91629, 17.9815, 13.25, 9.41629, 17.9815, 13.25, 9.91629, 17.4815, -10.25, 13.9163, 19.7315, -9.25, 14.1663, 20.2315, -9.25, 14.6663, 19.4815, -14.25, 5.41629, 20.2315, -14.25, 6.16629, 21.2315, -13.75, 5.66629, 20.4815, -13.75, 5.41629, 19.9815, 8, 5.41629, 20.2315, 8.25, 5.91629, 20.9815, 8.75, 5.66629, 20.2315, 14, 13.9163, 20.9815, 13.25, 14.4163, 19.9815, 13.25, 13.4163, 21.4815, 14, 12.9163, 22.4815, 12.5, 12.6663, 22.9815, 14, 12.9163, 22.4815, 13.25, 13.4163, 21.4815, 11.5, 12.6663, 22.2315, -7.25, 10.1663, 20.2315, -6.5, 10.6663, 20.7315, -6.5, 10.4163, 20.2315, 15.25, 10.1663, 20.2315, 15.25, 10.1663, 20.7315, 16, 10.6663, 20.4815, -8.5, 13.9163, 20.9815, -9, 13.9163, 20.7315, -9.5, 13.1663, 21.7315, -8.5, 13.1663, 22.4815, -10.5, 12.9163, 22.9815, -8.5, 13.1663, 22.4815, -9.5, 13.1663, 21.7315, -10.75, 12.9163, 21.9815, -14, 10.4163, 22.2315, -13, 10.6663, 22.2315, -13.75, 10.6663, 21.2315, -15, 10.4163, 21.4815, -15, 10.4163, 21.4815, -14.25, 10.4163, 23.4815, -14, 10.4163, 22.2315, -14.625, 10.6663, 22.4815, 8.5, 10.6663, 22.2315, 9.25, 10.6663, 21.9815, 8.75, 10.6663, 21.2315, 7.5, 10.4163, 21.4815, 8, 10.4163, 23.4815, 8.5, 10.1663, 23.2315, 8.5, 10.6663, 22.2315, 7.5, 10.4163, 21.4815)
@@ -90,12 +89,9 @@ material = SubResource("StandardMaterial3D_oyi21")
 size = Vector2(1.5, 2)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_88or0"]
-emission_shape_scale = Vector3(50, 1, 50)
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 2.0
-emission_ring_inner_radius = 0.0
+emission_shape_scale = Vector3(25, 1, 25)
+emission_shape = 2
+emission_sphere_radius = 1.0
 gravity = Vector3(0, -1, 0)
 turbulence_enabled = true
 
@@ -119,6 +115,24 @@ albedo_texture = ExtResource("8_0pbfi")
 material = SubResource("StandardMaterial3D_xnvvu")
 size = Vector2(5, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2jfbp"]
+transparency = 4
+albedo_texture = ExtResource("12_g26ns")
+
+[sub_resource type="QuadMesh" id="QuadMesh_t2miw"]
+material = SubResource("StandardMaterial3D_2jfbp")
+size = Vector2(1.5, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_18fxk"]
+size = Vector3(1, 1, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_760ar"]
+transparency = 4
+albedo_texture = ExtResource("14_c7brm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_3smiu"]
+material = SubResource("StandardMaterial3D_760ar")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q1alc"]
 albedo_texture = ExtResource("5_iuk00")
 
@@ -126,8 +140,14 @@ albedo_texture = ExtResource("5_iuk00")
 material = SubResource("StandardMaterial3D_q1alc")
 size = Vector3(50, 0.5, 50)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qywpp"]
+data = PackedVector3Array(-25, 0.25, 25, 25, 0.25, 25, -25, -0.25, 25, 25, 0.25, 25, 25, -0.25, 25, -25, -0.25, 25, 25, 0.25, -25, -25, 0.25, -25, 25, -0.25, -25, -25, 0.25, -25, -25, -0.25, -25, 25, -0.25, -25, 25, 0.25, 25, 25, 0.25, -25, 25, -0.25, 25, 25, 0.25, -25, 25, -0.25, -25, 25, -0.25, 25, -25, 0.25, -25, -25, 0.25, 25, -25, -0.25, -25, -25, 0.25, 25, -25, -0.25, 25, -25, -0.25, -25, 25, 0.25, 25, -25, 0.25, 25, 25, 0.25, -25, -25, 0.25, 25, -25, 0.25, -25, 25, 0.25, -25, -25, -0.25, 25, 25, -0.25, 25, -25, -0.25, -25, 25, -0.25, 25, 25, -0.25, -25, -25, -0.25, -25)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ff4oi"]
 albedo_color = Color(0.992157, 0.662745, 0.839216, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iuh6q"]
+size = Vector3(50, 50, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -140,7 +160,7 @@ script = ExtResource("1_8os84")
 _camera = NodePath("../Camera3D")
 min_distance = 2.0
 max_distance = 20.0
-max_polar_angle = 1.55334
+max_polar_angle = 1.39626
 enable_pan = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -150,13 +170,31 @@ shadow_enabled = true
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, 7.5)
 
+[node name="Bow" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 0, 0)
+script = ExtResource("14_0tman")
+
+[node name="SFX" type="AudioStreamPlayer" parent="Camera3D/Bow"]
+stream = ExtResource("3_y73jp")
+
+[node name="Projectiles" type="Node3D" parent="."]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_svy4g")
 
-[node name="Clovers" type="Node3D" parent="."]
+[node name="Counter" type="Label" parent="."]
+offset_left = 12.0
+offset_top = 2.0
+offset_right = 410.0
+offset_bottom = 97.0
+text = "Messages read: 0/48"
+label_settings = SubResource("LabelSettings_384t6")
+
+[node name="Clovers" type="Node3D" parent="." node_paths=PackedStringArray("bow")]
 script = ExtResource("2_emqpg")
-amount = 20
+amount = 50
 min_distance = 0.0
+bow = NodePath("../Camera3D/Bow")
 
 [node name="Clouds" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
@@ -170,10 +208,6 @@ mesh = SubResource("BoxMesh_0f1xf")
 script = ExtResource("4_31igx")
 position_range = Vector2(25, 25)
 speed = 1.0
-
-[node name="Stars" type="GPUParticles3D" parent="Clouds"]
-process_material = SubResource("ParticleProcessMaterial_8ouo1")
-draw_pass_1 = SubResource("QuadMesh_g6ky0")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_isxbm")
@@ -189,9 +223,9 @@ process_material = SubResource("ParticleProcessMaterial_q3biy")
 draw_pass_1 = SubResource("QuadMesh_a53t3")
 
 [node name="Sakura Petals" type="GPUParticles3D" parent="NavigationRegion3D/Props"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 sorting_offset = -1.0
-amount = 2048
+amount = 1024
 lifetime = 7.5
 fixed_fps = 10
 process_material = SubResource("ParticleProcessMaterial_88or0")
@@ -414,13 +448,329 @@ transform = Transform3D(1.5, -2.62268e-07, -1.14641e-14, 3.17637e-22, -6.55671e-
 cast_shadow = 0
 mesh = SubResource("QuadMesh_ruf1v")
 
+[node name="Booth" type="MeshInstance3D" parent="NavigationRegion3D/Props"]
+transform = Transform3D(9.465, 0, 0, 0, 9.465, 0, 0, 0, 9.465, -1, 3.5, -25)
+layers = 8193
+mesh = SubResource("QuadMesh_t2miw")
+script = ExtResource("13_vntwo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Props/Booth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Props/Booth/StaticBody3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.2, 0, 0.1)
+shape = SubResource("BoxShape3D_18fxk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Props/Booth/StaticBody3D"]
+transform = Transform3D(0.35, 0, 0, 0, 0.35, 0, 0, 0, 0.35, 0.2, 0, 0.1)
+mesh = SubResource("QuadMesh_3smiu")
+skeleton = NodePath("../..")
+
+[node name="Reaper" parent="NavigationRegion3D/Props/Booth" instance=ExtResource("11_feu6f")]
+transform = Transform3D(52.8262, 0, 0, 0, 52.8262, 0, 0, 0, 52.8262, 0.106, 1.109, -75)
+
+[node name="SFX" type="Node3D" parent="NavigationRegion3D/Props/Booth"]
+
+[node name="Roar1" type="AudioStreamPlayer3D" parent="NavigationRegion3D/Props/Booth/SFX"]
+stream = ExtResource("15_f3vda")
+volume_db = 10.0
+
+[node name="Flowers" type="Node3D" parent="NavigationRegion3D/Props"]
+
+[node name="Sketchfab_Scene" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.64017, 0.0479005, -7.70547)
+
+[node name="Sketchfab_Scene4" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.882184, 0, -0.470904, 0, 1, 0, 0.470904, 0, 0.882184, 7.89702, 0.0479005, -7.70547)
+
+[node name="Sketchfab_Scene6" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.991685, 0, -0.128692, 0, 1, 0, 0.128692, 0, 0.991685, 6.70644, 0.0479005, -11.8186)
+
+[node name="Sketchfab_Scene44" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, 1.02538, 0.0479005, -15.7522)
+
+[node name="Sketchfab_Scene45" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, -3.36235, 0.0479005, -20.7772)
+
+[node name="Sketchfab_Scene46" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, 7.00614, 0.0479005, -20.6937)
+
+[node name="Sketchfab_Scene47" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.996091, 0, 0.0883379, 0, 1, 0, -0.0883379, 0, 0.996091, 7.00614, 0.0479005, -20.6937)
+
+[node name="Sketchfab_Scene7" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.990812, 0, 0.135249, 0, 1, 0, -0.135249, 0, 0.990812, 8.90556, 0.047901, -14.5846)
+
+[node name="Sketchfab_Scene8" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 15.0557, 0.047901, -11.2962)
+
+[node name="Sketchfab_Scene9" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 15.3103, 0.047901, -6.53139)
+
+[node name="Sketchfab_Scene10" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 12.2622, 0.047901, 0.284017)
+
+[node name="Sketchfab_Scene11" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.981744, 0, -0.190209, 0, 1, 0, 0.190209, 0, 0.981744, 10.2346, 0.0479014, 4.69836)
+
+[node name="Sketchfab_Scene12" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.987175, 0, 0.15964, 0, 1, 0, -0.15964, 0, 0.987175, 5.73141, 0.0479014, 7.14836)
+
+[node name="Sketchfab_Scene13" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.987175, 0, 0.15964, 0, 1, 0, -0.15964, 0, 0.987175, -5.49128, 0.0479014, 9.02834)
+
+[node name="Sketchfab_Scene16" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.97501, 0, 0.222161, 0, 1, 0, -0.222161, 0, 0.97501, 3.61199, 0.0479014, 12.3985)
+
+[node name="Sketchfab_Scene26" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.997459, 0, -0.0712364, 0, 1, 0, 0.0712364, 0, 0.997459, 3.63436, 0.0479014, 17.9603)
+
+[node name="Sketchfab_Scene17" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.97501, 0, 0.222161, 0, 1, 0, -0.222161, 0, 0.97501, -2.7794, 0.0479014, 14.2187)
+
+[node name="Sketchfab_Scene18" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.944376, 0, 0.328867, 0, 1, 0, -0.328867, 0, 0.944376, -8.77628, 0.0479024, 14.293)
+
+[node name="Sketchfab_Scene19" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.978115, 0, 0.208065, 0, 1, 0, -0.208065, 0, 0.978115, 10.7337, 0.0479024, 11.4696)
+
+[node name="Sketchfab_Scene20" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.999819, 0, -0.019023, 0, 1, 0, 0.019023, 0, 0.999819, 18.3269, 0.0479024, 14.6798)
+
+[node name="Sketchfab_Scene21" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.999819, 0, -0.019023, 0, 1, 0, 0.019023, 0, 0.999819, 19.514, 0.0479024, -5.72992)
+
+[node name="Sketchfab_Scene22" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.999821, 0, 0.0189008, 0, 1, 0, -0.0189008, 0, 0.999821, -19.0312, 0.0479024, -6.50804)
+
+[node name="Sketchfab_Scene23" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.995227, 0, 0.0975829, 0, 1, 0, -0.0975829, 0, 0.995227, -17.4054, 0.0479024, 5.38162)
+
+[node name="Sketchfab_Scene14" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.987175, 0, 0.15964, 0, 1, 0, -0.15964, 0, 0.987175, -9.27281, 0.0479014, 4.88395)
+
+[node name="Sketchfab_Scene15" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.946616, 0, 0.322365, 0, 1, 0, -0.322365, 0, 0.946616, -12.2728, 0.0479014, -3.11605)
+
+[node name="Sketchfab_Scene5" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.946345, 0, -0.323158, 0, 1, 0, 0.323158, 0, 0.946345, 9.35648, 0.0479005, -11.7966)
+
+[node name="Sketchfab_Scene2" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.986638, 0, -0.16293, 0, 1, 0, 0.16293, 0, 0.986638, -8.50589, 0.0479005, -13.0279)
+
+[node name="Sketchfab_Scene24" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.997358, 0, 0.0726464, 0, 1, 0, -0.0726464, 0, 0.997358, -7.75074, 0.0478995, -20.174)
+
+[node name="Sketchfab_Scene25" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(0.966573, 0, 0.256391, 0, 1, 0, -0.256391, 0, 0.966573, -14.7783, 0.0478995, -19.998)
+
+[node name="Sketchfab_Scene3" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_gcu8g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3365, 0.0479005, -6.46787)
+
+[node name="Sketchfab_Scene27" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -10.2382, 0.0479019, 6.65722)
+
+[node name="Sketchfab_Scene29" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -11.331, 0.0479024, -2.52489)
+
+[node name="Sketchfab_Scene30" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -10.0781, 0.0479024, -10.1415)
+
+[node name="Sketchfab_Scene31" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -6.8078, 0.0479024, -15.2108)
+
+[node name="Sketchfab_Scene32" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 4.85956, 0.0479029, -8.10045)
+
+[node name="Sketchfab_Scene33" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 9.36763, 0.0479029, -4.33506)
+
+[node name="Sketchfab_Scene35" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 8.98767, 0.0479029, 6.37701)
+
+[node name="Sketchfab_Scene36" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 8.955, 0.0479024, 9.52502)
+
+[node name="Sketchfab_Scene37" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 5.24485, 0.0479033, 14.3059)
+
+[node name="Sketchfab_Scene38" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -4.41027, 0.0479043, 11.1799)
+
+[node name="Sketchfab_Scene39" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -8.38332, 0.0479038, 10.1355)
+
+[node name="Sketchfab_Scene40" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 1.65173, 0.0479038, -12.4678)
+
+[node name="Sketchfab_Scene42" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 1.60155, 0.0479038, -20.0535)
+
+[node name="Sketchfab_Scene48" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 4.69835, 0.0479038, -15.8899)
+
+[node name="Sketchfab_Scene49" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -2.11788, 0.0479038, -19.2711)
+
+[node name="Sketchfab_Scene50" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -12.7078, 0.0479038, -17.7433)
+
+[node name="Sketchfab_Scene51" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 13.0379, 0.0479038, -7.92283)
+
+[node name="Sketchfab_Scene52" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 6.08446, 0.0479038, 10.4535)
+
+[node name="Sketchfab_Scene53" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -6.37268, 0.0479038, 16.4957)
+
+[node name="Sketchfab_Scene60" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0.0173187, 0.0479038, 20.294)
+
+[node name="Sketchfab_Scene61" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 17.189, 0.0479038, 9.18836)
+
+[node name="Sketchfab_Scene54" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 3.74376, 0.0479038, 19.6487)
+
+[node name="Sketchfab_Scene55" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -7.37154, 0.0479029, 19.7574)
+
+[node name="Sketchfab_Scene56" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -16.7694, 0.0479029, 11.6589)
+
+[node name="Sketchfab_Scene59" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -16.9188, 0.0479029, -4.77388)
+
+[node name="Sketchfab_Scene57" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -16.7694, -3.36766, -5.47669)
+
+[node name="Sketchfab_Scene58" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, -12.8352, -3.36766, -17.4004)
+
+[node name="Sketchfab_Scene43" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("18_dvh8p")]
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 1.60155, 0.0479038, -20.0535)
+
+[node name="Sketchfab_Scene28" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -8.01651, 0.0479, 9.0152)
+
+[node name="Sketchfab_Scene34" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -11.2995, 0.0479, 0.201324)
+
+[node name="Sketchfab_Scene41" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 6.98523, 0.0479, 8.17192)
+
+[node name="Sketchfab_Scene62" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 5.94378, 0.0479, 12.5826)
+
+[node name="Sketchfab_Scene63" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 10.3532, 0.0479, -2.42309)
+
+[node name="Sketchfab_Scene64" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 10.3971, 0.0479, -10.1399)
+
+[node name="Sketchfab_Scene65" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 3.4806, 0.0478995, -14.7535)
+
+[node name="Sketchfab_Scene66" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -8.86841, 0.0478995, -17.2696)
+
+[node name="Sketchfab_Scene67" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 1.65576, 0.0478995, -21.0555)
+
+[node name="Sketchfab_Scene68" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 9.15872, 0.0478995, -18.6962)
+
+[node name="Sketchfab_Scene69" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, -14.8413, 0.0478995, -22.6962)
+
+[node name="Sketchfab_Scene70" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, 11.0445, 0.0479014, 19.2778)
+
+[node name="Sketchfab_Scene73" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -9.12321, 0.0479014, 17.2996)
+
+[node name="Sketchfab_Scene74" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, 0.256841, 0.0479014, 17.155)
+
+[node name="Sketchfab_Scene75" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -14.5325, 0.0479014, 17.8534)
+
+[node name="Sketchfab_Scene76" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -18.9711, 0.0479019, 12.3351)
+
+[node name="Sketchfab_Scene77" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -18.7058, 0.0479019, -2.15552)
+
+[node name="Sketchfab_Scene78" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.599964, -0.00119661, -0.00641323, 0, 0.589821, -0.110052, 0.00652391, 0.110045, 0.589786, -15.3689, 0.0479019, -12.8834)
+
+[node name="Sketchfab_Scene71" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 18.2325, 0.0479014, -10.5383)
+
+[node name="Sketchfab_Scene72" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("19_46jux")]
+transform = Transform3D(0.6, 0, 0, 0, 0.589821, -0.110052, 0, 0.110052, 0.589821, 16.0796, 0.0479014, 8.35748)
+
+[node name="MeshInstance3D" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.3831, 0.753417, -15.4073)
+
+[node name="MeshInstance3D2" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.2167, 0.753417, -6.13513)
+
+[node name="MeshInstance3D3" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5872, 0.753417, 7.28501)
+
+[node name="MeshInstance3D4" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.37466, 0.753417, 18.1136)
+
+[node name="MeshInstance3D5" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5537, 0.753418, 9.16317)
+
+[node name="MeshInstance3D6" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7308, 0.753418, 0.93359)
+
+[node name="MeshInstance3D7" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.0819, 0.753418, -13.3036)
+
+[node name="MeshInstance3D8" parent="NavigationRegion3D/Props/Flowers" instance=ExtResource("20_ngjdl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.587, 0.753418, -22.1963)
+
 [node name="Earth" type="MeshInstance3D" parent="NavigationRegion3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2021, 0)
 mesh = SubResource("BoxMesh_m73n1")
 skeleton = NodePath("../..")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/Earth"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/Earth/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_qywpp")
+
 [node name="Heart" type="MeshInstance3D" parent="NavigationRegion3D"]
-transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, -0.6, 0)
+transform = Transform3D(3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, -0.66492, 0)
 mesh = ExtResource("6_6ivio")
 skeleton = NodePath("../..")
 surface_material_override/0 = SubResource("StandardMaterial3D_ff4oi")
+
+[node name="Cage" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, -25)
+shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25, 25)
+shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -25, 25, 0)
+shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Cage"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 25, 25, 0)
+shape = SubResource("BoxShape3D_iuh6q")
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_uw48u")
+volume_db = -15.0
+autoplay = true
+
+[connection signal="input_event" from="NavigationRegion3D/Props/Booth/StaticBody3D" to="NavigationRegion3D/Props/Booth" method="_on_static_body_3d_input_event"]

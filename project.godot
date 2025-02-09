@@ -20,7 +20,17 @@ project/assembly_name="Cloverfield"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/orbit-controls/plugin.cfg")
+enabled=PackedStringArray("res://addons/csv-data-importer/plugin.cfg", "res://addons/orbit-controls/plugin.cfg")
+
+[layer_names]
+
+3d_physics/layer_1="Regular"
+3d_physics/layer_2="Projectiles"
+3d_physics/layer_3="Clovers"
+
+[physics]
+
+common/physics_ticks_per_second=144
 
 [rendering]
 

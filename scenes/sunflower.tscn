@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://qismqnre6r7p"]
+
+[ext_resource type="Texture2D" uid="uid://cqm6536705cfs" path="res://assets/textures/sunflower.png" id="1_y00tq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ncqoh"]
+transparency = 4
+shading_mode = 0
+albedo_texture = ExtResource("1_y00tq")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_joq7r"]
+material = SubResource("StandardMaterial3D_ncqoh")
+size = Vector2(0.8, 1.44)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_joq7r")
