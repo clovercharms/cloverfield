@@ -1,0 +1,265 @@
+[gd_scene load_steps=21 format=3 uid="uid://n3h6kl2a3g48"]
+
+[ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_nqyfe"]
+[ext_resource type="Texture2D" uid="uid://dj23hmry57xxh" path="res://assets/textures/skyboxes/deep_space_panorama.png" id="2_00rbo"]
+[ext_resource type="AudioStream" uid="uid://kr7jj0e2ych4" path="res://assets/audio/music/dark_bramble.mp3" id="5_umm2j"]
+[ext_resource type="AudioStream" uid="uid://wo5ck51us2sp" path="res://assets/audio/effects/Anglerfish_Awake3.wav" id="6_qxo5u"]
+[ext_resource type="AudioStream" uid="uid://bd36gyy0eqe1m" path="res://assets/audio/effects/Anglerfish_Awake.wav" id="7_0qxyu"]
+[ext_resource type="AudioStream" uid="uid://cehxl8u754k0q" path="res://assets/audio/effects/Anglerfish_Awake2.wav" id="8_ft6dn"]
+[ext_resource type="AudioStream" uid="uid://cptnpnlmfiisw" path="res://assets/audio/effects/Anglerfish_Chase_Breathing.wav" id="9_eocbh"]
+[ext_resource type="AudioStream" uid="uid://bhuxi54al8bwo" path="res://assets/audio/effects/party_horn.mp3" id="10_u2fmf"]
+[ext_resource type="AudioStream" uid="uid://qfjtb3adkhkr" path="res://assets/audio/effects/cartoon-laugh.wav" id="11_uunho"]
+[ext_resource type="Script" path="res://scenes/space/jumpscare.gd" id="12_t2064"]
+[ext_resource type="PackedScene" uid="uid://c343nkatui2ly" path="res://scenes/space/anglerfish_lure.tscn" id="13_4xbh0"]
+[ext_resource type="Texture2D" uid="uid://c0oquoalobej7" path="res://assets/textures/smug_charm.png" id="14_2emjq"]
+[ext_resource type="Texture2D" uid="uid://v61ado6h2eg6" path="res://assets/textures/faded_dot.png" id="15_prske"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2vvlu"]
+panorama = ExtResource("2_00rbo")
+
+[sub_resource type="Sky" id="Sky_2wdu0"]
+sky_material = SubResource("PanoramaSkyMaterial_2vvlu")
+
+[sub_resource type="Environment" id="Environment_uvixq"]
+background_mode = 2
+sky = SubResource("Sky_2wdu0")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_emission = Color(0.275091, 0.275091, 0.275091, 1)
+
+[sub_resource type="Animation" id="Animation_e6qgq"]
+length = 0.001
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JumpscareCamera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SmugCharm:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_n02yj"]
+resource_name = "jumpscare"
+length = 60.0
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("JumpscareCamera")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0.0666667, 1, 0, 0, 0, 1, 15, 1, 0, 0, 0, 1, 18.6667, 1, 0, -0.347198, 0, 0.937792, 24.1667, 1, 0, -0.347198, 0, 0.937792, 27.6333, 1, 0, 0.304706, 0, 0.952446, 33.8333, 1, 0, 0.304706, 0, 0.952446, 35.5333, 1, 0, 0.883148, 0, -0.469094)
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JumpscareBGM")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 185.5,
+"start_offset": 0.0,
+"stream": ExtResource("5_umm2j")
+}],
+"times": PackedFloat32Array(0, 5)
+}
+tracks/1/use_blend = true
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JumpscareManager")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 8.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"startFadingFog"
+}, {
+"args": [],
+"method": &"startSpawningLures"
+}]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnglerfishAwakeAudio1")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_qxo5u")
+}],
+"times": PackedFloat32Array(13.8667)
+}
+tracks/3/use_blend = true
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnglerfishAwakeAudio2")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_0qxyu")
+}],
+"times": PackedFloat32Array(23.5333)
+}
+tracks/4/use_blend = true
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnglerfishAwakeAudio3")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 3.0151,
+"start_offset": 0.0,
+"stream": ExtResource("8_ft6dn")
+}],
+"times": PackedFloat32Array(33.3)
+}
+tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnglerfishChaseAudio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.7841,
+"start_offset": 0.0,
+"stream": ExtResource("9_eocbh")
+}],
+"times": PackedFloat32Array(27.3667)
+}
+tracks/6/use_blend = true
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("GeneralSounds")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_u2fmf")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_uunho")
+}],
+"times": PackedFloat32Array(36.6667, 37.9667)
+}
+tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("SmugCharm:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 29.7333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8w3sv"]
+_data = {
+"RESET": SubResource("Animation_e6qgq"),
+"jumpscare": SubResource("Animation_n02yj")
+}
+
+[sub_resource type="Curve" id="Curve_glddm"]
+max_value = 0.1
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.0679934), 0.183504, 0.257671, 0, 0]
+point_count = 2
+
+[node name="JumpscareRoot" type="Node3D"]
+script = ExtResource("1_nqyfe")
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uvixq")
+
+[node name="JumpscareCamera" type="Camera3D" parent="."]
+current = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8w3sv")
+}
+
+[node name="JumpscareManager" type="Node" parent="." node_paths=PackedStringArray("mainAnimation", "mainEnvironment", "mainCamera")]
+script = ExtResource("12_t2064")
+mainAnimation = NodePath("../AnimationPlayer")
+mainEnvironment = NodePath("../Environment")
+mainCamera = NodePath("../JumpscareCamera")
+fogCurve = SubResource("Curve_glddm")
+lureScene = ExtResource("13_4xbh0")
+minLureSpawnDistance = 15.0
+maxLureSpawnDistance = 30.0
+lureSpawnAmount = 60
+lureSpawnTime = 10.0
+
+[node name="JumpscareBGM" type="AudioStreamPlayer" parent="."]
+
+[node name="AnglerfishAwakeAudio1" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.415, 0, 0.0684768)
+volume_db = -20.0
+
+[node name="AnglerfishAwakeAudio2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.12981, 0, -3.63365)
+volume_db = -10.0
+
+[node name="AnglerfishAwakeAudio3" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.415, 0, 1.54287)
+volume_db = 10.0
+
+[node name="AnglerfishChaseAudio" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.91502, 0, 1.29054)
+volume_db = -10.0
+
+[node name="GeneralSounds" type="AudioStreamPlayer" parent="."]
+
+[node name="SmugCharm" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42105, 0, 0.94556)
+
+[node name="Sprite3D" type="Sprite3D" parent="SmugCharm"]
+sorting_offset = 1.0
+pixel_size = 0.001
+billboard = 2
+no_depth_test = true
+texture = ExtResource("14_2emjq")
+
+[node name="Sprite3D2" type="Sprite3D" parent="SmugCharm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.31146, 0)
+sorting_offset = 2.0
+pixel_size = 0.003
+billboard = 2
+no_depth_test = true
+texture = ExtResource("15_prske")
