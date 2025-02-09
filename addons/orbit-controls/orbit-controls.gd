@@ -147,7 +147,7 @@ var orbit_scale: float = 1
 var pan_offset = Vector3(0, 0, 0)
 var needs_update:bool = true
 
-var mouse_buttons = { "LEFT": MOUSE.ROTATE, "MIDDLE": MOUSE.DOLLY, "RIGHT": MOUSE.PAN }
+var mouse_buttons = { "MIDDLE": MOUSE.DOLLY, "RIGHT": MOUSE.ROTATE }
 var touches = { "ONE": TOUCH.ROTATE, "TWO": TOUCH.DOLLY_PAN }
 var state = STATE.NONE
 
@@ -455,8 +455,8 @@ func on_mouse_down(event):
 	var mouse_action = null
 	
 	match event.button_index:
-		MOUSE_BUTTON_LEFT:
-			mouse_action = mouse_buttons.LEFT
+		#MOUSE_BUTTON_LEFT:
+			#mouse_action = mouse_buttons.LEFT
 		MOUSE_BUTTON_MIDDLE:
 			mouse_action = mouse_buttons.MIDDLE
 		MOUSE_BUTTON_RIGHT:
