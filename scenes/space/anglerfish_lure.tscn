@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://c343nkatui2ly"]
+
+[ext_resource type="Texture2D" uid="uid://v61ado6h2eg6" path="res://assets/textures/faded_dot.png" id="1_qjbyf"]
+[ext_resource type="Script" path="res://scenes/space/fade_in_on_spawn.gd" id="2_vhj0n"]
+
+[node name="Sprite3D" type="Sprite3D"]
+gi_mode = 0
+modulate = Color(0.992157, 1, 1, 1)
+billboard = 1
+no_depth_test = true
+texture = ExtResource("1_qjbyf")
+script = ExtResource("2_vhj0n")
