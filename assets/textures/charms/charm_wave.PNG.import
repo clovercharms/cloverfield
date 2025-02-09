@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgiqltw8fjw4m"
-path.bptc="res://.godot/imported/Base.png-7e7982c75967d5aa43320d1e2f4c9ffc.bptc.ctex"
+uid="uid://dlp47v02juj1y"
+path.s3tc="res://.godot/imported/charm_wave.PNG-b92f5ee62a816a16cfe960fab34f9891.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,13 +11,13 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/clovers/Base.png"
-dest_files=["res://.godot/imported/Base.png-7e7982c75967d5aa43320d1e2f4c9ffc.bptc.ctex"]
+source_file="res://assets/textures/charms/charm_wave.PNG"
+dest_files=["res://.godot/imported/charm_wave.PNG-b92f5ee62a816a16cfe960fab34f9891.s3tc.ctex"]
 
 [params]
 
 compress/mode=2
-compress/high_quality=true
+compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0

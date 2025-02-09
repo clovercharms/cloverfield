@@ -6,21 +6,15 @@ public partial class CharmSummoner : Node3D
 	[Export] private int Amount  { get; set; } = 100;
 	[Export] private int PositionRange { get; set; } = 20;
 	[Export] private float MinDistance { get; set; } = 3.0f;
+    [Export] private Godot.Collections.Array<Texture2D> Avatars { get; set; }
+    [Export] private Godot.Collections.Array<Texture2D> BodiesBase { get; set; }
+    [Export] private Godot.Collections.Array<Texture2D> BodiesHeart { get; set; } // indexes must match base
+    [Export] private Godot.Collections.Array<int> PriorityBodyIndicies { get; set; } // indexes must match body textures
 
 	private float HalfRange => PositionRange / 2;
 	private Vector3[] GeneratedPosition { get; set; } = [];
 	private LuckyCharm[] Instances { get; set; } = [];
 	private bool SelectionActive { get; set; } = false;
-
-	private static Texture2D[] Avatars =>
-	[
-
-	];
-
-	private static Texture2D[] Bodies =>
-	[
-
-	];
 
 	public void ToggleSelection(LuckyCharm charm, bool disabled)
 	{
@@ -45,17 +39,9 @@ public partial class CharmSummoner : Node3D
 			charm.Deselected += () => ToggleSelection(null, false);
 
 			// charm.Avatar = Avatars[GD.RandRange(0, Avatars.Length - 1)];
-			// charm.BodyTexture = Bodies[GD.RandRange(0, Bodies.Length - 1)];
+			 charm.BodyTexture = BodiesBase[GD.RandRange(0, BodiesBase.Count - 1)];
 
-			var theta = GD.RandRange(0, Math.PI * 2);
-			var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN?
-			var radius = 25f;       // WHAT THE FUCK WAS THIS BULLSHIT?!
-
-			var x = (float)(radius * Math.Sin(theta) * Math.Cos(phi));
-			var y = (float)(radius * Math.Sin(theta) * Math.Sin(phi));
-			var z = (float)(radius * Math.Cos(theta));
-
-			var randomPosition = new Vector3(x, y, z);
+			var randomPosition = _MakeRandomPlanetPosition();
 			charm.Position = randomPosition;
 			var marker = new Marker3D();
 			charm.Pivoter = marker;
@@ -63,6 +49,19 @@ public partial class CharmSummoner : Node3D
 			marker.AddChild(charm);
 		}
 	}
+
+	private Vector3 _MakeRandomPlanetPosition()
+	{
+        var theta = GD.RandRange(0, Math.PI * 2);
+        var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN? // Theta and phi are traditional variable names for angles in math equations.
+        var radius = 25f;       // WHAT THE FUCK WAS THIS BULLSHIT?! // This was basically rolling the latitude and longitude and then adjusting the location for how big the planet is.
+
+        var x = (float)(radius * Math.Sin(theta) * Math.Cos(phi));
+        var y = (float)(radius * Math.Sin(theta) * Math.Sin(phi));
+        var z = (float)(radius * Math.Cos(theta));
+
+		return new Vector3(x, y, z);
+    }
 
 	// func _ready():
 	// for i in range(amount):

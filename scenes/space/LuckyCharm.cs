@@ -52,6 +52,7 @@ public partial class LuckyCharm : CharacterBody3D
     // Attributes
     public Texture2D Avatar { get; set; }
     public Texture2D BodyTexture { get; set; }
+    public Texture2D BodyTextureHeart { get; set; }
 
     // State
     public bool IsSelected { get; set; } = false;
@@ -78,9 +79,9 @@ public partial class LuckyCharm : CharacterBody3D
         // material2.AlbedoTexture = Avatar;
         // smallLabelAvatar.MaterialOverride = material2;
 
-        // var bodyMaterial = Body.Mesh.SurfaceGetMaterial(0).Duplicate(true) as StandardMaterial3D;
-        // bodyMaterial.AlbedoTexture = BodyTexture;
-        // Body.MaterialOverride = bodyMaterial;
+         var bodyMaterial = Body.Mesh.SurfaceGetMaterial(0).Duplicate(true) as StandardMaterial3D;
+         bodyMaterial.AlbedoTexture = BodyTexture;
+         Body.MaterialOverride = bodyMaterial;
     }
 
     public override void _PhysicsProcess(double delta)
