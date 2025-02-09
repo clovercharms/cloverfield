@@ -79,9 +79,7 @@ public partial class LuckyCharm : CharacterBody3D
         // material2.AlbedoTexture = Avatar;
         // smallLabelAvatar.MaterialOverride = material2;
 
-         var bodyMaterial = Body.Mesh.SurfaceGetMaterial(0).Duplicate(true) as StandardMaterial3D;
-         bodyMaterial.AlbedoTexture = BodyTexture;
-         Body.MaterialOverride = bodyMaterial;
+        ApplyBodyTexture(BodyTexture);
     }
 
     public override void _PhysicsProcess(double delta)
@@ -288,4 +286,10 @@ public partial class LuckyCharm : CharacterBody3D
 
     }
 
+    private void ApplyBodyTexture(Texture2D texture)
+    {
+        var bodyMaterial = Body.Mesh.SurfaceGetMaterial(0).Duplicate(true) as StandardMaterial3D;
+        bodyMaterial.AlbedoTexture = texture;
+        Body.MaterialOverride = bodyMaterial;
+    }
 }

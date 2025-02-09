@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class CharmSummoner : Node3D
 {
@@ -8,8 +9,7 @@ public partial class CharmSummoner : Node3D
 	[Export] private float MinDistance { get; set; } = 3.0f;
     [Export] private Godot.Collections.Array<Texture2D> Avatars { get; set; }
     [Export] private Godot.Collections.Array<Texture2D> BodiesBase { get; set; }
-    [Export] private Godot.Collections.Array<Texture2D> BodiesHeart { get; set; } // indexes must match base
-    [Export] private Godot.Collections.Array<int> PriorityBodyIndicies { get; set; } // indexes must match body textures
+    [Export] private Godot.Collections.Array<Texture2D> BodiesHeart { get; set; } // indices must match base
 
 	private float HalfRange => PositionRange / 2;
 	private Vector3[] GeneratedPosition { get; set; } = [];
@@ -28,7 +28,17 @@ public partial class CharmSummoner : Node3D
 
 	public override void _Ready()
 	{
-		for (int i = 0; i < Amount; i++)
+		if(BodiesBase.Count != BodiesHeart.Count)
+		{
+			GD.PrintErr("Base body and heart eye variant counts do not match up!");
+		}
+
+		Godot.Collections.Array<int> indexDeck = [];
+		for (int i = 0; i < BodiesBase.Count; ++i) {
+			indexDeck.Add(i);
+		}
+
+        for (int i = 0; i < Amount; i++)
 		{
 			var charm = LuckyCharm.GenerateInstance();
 			charm.Camera = GetParent().FindChild("Mitty Cam") as MittyCam;
@@ -38,11 +48,17 @@ public partial class CharmSummoner : Node3D
 
 			charm.Deselected += () => ToggleSelection(null, false);
 
+            // Shuffle all bodies, then draw one until none remain, shuffle and go again
+            // aka Tetris piece selection logic
+            int deckPos = i % BodiesBase.Count;
+            if (deckPos == 0) {
+				indexDeck.Shuffle();
+			}
 			// charm.Avatar = Avatars[GD.RandRange(0, Avatars.Length - 1)];
-			 charm.BodyTexture = BodiesBase[GD.RandRange(0, BodiesBase.Count - 1)];
+			charm.BodyTexture = BodiesBase[indexDeck[deckPos]];
+			charm.BodyTextureHeart = BodiesHeart[indexDeck[deckPos]];
 
-			var randomPosition = _MakeRandomPlanetPosition();
-			charm.Position = randomPosition;
+			charm.Position = MakeRandomPlanetPosition();
 			var marker = new Marker3D();
 			charm.Pivoter = marker;
 			AddChild(marker);
@@ -50,7 +66,7 @@ public partial class CharmSummoner : Node3D
 		}
 	}
 
-	private Vector3 _MakeRandomPlanetPosition()
+	private Vector3 MakeRandomPlanetPosition()
 	{
         var theta = GD.RandRange(0, Math.PI * 2);
         var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN? // Theta and phi are traditional variable names for angles in math equations.

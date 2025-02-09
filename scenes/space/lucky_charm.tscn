@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://duwgxnosivpya"]
 
 [ext_resource type="Script" path="res://scenes/space/LuckyCharm.cs" id="1_vdoey"]
-[ext_resource type="Texture2D" uid="uid://y63lfjaqi6b5" path="res://assets/textures/charms/charm_bowtie.PNG" id="2_4mu82"]
+[ext_resource type="Texture2D" uid="uid://y63lfjaqi6b5" path="res://assets/textures/charms/charm_04_bowtie.PNG" id="2_4mu82"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn0pt"]
 transparency = 1
