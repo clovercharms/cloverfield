@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=99 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ds8ea8qf7gsgq" path="res://assets/textures/charms/charm_00_banana.PNG" id="7_gkk20"]
 [ext_resource type="AudioStream" uid="uid://bgcgb0jui654b" path="res://assets/05_Mitty valentines 25 bgm_space_1.mp3" id="7_rr2ua"]
 [ext_resource type="Texture2D" uid="uid://c8g3qiefq6a1n" path="res://assets/textures/charms/charm_01_beard.PNG" id="8_c4yeu"]
+[ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="8_o85dv"]
 [ext_resource type="Texture2D" uid="uid://w2itmroee250" path="res://assets/textures/charms/charm_02_big_stem.PNG" id="9_jn8oa"]
 [ext_resource type="Texture2D" uid="uid://5auaat3uu0lq" path="res://assets/textures/charms/charm_03_booty.PNG" id="10_oracb"]
 [ext_resource type="Texture2D" uid="uid://y63lfjaqi6b5" path="res://assets/textures/charms/charm_04_bowtie.PNG" id="11_av46x"]
@@ -52,7 +53,9 @@
 [ext_resource type="Texture2D" uid="uid://d0oiwihvcx5av" path="res://assets/textures/charms/Heart eyes alts/charm_02_big_stem_heart.PNG" id="49_5uk0x"]
 [ext_resource type="Texture2D" uid="uid://drars8nrhrjcm" path="res://assets/textures/charms/Heart eyes alts/charm_03_booty_heart.PNG" id="50_xqfb6"]
 [ext_resource type="Texture2D" uid="uid://btw0ylx1oxydx" path="res://assets/textures/charms/Heart eyes alts/charm_04_bowtie_heart.PNG" id="51_dpb2j"]
+[ext_resource type="PackedScene" uid="uid://bw6mlcy6ywssg" path="res://assets/models/rock1.fbx" id="52_jd3x8"]
 [ext_resource type="Texture2D" uid="uid://8l2rifryppx5" path="res://assets/textures/charms/Heart eyes alts/charm_05_brazil_heart.PNG" id="52_tycdx"]
+[ext_resource type="PackedScene" uid="uid://dxjvm36k67bno" path="res://assets/models/rocket.fbx" id="53_qid5k"]
 [ext_resource type="Texture2D" uid="uid://do20f47mn2keh" path="res://assets/textures/charms/Heart eyes alts/charm_06_chad_heart.PNG" id="53_vixt8"]
 [ext_resource type="Texture2D" uid="uid://c1kes5ncihepb" path="res://assets/textures/charms/Heart eyes alts/charm_07_clover_heart.PNG" id="54_0wx14"]
 [ext_resource type="Texture2D" uid="uid://dv3v5ksok14tv" path="res://assets/textures/charms/Heart eyes alts/charm_08_CUNY_heart.PNG" id="55_2or1u"]
@@ -87,6 +90,8 @@
 [ext_resource type="Texture2D" uid="uid://dm1o6c2ypdmo6" path="res://assets/textures/charms/Heart eyes alts/charm_37_wave_heart.PNG" id="84_7f3q5"]
 [ext_resource type="Texture2D" uid="uid://bef5hhc6jrsp0" path="res://assets/textures/charms/Heart eyes alts/charm_38_weed_heart.PNG" id="85_2sdgx"]
 [ext_resource type="Texture2D" uid="uid://2vi2s2mn6hpp" path="res://assets/textures/charms/Heart eyes alts/charm_39_wrinkled_heart.PNG" id="86_wlfsi"]
+[ext_resource type="PackedScene" uid="uid://b2xr0leynxbyy" path="res://assets/models/single_stem_rose.glb" id="91_fbucj"]
+[ext_resource type="PackedScene" uid="uid://cacd6dji5qgqi" path="res://assets/models/LRGTentacle_STATIC.fbx" id="92_nbqgp"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jl760"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -168,3 +173,102 @@ BodiesHeart = Array[Texture2D]([ExtResource("47_qo5q6"), ExtResource("48_4t74s")
 [node name="BGM" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_rr2ua")
 autoplay = true
+
+[node name="Trees" type="Node3D" parent="."]
+transform = Transform3D(0.546637, 0.692779, 0.470366, 0.464202, 0.2168, -0.858787, -0.696925, 0.68779, -0.203078, 0, 0, 0)
+
+[node name="sakura_tree_2" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.207747, 0.235025, 0.0407169, -0.230637, 0.211699, -0.0452032, -0.0608377, -2.25846e-08, 0.310406, 18.5179, 16.7914, -0.367874)
+
+[node name="sakura_tree_1" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.333114, 0, 0, 1.49012e-08, 0.333114, 1.49012e-08, -7.45058e-09, 0, 0.333114, 0.00118446, 24.9999, 0.0556931)
+
+[node name="sakura_tree_3" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.0941554, -0.0504528, 0.386883, -0.33507, 0.193435, 0.106771, -0.19988, -0.348033, 0.00325808, -3.50803, 11.9558, -21.6738)
+
+[node name="sakura_tree_4" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.217906, -0.0771637, -0.0798476, -0.107422, 0.101963, 0.19462, -0.0281156, 0.208475, -0.12474, -7.75459, 10.1263, 21.5017)
+
+[node name="sakura_tree_5" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.271248, 0.0814736, -0.111658, -0.133718, -0.216943, 0.166541, -0.0349981, 0.19743, 0.22908, 6.83731, -18.0148, 15.9285)
+
+[node name="sakura_tree_6" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.279886, 0.141198, -0.0514729, -0.0959553, -0.251634, -0.16851, -0.115668, -0.132914, 0.264344, 11.1805, -19.5969, -10.7683)
+
+[node name="sakura_tree_7" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.259326, -0.272994, -0.0618247, 0.25617, -0.197508, -0.202399, 0.112804, -0.179062, 0.317506, -17.8159, -12.746, -12.0472)
+
+[node name="sakura_tree_8" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.111525, -0.166558, -0.0329127, 0.132486, 0.110003, -0.107749, 0.106172, 0.0376906, 0.169026, -20.441, 13.7299, 4.31909)
+
+[node name="sakura_tree_9" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.111123, 0.324105, 0.084934, 0.304588, 0.0604419, 0.167865, 0.139583, 0.126131, -0.298687, 22.8638, 4.09193, 9.24666)
+
+[node name="sakura_tree_10" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.0804204, -0.31058, 0.0795292, -0.269178, 0.109949, 0.157183, -0.174149, -0.0265234, -0.27968, -23.5763, 8.14433, -1.68147)
+
+[node name="sakura_tree_11" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.194041, 0.143508, -0.276061, -0.308986, 0.127039, -0.151144, 0.0364898, 0.312606, 0.188153, 10.0613, 8.82451, 21.1163)
+
+[node name="Small_Decorations" type="Node3D" parent="."]
+transform = Transform3D(0.630619, 0.495924, -0.596974, 0.698309, -0.698225, 0.15763, -0.33865, -0.516276, -0.786622, 0, 0, 0)
+
+[node name="Rose" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0338802, 25, 0.027273)
+
+[node name="Rose2" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.770884, -0.502452, -0.391509, 0.555309, 0.831217, 0.0266442, 0.312042, -0.237948, 0.919788, -12.5981, 20.7623, -5.93418)
+
+[node name="Rose3" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.840439, -0.220151, 0.495172, 0.404936, 0.862372, -0.303879, -0.360123, 0.455905, 0.813918, -5.51873, 21.5372, 11.432)
+
+[node name="Rose4" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.840439, 0.253878, 0.478757, 0.404936, 0.292891, -0.866165, -0.360123, 0.921825, 0.143352, 6.33152, 7.28492, 23.0617)
+
+[node name="Rose5" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.775914, 0.166081, 0.608584, 0.606823, -0.460155, -0.648093, 0.172407, 0.872166, -0.457823, 4.14234, -11.5421, 21.7858)
+
+[node name="Rose6" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.586429, -0.534534, 0.608584, -0.0213186, -0.761263, -0.648093, 0.80972, 0.367086, -0.457823, -13.3666, -19.0485, 9.13721)
+
+[node name="Rose7" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.0051744, -0.793472, 0.608584, -0.57372, -0.500821, -0.648093, 0.819035, -0.345803, -0.457823, -19.8204, -12.5187, -8.68531)
+
+[node name="Rose8" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(-0.342573, -0.477047, 0.809364, -0.735032, -0.400455, -0.547143, 0.585126, -0.782344, -0.21346, -11.8925, -10.0014, -19.5842)
+
+[node name="Rose9" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(-0.424066, -0.221944, 0.878014, -0.808479, 0.52964, -0.2566, -0.40808, -0.818671, -0.404039, -5.51027, 13.2614, -20.4639)
+
+[node name="Rose10" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.281596, 0.889149, 0.360718, 0.95953, -0.261939, -0.103398, 0.00254998, 0.375236, -0.926926, 22.229, -6.58378, 9.35552)
+
+[node name="Rose11" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.281596, 0.36936, -0.885594, 0.95953, -0.105944, 0.260919, 0.00254998, -0.923228, -0.384245, 9.2003, -2.67399, -23.0912)
+
+[node name="Rose12" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.437929, -0.15473, -0.885594, 0.193475, -0.945774, 0.260919, -0.877944, -0.285604, -0.384245, -3.90725, -23.6438, -7.12084)
+
+[node name="Rose13" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.0170884, -0.907584, 0.419523, -0.808431, 0.234354, 0.539924, -0.588344, -0.348381, -0.729714, -22.6787, 5.90095, -8.70949)
+
+[node name="Rose14" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(-0.220369, 0.78563, 0.578119, -0.352704, 0.488406, -0.79816, -0.909416, -0.379795, 0.169465, 19.664, 12.2003, -9.45943)
+
+[node name="Rose15" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.238175, -0.961574, -0.136557, -0.968738, -0.245256, 0.0373615, -0.0694181, 0.12339, -0.989927, -24.0511, -6.09754, 3.06009)
+
+[node name="rock1" parent="Small_Decorations" instance=ExtResource("52_jd3x8")]
+transform = Transform3D(-0.970105, 0.0627264, -0.23444, 0.19733, 0.766208, -0.611544, 0.141271, -0.639523, -0.75568, 1.04246, 18.6892, -15.9709)
+
+[node name="rock2" parent="Small_Decorations" instance=ExtResource("52_jd3x8")]
+transform = Transform3D(0.667005, 0.455458, 0.589629, -0.608972, 0.789222, 0.0792544, -0.429253, -0.41193, 0.803776, 2.37232, 19.8621, -14.0034)
+
+[node name="rocket" parent="." instance=ExtResource("53_qid5k")]
+transform = Transform3D(-0.765416, -0.643536, 0, 0.643536, -0.765416, 0, 0, 0, 1, 20.4751, 20.3307, 0.596653)
+
+[node name="TentacleNorth" parent="." instance=ExtResource("92_nbqgp")]
+transform = Transform3D(1.16074, 0, 0, 0, 1.16074, 0, 0, 0, 1.16074, 0.113841, 24.1939, -0.377744)
+
+[node name="TentacleSouth" parent="." instance=ExtResource("92_nbqgp")]
+transform = Transform3D(-1.16074, -1.01475e-07, 0, 1.01475e-07, -1.16074, 0, 0, 0, 1.16074, -0.121518, -24.1767, 0.0304389)
