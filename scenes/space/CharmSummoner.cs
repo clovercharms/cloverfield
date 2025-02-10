@@ -8,6 +8,7 @@ public partial class CharmSummoner : Node3D
 	[Export] private int PositionRange { get; set; } = 20;
 	[Export] private float MinDistance { get; set; } = 3.0f;
     [Export] private Godot.Collections.Array<Texture2D> Avatars { get; set; }
+	[Export] private string ResponsesPath { get; set; }
     [Export] private Godot.Collections.Array<Texture2D> BodiesBase { get; set; }
     [Export] private Godot.Collections.Array<Texture2D> BodiesHeart { get; set; } // indices must match base
 
@@ -33,12 +34,15 @@ public partial class CharmSummoner : Node3D
 			GD.PrintErr("Base body and heart eye variant counts do not match up!");
 		}
 
-		Godot.Collections.Array<int> indexDeck = [];
+        GodotObject fileResource = ResourceLoader.Load(ResponsesPath);
+        var responsesArray = (Godot.Collections.Array)fileResource.Get("records");
+
+        Godot.Collections.Array<int> indexDeck = [];
 		for (int i = 0; i < BodiesBase.Count; ++i) {
 			indexDeck.Add(i);
 		}
 
-        for (int i = 0; i < Amount; i++)
+        for (int i = 0; i < responsesArray.Count; i++)
 		{
 			var charm = LuckyCharm.GenerateInstance();
 			charm.Camera = GetParent().FindChild("Mitty Cam") as MittyCam;
@@ -48,14 +52,21 @@ public partial class CharmSummoner : Node3D
 
 			charm.Deselected += () => ToggleSelection(null, false);
 
+			charm.CharmName = "Lucky Charm";
+			if (responsesArray[i].AsStringArray()[2].Contains("Yes"))
+			{
+				charm.CharmName = responsesArray[i].AsStringArray()[1];
+			}
+            charm.CharmMessage = responsesArray[i].AsStringArray()[5];
+
             // Shuffle all bodies, then draw one until none remain, shuffle and go again
             // aka Tetris piece selection logic
             int deckPos = i % BodiesBase.Count;
             if (deckPos == 0) {
 				indexDeck.Shuffle();
 			}
-			// charm.Avatar = Avatars[GD.RandRange(0, Avatars.Length - 1)];
-			charm.BodyTexture = BodiesBase[indexDeck[deckPos]];
+            // charm.Avatar = Avatars[GD.RandRange(0, Avatars.Length - 1)];
+            charm.BodyTexture = BodiesBase[indexDeck[deckPos]];
 			charm.BodyTextureHeart = BodiesHeart[indexDeck[deckPos]];
 
 			charm.Position = MakeRandomPlanetPosition();

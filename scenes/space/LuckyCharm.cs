@@ -51,6 +51,8 @@ public partial class LuckyCharm : CharacterBody3D
 
     // Attributes
     public Texture2D Avatar { get; set; }
+    public string CharmName { get; set; }
+    public string CharmMessage { get; set; }
     public Texture2D BodyTexture { get; set; }
     public Texture2D BodyTextureHeart { get; set; }
 
@@ -131,7 +133,6 @@ public partial class LuckyCharm : CharacterBody3D
 
     private void OnBodyMouseEntered()
     {
-        GD.Print($"Huh? {SelectionDisabled}");
         if (SelectionDisabled) return;
 
         Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
@@ -173,6 +174,8 @@ public partial class LuckyCharm : CharacterBody3D
 
         IsSelected = !IsSelected;
         EmitSignal(SignalName.Selected, this);
+
+        GD.Print($"Charm clicked: {CharmName}");
 
         // Y billboard
         // MessageLabel.Rotation = Camera.Rotation;
