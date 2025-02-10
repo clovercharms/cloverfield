@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=100 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -92,6 +92,7 @@
 [ext_resource type="Texture2D" uid="uid://2vi2s2mn6hpp" path="res://assets/textures/charms/Heart eyes alts/charm_39_wrinkled_heart.PNG" id="86_wlfsi"]
 [ext_resource type="PackedScene" uid="uid://b2xr0leynxbyy" path="res://assets/models/single_stem_rose.glb" id="91_fbucj"]
 [ext_resource type="PackedScene" uid="uid://cacd6dji5qgqi" path="res://assets/models/LRGTentacle_STATIC.fbx" id="92_nbqgp"]
+[ext_resource type="PackedScene" uid="uid://grs730d5sv2c" path="res://assets/models/crater.fbx" id="93_k6dtw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jl760"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -266,10 +267,13 @@ transform = Transform3D(-0.970105, 0.0627264, -0.23444, 0.19733, 0.766208, -0.61
 transform = Transform3D(0.667005, 0.455458, 0.589629, -0.608972, 0.789222, 0.0792544, -0.429253, -0.41193, 0.803776, 2.37232, 19.8621, -14.0034)
 
 [node name="rocket" parent="." instance=ExtResource("53_qid5k")]
-transform = Transform3D(-0.765416, -0.643536, 0, 0.643536, -0.765416, 0, 0, 0, 1, 20.4751, 20.3307, 0.596653)
+transform = Transform3D(0.189284, 0.981922, 0, -0.981922, 0.189284, 0, 0, 0, 1, 17.6418, 17.5126, 0.577793)
 
 [node name="TentacleNorth" parent="." instance=ExtResource("92_nbqgp")]
 transform = Transform3D(1.16074, 0, 0, 0, 1.16074, 0, 0, 0, 1.16074, 0.113841, 24.1939, -0.377744)
 
 [node name="TentacleSouth" parent="." instance=ExtResource("92_nbqgp")]
 transform = Transform3D(-1.16074, -1.01475e-07, 0, 1.01475e-07, -1.16074, 0, 0, 0, 1.16074, -0.121518, -24.1767, 0.0304389)
+
+[node name="crater" parent="." instance=ExtResource("93_k6dtw")]
+transform = Transform3D(0.0478185, 0.404085, -0.435083, -0.0441458, 0.437703, 0.401666, 0.592143, 0, 0.0650803, 18.0121, 17.3603, 0.650162)
