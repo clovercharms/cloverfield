@@ -25,7 +25,7 @@ radial_velocity_min = 1.0
 radial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20v0i"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iq8p5"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -35,10 +35,10 @@ albedo_texture = ExtResource("2_7akt7")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_juntk"]
-material = SubResource("StandardMaterial3D_20v0i")
+material = SubResource("StandardMaterial3D_iq8p5")
 size = Vector2(0.2, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4kmf"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4u3k6"]
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
@@ -48,7 +48,7 @@ albedo_texture = ExtResource("3_87s64")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_i4pcy"]
-material = SubResource("StandardMaterial3D_f4kmf")
+material = SubResource("StandardMaterial3D_4u3k6")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qaqow"]
@@ -60,65 +60,65 @@ billboard_mode = 2
 [sub_resource type="QuadMesh" id="QuadMesh_1liqx"]
 material = SubResource("StandardMaterial3D_qaqow")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cm2q8"]
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_xukax"]
-material = SubResource("StandardMaterial3D_i8frn")
+material = SubResource("StandardMaterial3D_cm2q8")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="QuadMesh" id="QuadMesh_4smp2"]
-material = SubResource("StandardMaterial3D_i8frn")
+material = SubResource("StandardMaterial3D_cm2q8")
 size = Vector2(0.6, 0.6)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sdc6v"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdg68"]
 render_priority = 1
 no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_1c8sl"]
-material = SubResource("StandardMaterial3D_sdc6v")
+material = SubResource("StandardMaterial3D_wdg68")
 size = Vector2(0.5, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yevov"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jurhf"]
 no_depth_test = true
 shading_mode = 0
 albedo_color = Color(1, 0, 0, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_oolr2"]
-material = SubResource("StandardMaterial3D_yevov")
+material = SubResource("StandardMaterial3D_jurhf")
 size = Vector2(3.6, 3)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2voyi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q63fo"]
 render_priority = 4
 no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_rden4"]
-material = SubResource("StandardMaterial3D_2voyi")
+material = SubResource("StandardMaterial3D_q63fo")
 size = Vector2(3.6, 3)
 
 [sub_resource type="QuadMesh" id="QuadMesh_imdp7"]
-material = SubResource("StandardMaterial3D_yevov")
+material = SubResource("StandardMaterial3D_jurhf")
 size = Vector2(3, 3)
 
 [sub_resource type="QuadMesh" id="QuadMesh_hpkyq"]
-material = SubResource("StandardMaterial3D_2voyi")
+material = SubResource("StandardMaterial3D_q63fo")
 size = Vector2(3, 3)
 
 [sub_resource type="QuadMesh" id="QuadMesh_8jgto"]
-material = SubResource("StandardMaterial3D_2voyi")
+material = SubResource("StandardMaterial3D_q63fo")
 size = Vector2(0.2, 0.2)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omhgx"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wqdbk"]
 render_priority = 5
 no_depth_test = true
 shading_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_32df4"]
-material = SubResource("StandardMaterial3D_omhgx")
+material = SubResource("StandardMaterial3D_wqdbk")
 size = Vector2(0.5, 0.5)
 
 [node name="Clover" type="CharacterBody3D"]

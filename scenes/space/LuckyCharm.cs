@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 namespace CloverField.Space;
 
@@ -14,6 +15,7 @@ public partial class LuckyCharm : CharacterBody3D
 	[Signal] public delegate void DeselectStartedEventHandler();
 	[Signal] public delegate void HoverEnteredEventHandler();
 	[Signal] public delegate void HoverExitedEventHandler();
+	[Signal] public delegate void HitEventHandler();
 
 
 	[ExportGroup("Nodes")]
@@ -21,8 +23,10 @@ public partial class LuckyCharm : CharacterBody3D
 	[Export] private MeshInstance3D Body { get; set; }
 	[Export] private CollisionShape3D Collider { get; set; }
 	[Export] private VisibleOnScreenNotifier3D VisibilityChecker { get; set; }
-	[Export] private Node3D MessageLabel { get; set; }
-	[Export] private Node3D MiniLabel { get; set; }
+	[Export] private Label MessageLabel { get; set; }
+	[Export] private MiniLabel MiniLabel { get; set; }
+	[Export] private Node3D Particles { get; set; }
+	[Export] private Node3D SFX { get; set; }
 	[ExportGroup("Properties")]
 	[ExportSubgroup("Wander")]
 	[Export] private float WanderRange { get; set; } = 10f;
@@ -50,12 +54,56 @@ public partial class LuckyCharm : CharacterBody3D
 	private int NextJumpMS { get; set; }
 	private Tween JumpTween { get; set; }
 	private Vector3 Destination { get; set; }
+	private Tween HitTween { get; set; }
 
 	// Attributes
-	public Texture2D Avatar { get; set; }
-	public Texture2D Drawing { get; set; }
-	public string CharmName { get; set; }
-	public string CharmMessage { get; set; }
+	private Texture2D _avatar;
+	public Texture2D Avatar
+	{
+		get => _avatar;
+		set
+		{
+			_avatar = value;
+			if (value == null) return;
+			var material = MessageLabel.Avatar.Mesh.SurfaceGetMaterial(0).Duplicate(true) as StandardMaterial3D;
+			material.AlbedoTexture = value;
+			MessageLabel.Avatar.MaterialOverride = material;
+			MiniLabel.Avatar.MaterialOverride = material;
+		}
+	}
+	private Texture2D _drawing;
+	public Texture2D Drawing
+	{
+		get => _drawing;
+		set
+		{
+			_drawing = value;
+			if (value == null) return;
+			var material = MessageLabel.Art.Mesh.SurfaceGetMaterial(0).Duplicate(true) as StandardMaterial3D;
+			material.AlbedoTexture = value;
+			MessageLabel.Art.MaterialOverride = material;
+		}
+	}
+	private string _charmName = "";
+	public string CharmName
+	{
+		get => _charmName;
+		set
+		{
+			_charmName = value;
+			MessageLabel.NameLabel.Text = value;
+		}
+	}
+	private string _charmMessage = "";
+	public string CharmMessage
+	{
+		get => _charmMessage;
+		set
+		{
+			_charmMessage = value;
+			MessageLabel.MessageLabel.Text = value;
+		}
+	}
 	public Texture2D BodyTexture { get; set; }
 	public Texture2D BodyTextureHeart { get; set; }
 
@@ -65,13 +113,15 @@ public partial class LuckyCharm : CharacterBody3D
 	public bool IsOnScreen { get; set; } = false;
 	public bool IsFleeing { get; set; } = false;
 	public bool HasBeenFound { get; set; } = false;
+	public bool IsDummy { get; set; } = false;
+	public bool HasBeenSelected { get; set; } = false;
 
 	#endregion
 
 	public override void _Ready()
 	{
-		// MessageLabel.Set("camera", Camera);
-		// MiniLabel.Set("camera", Camera);
+		MessageLabel.Camera = Camera;
+		MiniLabel.Camera = Camera;
 
 		// var bigLabelAvatar = MessageLabel.FindChild("Avatar") as MeshInstance3D;
 		// var smallLabelAvatar = MiniLabel.FindChild("Avatar") as MeshInstance3D;
@@ -89,6 +139,7 @@ public partial class LuckyCharm : CharacterBody3D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		SnapCamera();
 		
 		Vector3 velocity = Velocity;
 
@@ -131,6 +182,8 @@ public partial class LuckyCharm : CharacterBody3D
 		MoveAndSlide();
 
 		// Jump();
+
+		Speed = IsSelected ? 0f : 5f;
 	}
 
 
@@ -152,14 +205,11 @@ public partial class LuckyCharm : CharacterBody3D
 
 	public override void _Input(InputEvent @event)
 	{
-		if (@event is not InputEventMouseButton mouse || mouse.ButtonMask == MouseButtonMask.Left) return;
-		if (SelectionDisabled) return;
+		if (@event is not InputEventMouseButton mouse || mouse.ButtonMask != MouseButtonMask.Left) return;
+		if (SelectionDisabled || !IsSelected) return;
 
-		if (IsSelected)
-		{
-			CameraUnsnapStartedMS = (int)Time.GetTicksMsec();
-			EmitSignal(SignalName.Unsnapping);
-		}
+		CameraUnsnapStartedMS = (int)Time.GetTicksMsec();
+		EmitSignal(SignalName.Unsnapping);
 	}
 
 
@@ -187,6 +237,27 @@ public partial class LuckyCharm : CharacterBody3D
 		// Store camera location
 		CameraUnsnapTransform = Camera.Transform;
 		// Snap
+		CameraSnapStartedMS = (int)Time.GetTicksMsec();
+
+		if (!IsDummy) HandleSelect();
+
+		EmitSignal(SignalName.Hit);
+	}
+
+	private void HandleSelect()
+	{
+		if (SelectionDisabled || IsSelected) return;
+
+		IsSelected = !IsSelected;
+
+		EmitSignal(SignalName.Selected, this);
+
+		HasBeenSelected = true;
+
+		MessageLabel.Rotation = new(0f, Camera.Rotation.Y, 0f);
+
+		CameraUnsnapTransform = Camera.Transform;
+
 		CameraSnapStartedMS = (int)Time.GetTicksMsec();
 	}
 
@@ -260,8 +331,6 @@ public partial class LuckyCharm : CharacterBody3D
 			CameraUnsnapStartedMS = 0;
 			IsSelected = false;
 			EmitSignal(SignalName.Deselected);
-			// Commit Kuriimu
-			QueueFree();
 			return;
 		}
 
@@ -272,14 +341,56 @@ public partial class LuckyCharm : CharacterBody3D
 			Camera.GlobalTransform = Camera.GlobalTransform.InterpolateWith(CameraUnsnapTransform, (float)transitionProgress);
 	}
 
+	private void OnHit()
+	{
+		var sfx = SFX.FindChild("Hit").GetChildren();
+		var randSfx = (AudioStreamPlayer3D) sfx[GD.RandRange(0, sfx.Count -1)];
+		randSfx.Play();
+
+		if (!IsDummy)
+		{
+			var openSfx = SFX.FindChild("Open_Close").FindChild("Open") as AudioStreamPlayer3D;
+			openSfx.Play();
+		}
+
+		Particles.GetChildren().Where(child => child is GpuParticles3D)
+			.Cast<GpuParticles3D>().ToList()
+			.ForEach(child => child.Emitting = true);
+
+		if (HitTween != null && HitTween.IsRunning()) return;
+
+		Body.Rotation = new(0f, Camera.Rotation.Y, 0f);
+
+		var material = Body.GetActiveMaterial(0) as StandardMaterial3D;
+		material.BillboardMode = BaseMaterial3D.BillboardModeEnum.Disabled;
+
+		NextJumpMS = (int)Time.GetTicksMsec();
+
+		HitTween = GetTree().CreateTween().SetParallel(true);
+
+		var flipRotation = GD.RandRange(0, 1) == 1;
+		var bodyRotation = Math.PI * 4;
+
+		if (flipRotation) bodyRotation = -bodyRotation;
+		bodyRotation = Camera.Rotation.Y + bodyRotation;
+
+		HitTween.TweenProperty(Body, "rotation:y", bodyRotation, 1)
+			.SetTrans(Tween.TransitionType.Quad)
+			.SetEase(Tween.EaseType.Out);
+
+		HitTween.SetParallel(false);
+
+		HasBeenSelected = true;
+	}
+
 	private void Detected()
 	{
-		Speed = 5;
+		//Speed = 5;
 	}
 
 	private void Undetected()
 	{
-		Speed = 0;
+		//Speed = 0;
 	}
 
 	private void TransformToProp()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=104 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://dihr5la8yr3j" path="res://assets/textures/charms/charm_05_brazil.PNG" id="12_ufb2s"]
 [ext_resource type="Texture2D" uid="uid://03sr5aff2byp" path="res://assets/textures/charms/charm_06_chad.PNG" id="13_0tvqj"]
 [ext_resource type="Texture2D" uid="uid://dfkrh5y055bbs" path="res://assets/textures/charms/charm_07_clover.PNG" id="14_5l3su"]
+[ext_resource type="FontFile" uid="uid://b2rb2n0xt52yx" path="res://assets/fonts/IndieFlower-Regular.ttf" id="14_nrlmp"]
 [ext_resource type="Texture2D" uid="uid://isholef525yx" path="res://assets/textures/charms/charm_08_CUNY.PNG" id="15_ry8ss"]
 [ext_resource type="Texture2D" uid="uid://bbpom44ve2ufv" path="res://assets/textures/charms/charm_09_dapper.PNG" id="16_tdhd0"]
 [ext_resource type="Texture2D" uid="uid://bvlus8yq5xue0" path="res://assets/textures/charms/charm_10_doodle.PNG" id="17_s8rpk"]
@@ -40,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://cs6fe660dayop" path="res://assets/textures/charms/charm_29_smitten.PNG" id="37_38auu"]
 [ext_resource type="Texture2D" uid="uid://bx4to1xuoowby" path="res://assets/textures/charms/charm_30_snail.PNG" id="38_scuk2"]
 [ext_resource type="Texture2D" uid="uid://cki3rmxpwbyys" path="res://assets/textures/charms/charm_31_splat.PNG" id="39_6p3uf"]
+[ext_resource type="Texture2D" uid="uid://dffvcdr4jmguj" path="res://assets/textures/charms/charm_31_splat_shadow.PNG" id="39_uaa5i"]
 [ext_resource type="Texture2D" uid="uid://bav2fm21eowb2" path="res://assets/textures/charms/charm_32_spring.PNG" id="40_eg8q8"]
 [ext_resource type="Texture2D" uid="uid://cevta1kvqdgvy" path="res://assets/textures/charms/charm_33_sully.PNG" id="41_iynw0"]
 [ext_resource type="Texture2D" uid="uid://cjjbdbguami33" path="res://assets/textures/charms/charm_34_tentacle.PNG" id="42_ypnvt"]
@@ -83,6 +85,7 @@
 [ext_resource type="Texture2D" uid="uid://cbfvl54od3tt3" path="res://assets/textures/charms/Heart eyes alts/charm_30_snail_heart.PNG" id="77_re4rp"]
 [ext_resource type="Texture2D" uid="uid://sxvxuqrcnmui" path="res://assets/textures/charms/Heart eyes alts/charm_31_splat_shadow_heart.PNG" id="78_jawkc"]
 [ext_resource type="Texture2D" uid="uid://d24muqdhwn668" path="res://assets/textures/charms/Heart eyes alts/charm_32_spring_heart.PNG" id="79_54gtq"]
+[ext_resource type="Texture2D" uid="uid://btsepisxt4bqd" path="res://assets/textures/charms/Heart eyes alts/charm_31_splat_heart.PNG" id="79_iqa2g"]
 [ext_resource type="Texture2D" uid="uid://kak26u3kdmes" path="res://assets/textures/charms/Heart eyes alts/charm_33_sully_heart.PNG" id="80_d4utj"]
 [ext_resource type="Texture2D" uid="uid://05a63v415yx3" path="res://assets/textures/charms/Heart eyes alts/charm_34_tentacle_heart.PNG" id="81_oswqi"]
 [ext_resource type="Texture2D" uid="uid://djg446821e5fe" path="res://assets/textures/charms/Heart eyes alts/charm_35_tophat_heart.PNG" id="82_8yrd0"]
@@ -135,6 +138,12 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_w1kuo"]
 material = SubResource("StandardMaterial3D_l7wmx")
 
+[sub_resource type="LabelSettings" id="LabelSettings_got7r"]
+font = ExtResource("14_nrlmp")
+font_size = 48
+outline_size = 8
+outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+
 [node name="Space" type="Node3D"]
 script = ExtResource("1_0ype4")
 
@@ -167,10 +176,11 @@ enable_pan = false
 
 [node name="Mitty Cam" parent="." instance=ExtResource("6_vgivq")]
 
-[node name="Charm Summoner" parent="." instance=ExtResource("7_6byia")]
+[node name="Charm Summoner" parent="." node_paths=PackedStringArray("Counter") instance=ExtResource("7_6byia")]
+Counter = NodePath("../UI/Counter")
 ResponsesPath = "res://responses2025.csv"
-BodiesBase = Array[Texture2D]([ExtResource("7_gkk20"), ExtResource("8_c4yeu"), ExtResource("9_jn8oa"), ExtResource("10_oracb"), ExtResource("11_av46x"), ExtResource("12_ufb2s"), ExtResource("13_0tvqj"), ExtResource("14_5l3su"), ExtResource("15_ry8ss"), ExtResource("16_tdhd0"), ExtResource("17_s8rpk"), ExtResource("18_y5451"), ExtResource("19_sto8h"), ExtResource("20_8g1xj"), ExtResource("22_7doh7"), ExtResource("23_4lxfo"), ExtResource("24_3bfgo"), ExtResource("25_bjqi1"), ExtResource("26_qo3xy"), ExtResource("27_8n4u5"), ExtResource("28_df577"), ExtResource("29_56tvy"), ExtResource("30_dh7y8"), ExtResource("31_0w7as"), ExtResource("32_el2mr"), ExtResource("33_nc6rf"), ExtResource("34_a18hh"), ExtResource("35_8jgll"), ExtResource("36_cril7"), ExtResource("37_38auu"), ExtResource("38_scuk2"), ExtResource("39_6p3uf"), ExtResource("40_eg8q8"), ExtResource("41_iynw0"), ExtResource("42_ypnvt"), ExtResource("43_csrvj"), ExtResource("44_3qrsp"), ExtResource("45_6ey38"), ExtResource("46_2mprd"), ExtResource("47_5xrkd")])
-BodiesHeart = Array[Texture2D]([ExtResource("47_qo5q6"), ExtResource("48_4t74s"), ExtResource("49_5uk0x"), ExtResource("50_xqfb6"), ExtResource("51_dpb2j"), ExtResource("52_tycdx"), ExtResource("53_vixt8"), ExtResource("54_0wx14"), ExtResource("55_2or1u"), ExtResource("56_vxi5h"), ExtResource("57_mujqs"), ExtResource("58_vbuyt"), ExtResource("59_tlwhh"), ExtResource("60_mj1ee"), ExtResource("61_en2gl"), ExtResource("62_5cldm"), ExtResource("63_m42up"), ExtResource("64_8tmbf"), ExtResource("65_rnfej"), ExtResource("66_66se3"), ExtResource("67_5f3ij"), ExtResource("68_wyanq"), ExtResource("69_m3ndd"), ExtResource("70_t7bta"), ExtResource("71_b3x71"), ExtResource("72_mc4ku"), ExtResource("73_r6in8"), ExtResource("74_lcc34"), ExtResource("75_ythoy"), ExtResource("76_qyumw"), ExtResource("77_re4rp"), ExtResource("78_jawkc"), ExtResource("79_54gtq"), ExtResource("80_d4utj"), ExtResource("81_oswqi"), ExtResource("82_8yrd0"), ExtResource("83_mb6pj"), ExtResource("84_7f3q5"), ExtResource("85_2sdgx"), ExtResource("86_wlfsi")])
+BodiesBase = Array[Texture2D]([ExtResource("7_gkk20"), ExtResource("8_c4yeu"), ExtResource("9_jn8oa"), ExtResource("10_oracb"), ExtResource("11_av46x"), ExtResource("12_ufb2s"), ExtResource("13_0tvqj"), ExtResource("14_5l3su"), ExtResource("15_ry8ss"), ExtResource("16_tdhd0"), ExtResource("17_s8rpk"), ExtResource("18_y5451"), ExtResource("19_sto8h"), ExtResource("20_8g1xj"), ExtResource("22_7doh7"), ExtResource("23_4lxfo"), ExtResource("24_3bfgo"), ExtResource("25_bjqi1"), ExtResource("26_qo3xy"), ExtResource("27_8n4u5"), ExtResource("28_df577"), ExtResource("29_56tvy"), ExtResource("30_dh7y8"), ExtResource("31_0w7as"), ExtResource("32_el2mr"), ExtResource("33_nc6rf"), ExtResource("34_a18hh"), ExtResource("35_8jgll"), ExtResource("36_cril7"), ExtResource("37_38auu"), ExtResource("38_scuk2"), ExtResource("39_6p3uf"), ExtResource("39_uaa5i"), ExtResource("40_eg8q8"), ExtResource("41_iynw0"), ExtResource("42_ypnvt"), ExtResource("43_csrvj"), ExtResource("44_3qrsp"), ExtResource("45_6ey38"), ExtResource("46_2mprd"), ExtResource("47_5xrkd")])
+BodiesHeart = Array[Texture2D]([ExtResource("47_qo5q6"), ExtResource("48_4t74s"), ExtResource("49_5uk0x"), ExtResource("50_xqfb6"), ExtResource("51_dpb2j"), ExtResource("52_tycdx"), ExtResource("53_vixt8"), ExtResource("54_0wx14"), ExtResource("55_2or1u"), ExtResource("56_vxi5h"), ExtResource("57_mujqs"), ExtResource("58_vbuyt"), ExtResource("59_tlwhh"), ExtResource("60_mj1ee"), ExtResource("61_en2gl"), ExtResource("62_5cldm"), ExtResource("63_m42up"), ExtResource("64_8tmbf"), ExtResource("65_rnfej"), ExtResource("66_66se3"), ExtResource("67_5f3ij"), ExtResource("68_wyanq"), ExtResource("69_m3ndd"), ExtResource("70_t7bta"), ExtResource("71_b3x71"), ExtResource("72_mc4ku"), ExtResource("73_r6in8"), ExtResource("74_lcc34"), ExtResource("75_ythoy"), ExtResource("76_qyumw"), ExtResource("77_re4rp"), ExtResource("79_iqa2g"), ExtResource("78_jawkc"), ExtResource("79_54gtq"), ExtResource("80_d4utj"), ExtResource("81_oswqi"), ExtResource("82_8yrd0"), ExtResource("83_mb6pj"), ExtResource("84_7f3q5"), ExtResource("85_2sdgx"), ExtResource("86_wlfsi")])
 
 [node name="BGM" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_rr2ua")
@@ -277,3 +287,16 @@ transform = Transform3D(-1.16074, -1.01475e-07, 0, 1.01475e-07, -1.16074, 0, 0, 
 
 [node name="crater" parent="." instance=ExtResource("93_k6dtw")]
 transform = Transform3D(0.0478185, 0.404085, -0.435083, -0.0441458, 0.437703, 0.401666, 0.592143, 0, 0.0650803, 18.0121, 17.3603, 0.650162)
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Counter" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 430.0
+offset_bottom = 71.0
+text = "Messages Read xx/xx"
+label_settings = SubResource("LabelSettings_got7r")

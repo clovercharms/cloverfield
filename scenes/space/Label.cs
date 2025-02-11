@@ -7,6 +7,10 @@ namespace CloverField.Space;
 public partial class Label : Node3D
 {
     public Camera3D Camera { get; set; }
+    [Export] public MeshInstance3D Avatar { get; set; }
+    [Export] public MeshInstance3D Art { get; set; }
+    [Export] public Label3D NameLabel { get; set; }
+    [Export] public Label3D MessageLabel { get; set; }
 
     public override void _Ready()
     {

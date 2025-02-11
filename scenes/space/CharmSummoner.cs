@@ -6,6 +6,7 @@ namespace CloverField.Space;
 
 public partial class CharmSummoner : Node3D
 {
+	[Export] private Godot.Label Counter { get; set; }
 	[Export] private int Amount  { get; set; } = 100;
 	[Export] private int PositionRange { get; set; } = 20;
 	[Export] private float MinDistance { get; set; } = 3.0f;
@@ -19,6 +20,9 @@ public partial class CharmSummoner : Node3D
 	private LuckyCharm[] Instances { get; set; } = [];
 	private bool SelectionActive { get; set; } = false;
 
+	private int MessagesRead { get; set; } = 0;
+	private int ResponsesCount { get; set; } = 0;
+
 	public void ToggleSelection(LuckyCharm charm, bool disabled)
 	{
 		foreach (var child in GetChildren())
@@ -27,6 +31,13 @@ public partial class CharmSummoner : Node3D
 			if (instance == charm) continue;
 			instance.SelectionDisabled = disabled;
 		}
+	}
+
+	public void UpdateCounter(LuckyCharm charm)
+	{
+		if (charm.HasBeenSelected) return;
+		MessagesRead += 1;
+		Counter.Text = $"Messages Read: {MessagesRead}/{ResponsesCount}";
 	}
 
 	public override void _Ready()
@@ -38,6 +49,7 @@ public partial class CharmSummoner : Node3D
 
 		GodotObject fileResource = ResourceLoader.Load(ResponsesPath);
 		var responsesArray = (Godot.Collections.Array)fileResource.Get("records");
+		ResponsesCount = responsesArray.Count;
 
 		Godot.Collections.Array<int> indexDeck = [];
 		for (int i = 0; i < BodiesBase.Count; ++i) {
@@ -66,17 +78,17 @@ public partial class CharmSummoner : Node3D
 
 		string basePathDrawings = "res://..//..//assets//textures//Valentines2025//Drawings//";		
 		Godot.Collections.Dictionary Drawings = new Godot.Collections.Dictionary {
-			{ "Alca", ResourceLoader.Load(basePathDrawings + "Alca.jpg") },
-			{ "ArchiveAnon", ResourceLoader.Load(basePathDrawings + "ArchiveAnon.jpeg") },
+			{ "Alca", ResourceLoader.Load(basePathDrawings + "Alca.png") },
+			{ "ArchiveAnon", ResourceLoader.Load(basePathDrawings + "ArchiveAnon.png") },
 			{ "Doko", ResourceLoader.Load(basePathDrawings + "Doko.png") },
 			{ "DWraith23", ResourceLoader.Load(basePathDrawings + "DWraith23.png") },
 			{ "Endor", ResourceLoader.Load(basePathDrawings + "Endor.png") },
-			{ "Firebreath", ResourceLoader.Load(basePathDrawings + "Firebreath.png") },
+			{ "Firebreath", ResourceLoader.Load(basePathDrawings + "Firebreath.jpeg") },
 			{ "Joseku", ResourceLoader.Load(basePathDrawings + "Joseku.png") },
 			{ "Koudelka", ResourceLoader.Load(basePathDrawings + "Koudelka.jpeg") },
 			{ "Maedara", ResourceLoader.Load(basePathDrawings + "Maedara.png") },
 			{ "Necrozma", ResourceLoader.Load(basePathDrawings + "Necrozma.png") },
-			{ "Neon", ResourceLoader.Load(basePathDrawings + "Neon.jpeg") },
+			{ "Neon", ResourceLoader.Load(basePathDrawings + "Neon.png") },
 			{ "Streamcrash", ResourceLoader.Load(basePathDrawings + "Streamcrash.jpeg") }
 		};
 
@@ -86,7 +98,8 @@ public partial class CharmSummoner : Node3D
 			charm.Camera = GetParent().FindChild("Mitty Cam") as MittyCam;
 			charm.OrbitControls = GetParent().FindChild("OrbitControls") as Control;
 
-			charm.Selected += (LuckyCharm selectedCharm) => ToggleSelection(selectedCharm, true);
+			charm.Selected += selectedCharm => ToggleSelection(selectedCharm, true);
+			charm.Selected += UpdateCounter;
 
 			charm.Deselected += () => ToggleSelection(null, false);
 
@@ -119,6 +132,7 @@ public partial class CharmSummoner : Node3D
 			AddChild(marker);
 			marker.AddChild(charm);
 		}
+		Counter.Text = $"Messages Read: {MessagesRead}/{ResponsesCount}";
 	}
 
 	private Vector3 MakeRandomPlanetPosition()
