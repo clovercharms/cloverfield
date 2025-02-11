@@ -93,7 +93,7 @@ public partial class CharmSummoner : Node3D
 		};
 
 		// Skip the first line with the headers
-		for (int i = 1; i < responsesArray.Count; i++)
+		for (int i = 1; i < Amount; i++)
 		{			
 			var charm = LuckyCharm.GenerateInstance();
 			charm.Camera = GetParent().FindChild("Mitty Cam") as MittyCam;
@@ -105,14 +105,29 @@ public partial class CharmSummoner : Node3D
 			charm.Deselected += () => ToggleSelection(null, false);
 
 			charm.CharmName = "Lucky Charm";
-			if (responsesArray[i].AsStringArray()[2].Contains("Yes"))
+
+			if (i < responsesArray.Count)
 			{
-				charm.CharmName = responsesArray[i].AsStringArray()[1];
+				if (responsesArray[i].AsStringArray()[2].Contains("Yes"))
+				{
+					charm.CharmName = responsesArray[i].AsStringArray()[1];
+				}
+				charm.CharmMessage = responsesArray[i].AsStringArray()[5];
+				
+				// Debug to check if everything is loaded
+				GD.Print(charm.CharmName = responsesArray[i].AsStringArray()[1]);
+
+							
+				if(Avatars.ContainsKey(responsesArray[i].AsStringArray()[1]))
+					charm.Avatar = (Texture2D)Avatars[responsesArray[i].AsStringArray()[1]];
+				
+				if(Drawings.ContainsKey(responsesArray[i].AsStringArray()[1]))
+					charm.Drawing = (Texture2D)Drawings[responsesArray[i].AsStringArray()[1]];
 			}
-			charm.CharmMessage = responsesArray[i].AsStringArray()[5];
-			
-			// Debug to check if everything is loaded
-			GD.Print(charm.CharmName = responsesArray[i].AsStringArray()[1]);
+			else
+			{
+				charm.IsDummy = true;
+			}
 
 			// Shuffle all bodies, then draw one until none remain, shuffle and go again
 			// aka Tetris piece selection logic
@@ -121,20 +136,18 @@ public partial class CharmSummoner : Node3D
 				indexDeck.Shuffle();
 			}
 			
-			if(Avatars.ContainsKey(responsesArray[i].AsStringArray()[1]))
-				charm.Avatar = (Texture2D)Avatars[responsesArray[i].AsStringArray()[1]];
-			
-			if(Drawings.ContainsKey(responsesArray[i].AsStringArray()[1]))
-				charm.Drawing = (Texture2D)Drawings[responsesArray[i].AsStringArray()[1]];
-			
 			charm.BodyTexture = BodiesBase[indexDeck[deckPos]];
 			charm.BodyTextureHeart = BodiesHeart[indexDeck[deckPos]];
+
+			if (charm.IsDummy) charm.Avatar = charm.BodyTexture;
 
 			charm.Position = MakeRandomPlanetPosition();
 			var marker = new Marker3D();
 			charm.Pivoter = marker;
 			AddChild(marker);
 			marker.AddChild(charm);
+
+			GD.Print($"Charm added.  Dummy? {charm.IsDummy} | Charms: {GetChildCount()}");
 		}
 		Counter.Text = $"Messages Read: {MessagesRead}/{ResponsesCount}";
 	}

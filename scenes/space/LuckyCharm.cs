@@ -31,7 +31,7 @@ public partial class LuckyCharm : CharacterBody3D
 	[ExportSubgroup("Wander")]
 	[Export] private float WanderRange { get; set; } = 10f;
 	[Export] private float Acceleration { get; set; } = 1f;
-	[Export] private float Speed { get; set; } = 5.0f;
+	[Export] private float Speed { get; set; } = 3.0f;
 	[ExportSubgroup("Jump")]
 	[Export] private Vector2 JumpIntervalMS { get; set; } = new(2000, 3000);
 	[Export] private Vector2 JumpHeight { get; set; } = new(0.2f, 0.4f);
@@ -183,7 +183,7 @@ public partial class LuckyCharm : CharacterBody3D
 
 		// Jump();
 
-		Speed = IsSelected ? 0f : 5f;
+		Speed = HasBeenSelected ? 0f : 3f;
 	}
 
 
@@ -225,10 +225,13 @@ public partial class LuckyCharm : CharacterBody3D
 		if (mouse.ButtonIndex != MouseButton.Left || !mouse.Pressed) return;
 		if (SelectionDisabled || IsSelected) return;
 
-		IsSelected = !IsSelected;
-		EmitSignal(SignalName.Selected, this);
+		if (!IsDummy)
+		{
+			IsSelected = !IsSelected;
+			EmitSignal(SignalName.Selected, this);
 
-		GD.Print($"Charm clicked: {CharmName}");
+			GD.Print($"Charm clicked: {CharmName}");
+		}
 
 		// Y billboard
 		// MessageLabel.Rotation = Camera.Rotation;
@@ -352,6 +355,12 @@ public partial class LuckyCharm : CharacterBody3D
 			var openSfx = SFX.FindChild("Open_Close").FindChild("Open") as AudioStreamPlayer3D;
 			openSfx.Play();
 		}
+		else
+		{
+			HasBeenSelected = true;
+			ApplyBodyTexture(BodyTextureHeart);
+			return;
+		}
 
 		Particles.GetChildren().Where(child => child is GpuParticles3D)
 			.Cast<GpuParticles3D>().ToList()
@@ -359,7 +368,7 @@ public partial class LuckyCharm : CharacterBody3D
 
 		if (HitTween != null && HitTween.IsRunning()) return;
 
-		Body.Rotation = new(0f, Camera.Rotation.Y, 0f);
+		// Body.Rotation = new(0f, Camera.Rotation.Y, 0f);
 
 		var material = Body.GetActiveMaterial(0) as StandardMaterial3D;
 		material.BillboardMode = BaseMaterial3D.BillboardModeEnum.Disabled;
@@ -381,6 +390,7 @@ public partial class LuckyCharm : CharacterBody3D
 		HitTween.SetParallel(false);
 
 		HasBeenSelected = true;
+		ApplyBodyTexture(BodyTextureHeart);
 	}
 
 	private void Detected()
