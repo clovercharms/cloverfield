@@ -1,5 +1,6 @@
 using Godot;
 using System;
+namespace CloverField.Space;
 
 public partial class CharmPrison : Node3D
 {

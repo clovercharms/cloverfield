@@ -2,6 +2,8 @@ using Godot;
 using System;
 using System.Linq;
 
+namespace CloverField.Space;
+
 public partial class CharmSummoner : Node3D
 {
 	[Export] private int Amount  { get; set; } = 100;

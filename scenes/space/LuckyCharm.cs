@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
+namespace CloverField.Space;
+
 public partial class LuckyCharm : CharacterBody3D
 {
 	public static LuckyCharm GenerateInstance() => GD.Load<PackedScene>("res://scenes/space/lucky_charm.tscn").Instantiate<LuckyCharm>();
