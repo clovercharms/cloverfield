@@ -92,8 +92,9 @@ public partial class CharmSummoner : Node3D
 			{ "Streamcrash", ResourceLoader.Load(basePathDrawings + "Streamcrash.jpeg") }
 		};
 
-		for (int i = 0; i < responsesArray.Count; i++)
-		{
+		// Skip the first line with the headers
+		for (int i = 1; i < responsesArray.Count; i++)
+		{			
 			var charm = LuckyCharm.GenerateInstance();
 			charm.Camera = GetParent().FindChild("Mitty Cam") as MittyCam;
 			charm.OrbitControls = GetParent().FindChild("OrbitControls") as Control;
@@ -109,6 +110,9 @@ public partial class CharmSummoner : Node3D
 				charm.CharmName = responsesArray[i].AsStringArray()[1];
 			}
 			charm.CharmMessage = responsesArray[i].AsStringArray()[5];
+			
+			// Debug to check if everything is loaded
+			GD.Print(charm.CharmName = responsesArray[i].AsStringArray()[1]);
 
 			// Shuffle all bodies, then draw one until none remain, shuffle and go again
 			// aka Tetris piece selection logic
