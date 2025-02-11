@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=110 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -96,6 +96,7 @@
 [ext_resource type="PackedScene" uid="uid://b2xr0leynxbyy" path="res://assets/models/single_stem_rose.glb" id="91_fbucj"]
 [ext_resource type="PackedScene" uid="uid://cacd6dji5qgqi" path="res://assets/models/LRGTentacle_STATIC.fbx" id="92_nbqgp"]
 [ext_resource type="PackedScene" uid="uid://grs730d5sv2c" path="res://assets/models/crater.fbx" id="93_k6dtw"]
+[ext_resource type="Script" path="res://scenes/space/Sun.cs" id="97_4yllf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jl760"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -111,7 +112,7 @@ background_mode = 2
 sky = SubResource("Sky_fy0p3")
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_sky_contribution = 0.0
-ambient_light_energy = 0.5
+ambient_light_energy = 0.1
 fog_light_color = Color(0, 0, 0, 1)
 fog_height_density = 16.0
 fog_depth_begin = 0.0
@@ -137,6 +138,30 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_w1kuo"]
 material = SubResource("StandardMaterial3D_l7wmx")
+
+[sub_resource type="Gradient" id="Gradient_7yqem"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghct2"]
+gradient = SubResource("Gradient_7yqem")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sqcv5"]
+lifetime_randomness = 0.48
+angle_min = -5.89999
+angle_max = 11.8
+velocity_pivot = Vector3(1, 1, 0)
+spread = 49.361
+initial_velocity_max = 1.0
+angular_velocity_min = -159.34
+angular_velocity_max = 59.02
+gravity = Vector3(0.74, 1, 0)
+color_ramp = SubResource("GradientTexture1D_ghct2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkh6r"]
+transparency = 1
+albedo_color = Color(0.611765, 0.611765, 0.611765, 0.721569)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wyhjn"]
+material = SubResource("StandardMaterial3D_qkh6r")
 
 [sub_resource type="LabelSettings" id="LabelSettings_got7r"]
 font = ExtResource("14_nrlmp")
@@ -276,17 +301,29 @@ transform = Transform3D(-0.970105, 0.0627264, -0.23444, 0.19733, 0.766208, -0.61
 [node name="rock2" parent="Small_Decorations" instance=ExtResource("52_jd3x8")]
 transform = Transform3D(0.667005, 0.455458, 0.589629, -0.608972, 0.789222, 0.0792544, -0.429253, -0.41193, 0.803776, 2.37232, 19.8621, -14.0034)
 
-[node name="rocket" parent="." instance=ExtResource("53_qid5k")]
-transform = Transform3D(0.189284, 0.981922, 0, -0.981922, 0.189284, 0, 0, 0, 1, 17.6418, 17.5126, 0.577793)
+[node name="Decorations" type="Node3D" parent="."]
+transform = Transform3D(0.630619, 0.495924, -0.596974, 0.698309, -0.698225, 0.15763, -0.33865, -0.516276, -0.786622, 0, 0, 0)
 
-[node name="TentacleNorth" parent="." instance=ExtResource("92_nbqgp")]
-transform = Transform3D(1.16074, 0, 0, 0, 1.16074, 0, 0, 0, 1.16074, 0.113841, 24.1939, -0.377744)
+[node name="rocket" parent="Decorations" instance=ExtResource("53_qid5k")]
+transform = Transform3D(-0.566318, 0.751399, -0.33865, 0.779472, 0.354796, -0.516277, -0.267777, -0.556346, -0.786623, 23.1588, -3.77703, -8.22572)
 
-[node name="TentacleSouth" parent="." instance=ExtResource("92_nbqgp")]
-transform = Transform3D(-1.16074, -1.01475e-07, 0, 1.01475e-07, -1.16074, 0, 0, 0, 1.16074, -0.121518, -24.1767, 0.0304389)
+[node name="TentacleNorth" parent="Decorations" instance=ExtResource("92_nbqgp")]
+transform = Transform3D(0.731986, 0.810555, -0.393085, 0.575639, -0.810457, -0.599264, -0.692932, 0.182966, -0.913064, 17.0945, -16.6413, 4.04284)
 
-[node name="crater" parent="." instance=ExtResource("93_k6dtw")]
-transform = Transform3D(0.0478185, 0.404085, -0.435083, -0.0441458, 0.437703, 0.401666, 0.592143, 0, 0.0650803, 18.0121, 17.3603, 0.650162)
+[node name="TentacleSouth" parent="Decorations" instance=ExtResource("92_nbqgp")]
+transform = Transform3D(-0.731986, -0.810555, -0.393085, -0.575639, 0.810457, -0.599264, 0.692932, -0.182966, -0.913064, -16.9697, 16.8048, -3.76235)
+
+[node name="crater" parent="Decorations" instance=ExtResource("93_k6dtw")]
+transform = Transform3D(-0.201201, 0.560476, -0.0159248, -0.251172, -0.105219, -0.529821, -0.501298, -0.172234, 0.271854, 23.2615, -3.52441, -8.52771)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Decorations"]
+transform = Transform3D(1, 1.49012e-08, -4.17233e-07, -1.49012e-08, 1, -4.76837e-07, 0, 0, 1, 23.8714, -4.45012, -8.38776)
+amount = 20
+lifetime = 5.0
+speed_scale = 0.5
+randomness = 0.52
+process_material = SubResource("ParticleProcessMaterial_sqcv5")
+draw_pass_1 = SubResource("SphereMesh_wyhjn")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -300,3 +337,30 @@ offset_right = 430.0
 offset_bottom = 71.0
 text = "Messages Read xx/xx"
 label_settings = SubResource("LabelSettings_got7r")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+light_color = Color(0.992732, 0.910877, 0.826542, 1)
+light_energy = 1.8
+shadow_enabled = true
+script = ExtResource("97_4yllf")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Timer_SunHueChange" type="Timer" parent="Timers"]
+wait_time = 1080.0
+one_shot = true
+autostart = true
+
+[node name="Timer_EndMusicStart" type="Timer" parent="Timers"]
+wait_time = 1234.0
+one_shot = true
+autostart = true
+
+[node name="Timer_SunExplode" type="Timer" parent="Timers"]
+wait_time = 1320.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timers/Timer_SunHueChange" to="." method="_on_timer_sun_hue_change_timeout"]
+[connection signal="timeout" from="Timers/Timer_EndMusicStart" to="." method="_on_timer_end_music_start_timeout"]
+[connection signal="timeout" from="Timers/Timer_SunExplode" to="." method="_on_timer_sun_explode_timeout"]
