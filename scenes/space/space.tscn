@@ -357,7 +357,6 @@ volume_db = -80.0
 
 [node name="Sunsplosion Timer" type="Timer" parent="Timers"]
 wait_time = 1320.0
-one_shot = true
 autostart = true
 
 [connection signal="timeout" from="Timers/Sunsplosion Timer" to="." method="SunExplosion"]
