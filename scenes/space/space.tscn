@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=112 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -99,6 +99,18 @@
 [ext_resource type="Script" path="res://scenes/space/Sun.cs" id="97_4yllf"]
 [ext_resource type="AudioStream" uid="uid://t81juywnnnin" path="res://assets/audio/sun_kaboom.mp3" id="98_ojeow"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_got7r"]
+font = ExtResource("14_nrlmp")
+font_size = 48
+outline_size = 8
+outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8cdok"]
+font = ExtResource("14_nrlmp")
+font_size = 24
+outline_size = 8
+outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jl760"]
 sky_top_color = Color(0, 0, 0, 1)
 sky_horizon_color = Color(0, 0, 0.101961, 1)
@@ -164,17 +176,40 @@ albedo_color = Color(0.611765, 0.611765, 0.611765, 0.721569)
 [sub_resource type="SphereMesh" id="SphereMesh_wyhjn"]
 material = SubResource("StandardMaterial3D_qkh6r")
 
-[sub_resource type="LabelSettings" id="LabelSettings_got7r"]
-font = ExtResource("14_nrlmp")
-font_size = 48
-outline_size = 8
-outline_color = Color(0.133333, 0.133333, 0.133333, 1)
-
 [node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic")]
 script = ExtResource("1_0ype4")
 TheSun = NodePath("Sun")
 BGM = NodePath("BGM")
 EndMusic = NodePath("Sun/End Music")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Counter" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 430.0
+offset_bottom = 71.0
+text = "Messages Read xx/xx"
+label_settings = SubResource("LabelSettings_got7r")
+
+[node name="Label" type="Label" parent="UI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Hold Right Mouse Button to move the camera"
+label_settings = SubResource("LabelSettings_8cdok")
+autowrap_mode = 3
 
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uvixq")
@@ -204,6 +239,7 @@ max_distance = 35.0
 enable_pan = false
 
 [node name="Mitty Cam" parent="." instance=ExtResource("6_vgivq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 
 [node name="Charm Summoner" parent="." node_paths=PackedStringArray("Counter") instance=ExtResource("7_6byia")]
 Counter = NodePath("../UI/Counter")
@@ -213,8 +249,7 @@ BodiesHeart = Array[Texture2D]([ExtResource("47_qo5q6"), ExtResource("48_4t74s")
 
 [node name="BGM" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_rr2ua")
-volume_db = -5.0
-autoplay = true
+volume_db = -50.0
 
 [node name="Trees" type="Node3D" parent="."]
 transform = Transform3D(0.546637, 0.692779, 0.470366, 0.464202, 0.2168, -0.858787, -0.696925, 0.68779, -0.203078, 0, 0, 0)
@@ -329,19 +364,6 @@ speed_scale = 0.5
 randomness = 0.52
 process_material = SubResource("ParticleProcessMaterial_sqcv5")
 draw_pass_1 = SubResource("SphereMesh_wyhjn")
-
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Counter" type="Label" parent="UI"]
-layout_mode = 0
-offset_right = 430.0
-offset_bottom = 71.0
-text = "Messages Read xx/xx"
-label_settings = SubResource("LabelSettings_got7r")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 light_color = Color(0.992732, 0.910877, 0.826542, 1)

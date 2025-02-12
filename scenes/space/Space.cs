@@ -13,35 +13,15 @@ public partial class Space : Node3D
 	private static Color StartingSunColor => Color.FromHtml("fde8d3");
 	private static float StartingSunEnergy => 1.8f;
 
-	public void _on_timer_sun_hue_change_timeout()
-	{
-		GD.Print("TIMEOUT: Sun hue change!");
-		var sunTween = GetTree().CreateTween().SetParallel(true);
-		var color = Color.FromHtml("a7fffa");
-		sunTween.TweenProperty(TheSun, "light_color", color, 5d);
-		sunTween.TweenProperty(TheSun, "light_energy", 16f, 5d);
-	}
+    public override async void _Ready()
+    {
+		await ToSignal(GetTree().CreateTimer(1), Timer.SignalName.Timeout);
+		BGM.Play();
+        var musicTween = GetTree().CreateTween();
+		musicTween.TweenProperty(BGM, "volume_db", -5f, 10d);
+    }
 
-	public async void _on_timer_end_music_start_timeout()
-	{
-		GD.Print("TIMEOUT: End music start!");
-		var volumeTween = GetTree().CreateTween().SetParallel(true);
-		EndMusic.Play();
-		volumeTween.TweenProperty(BGM, "volume_db", -40f, 15d);
-		volumeTween.TweenProperty(EndMusic, "volume_db", 0f, 15d);
-		await volumeTween.ToSignal(volumeTween, Tween.SignalName.Finished);
-		BGM.Stop();
-		
-	}
-
-	public void _on_timer_sun_explode_timeout()
-	{
-		GD.Print("TIMEOUT: Sun explode!");
-		var sizeTween = GetTree().CreateTween().SetParallel(true);
-		sizeTween.TweenProperty(TheSun, "light_angular_distance", 89f, 5d);
-	}
-
-	private async void SunExplosion()
+    private async void SunExplosion()
 	{
 		GD.Print("Sun explosion!");
 		// End music
