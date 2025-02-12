@@ -1,4 +1,4 @@
-[gd_scene load_steps=113 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=111 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -139,12 +139,6 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_w1kuo"]
 material = SubResource("StandardMaterial3D_l7wmx")
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6h3dd"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_vcilh"]
-height = 14.149
-radius = 4.238
 
 [sub_resource type="Gradient" id="Gradient_7yqem"]
 
@@ -322,20 +316,8 @@ transform = Transform3D(-0.566318, 0.751399, -0.33865, 0.779472, 0.354796, -0.51
 [node name="TentacleNorth" parent="Decorations" instance=ExtResource("92_nbqgp")]
 transform = Transform3D(0.731986, 0.810555, -0.393085, 0.575639, -0.810457, -0.599264, -0.692932, 0.182966, -0.913064, 17.0945, -16.6413, 4.04284)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Decorations/TentacleNorth"]
-physics_material_override = SubResource("PhysicsMaterial_6h3dd")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/TentacleNorth/StaticBody3D"]
-shape = SubResource("CylinderShape3D_vcilh")
-
 [node name="TentacleSouth" parent="Decorations" instance=ExtResource("92_nbqgp")]
 transform = Transform3D(-0.731986, -0.810555, -0.393085, -0.575639, 0.810457, -0.599264, 0.692932, -0.182966, -0.913064, -16.9697, 16.8048, -3.76235)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Decorations/TentacleSouth"]
-physics_material_override = SubResource("PhysicsMaterial_6h3dd")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/TentacleSouth/StaticBody3D"]
-shape = SubResource("CylinderShape3D_vcilh")
 
 [node name="crater" parent="Decorations" instance=ExtResource("93_k6dtw")]
 transform = Transform3D(-0.201201, 0.560476, -0.0159248, -0.251172, -0.105219, -0.529821, -0.501298, -0.172234, 0.271854, 23.2615, -3.52441, -8.52771)
