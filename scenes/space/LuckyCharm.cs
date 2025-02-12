@@ -27,6 +27,7 @@ public partial class LuckyCharm : CharacterBody3D
 	[Export] private MiniLabel MiniLabel { get; set; }
 	[Export] private Node3D Particles { get; set; }
 	[Export] private Node3D SFX { get; set; }
+	[Export] private OmniLight3D AuraLight { get; set; }
 	[ExportGroup("Properties")]
 	[ExportSubgroup("Wander")]
 	[Export] private float WanderRange { get; set; } = 10f;
@@ -243,7 +244,7 @@ public partial class LuckyCharm : CharacterBody3D
 		CameraSnapStartedMS = (int)Time.GetTicksMsec();
 
 		if (!IsDummy) HandleSelect();
-
+		AuraLight.LightColor = Color.FromHtml("e10000");
 		EmitSignal(SignalName.Hit);
 	}
 

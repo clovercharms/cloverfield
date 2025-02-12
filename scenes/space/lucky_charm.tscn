@@ -20,7 +20,7 @@ billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_t56yg"]
 material = SubResource("StandardMaterial3D_pn0pt")
-size = Vector2(1.25, 1.25)
+size = Vector2(1.25, 1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_snchh"]
 
@@ -119,7 +119,7 @@ billboard_mode = 1
 material = SubResource("StandardMaterial3D_f4kmf")
 size = Vector2(0.2, 0.2)
 
-[node name="Lucky Charm" type="CharacterBody3D" node_paths=PackedStringArray("Navigation", "Body", "Collider", "VisibilityChecker", "MessageLabel", "MiniLabel", "Particles", "SFX")]
+[node name="Lucky Charm" type="CharacterBody3D" node_paths=PackedStringArray("Navigation", "Body", "Collider", "VisibilityChecker", "MessageLabel", "MiniLabel", "Particles", "SFX", "AuraLight")]
 transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, 0, 0)
 collision_layer = 2
 script = ExtResource("1_vdoey")
@@ -131,6 +131,7 @@ MessageLabel = NodePath("Label")
 MiniLabel = NodePath("MiniLabel")
 Particles = NodePath("Particles")
 SFX = NodePath("SFX")
+AuraLight = NodePath("OmniLight3D")
 Acceleration = 10.0
 
 [node name="Body" type="MeshInstance3D" parent="."]
