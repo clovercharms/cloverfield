@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmwqkbuborkxi"
-path="res://.godot/imported/Boyong.png-caa78dfe463db56b6012ce1dd183cf6c.ctex"
+uid="uid://c05tt34i77826"
+path="res://.godot/imported/boyong.png-fef97d25ddaf491ebbafdeb3717e3622.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/Valentines2025/Avatars/Boyong.png"
-dest_files=["res://.godot/imported/Boyong.png-caa78dfe463db56b6012ce1dd183cf6c.ctex"]
+source_file="res://assets/textures/Valentines2025/Avatars/boyong.png"
+dest_files=["res://.godot/imported/boyong.png-fef97d25ddaf491ebbafdeb3717e3622.ctex"]
 
 [params]
 
