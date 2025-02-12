@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=113 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -97,6 +97,7 @@
 [ext_resource type="PackedScene" uid="uid://cacd6dji5qgqi" path="res://assets/models/LRGTentacle_STATIC.fbx" id="92_nbqgp"]
 [ext_resource type="PackedScene" uid="uid://grs730d5sv2c" path="res://assets/models/crater.fbx" id="93_k6dtw"]
 [ext_resource type="Script" path="res://scenes/space/Sun.cs" id="97_4yllf"]
+[ext_resource type="AudioStream" uid="uid://t81juywnnnin" path="res://assets/audio/sun_kaboom.mp3" id="98_ojeow"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jl760"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -175,8 +176,11 @@ font_size = 48
 outline_size = 8
 outline_color = Color(0.133333, 0.133333, 0.133333, 1)
 
-[node name="Space" type="Node3D"]
+[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic")]
 script = ExtResource("1_0ype4")
+TheSun = NodePath("Sun")
+BGM = NodePath("BGM")
+EndMusic = NodePath("Sun/End Music")
 
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uvixq")
@@ -216,6 +220,7 @@ BodiesHeart = Array[Texture2D]([ExtResource("47_qo5q6"), ExtResource("48_4t74s")
 
 [node name="BGM" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_rr2ua")
+volume_db = -5.0
 autoplay = true
 
 [node name="Trees" type="Node3D" parent="."]
@@ -363,23 +368,15 @@ light_energy = 1.8
 shadow_enabled = true
 script = ExtResource("97_4yllf")
 
+[node name="End Music" type="AudioStreamPlayer3D" parent="Sun"]
+stream = ExtResource("98_ojeow")
+volume_db = -80.0
+
 [node name="Timers" type="Node" parent="."]
 
-[node name="Timer_SunHueChange" type="Timer" parent="Timers"]
-wait_time = 1080.0
-one_shot = true
-autostart = true
-
-[node name="Timer_EndMusicStart" type="Timer" parent="Timers"]
-wait_time = 1234.0
-one_shot = true
-autostart = true
-
-[node name="Timer_SunExplode" type="Timer" parent="Timers"]
+[node name="Sunsplosion Timer" type="Timer" parent="Timers"]
 wait_time = 1320.0
 one_shot = true
 autostart = true
 
-[connection signal="timeout" from="Timers/Timer_SunHueChange" to="." method="_on_timer_sun_hue_change_timeout"]
-[connection signal="timeout" from="Timers/Timer_EndMusicStart" to="." method="_on_timer_end_music_start_timeout"]
-[connection signal="timeout" from="Timers/Timer_SunExplode" to="." method="_on_timer_sun_explode_timeout"]
+[connection signal="timeout" from="Timers/Sunsplosion Timer" to="." method="SunExplosion"]

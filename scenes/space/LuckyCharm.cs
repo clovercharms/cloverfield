@@ -143,27 +143,27 @@ public partial class LuckyCharm : CharacterBody3D
 		
 		Vector3 velocity = Velocity;
 
-		if (Camera != null)
-		{   var spaceState = GetWorld3D().DirectSpaceState;
-			var result = spaceState.IntersectRay(
-				new PhysicsRayQueryParameters3D()
-				{
-					From = GlobalPosition,
-					To = Camera.GlobalPosition,
-					CollideWithAreas = true,
-					CollideWithBodies = true,
-				}
-			);
+		// if (Camera != null)
+		// {   var spaceState = GetWorld3D().DirectSpaceState;
+		// 	var result = spaceState.IntersectRay(
+		// 		new PhysicsRayQueryParameters3D()
+		// 		{
+		// 			From = GlobalPosition,
+		// 			To = Camera.GlobalPosition,
+		// 			CollideWithAreas = true,
+		// 			CollideWithBodies = true,
+		// 		}
+		// 	);
 
-			if (result.Count > 0 || !VisibilityChecker.IsOnScreen())
-			{
-				Undetected();
-			}
-			else
-			{
-				Detected();
-			}
-		}
+		// 	if (result.Count > 0 || !VisibilityChecker.IsOnScreen())
+		// 	{
+		// 		Undetected();
+		// 	}
+		// 	else
+		// 	{
+		// 		Detected();
+		// 	}
+		// }
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -181,7 +181,7 @@ public partial class LuckyCharm : CharacterBody3D
 
 		MoveAndSlide();
 
-		// Jump();
+		// Jump();	// Nixed.  They jump out of the world.  Woops.
 
 		Speed = HasBeenSelected ? 0f : 3f;
 	}
