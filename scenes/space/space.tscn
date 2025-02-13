@@ -958,7 +958,7 @@ bus = &"Normal"
 [node name="Timers" type="Node" parent="."]
 
 [node name="Sunsplosion Timer" type="Timer" parent="Timers"]
-wait_time = 10.0
+wait_time = 1320.0
 autostart = true
 script = ExtResource("107_i54xb")
 
