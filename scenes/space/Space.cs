@@ -13,15 +13,15 @@ public partial class Space : Node3D
 	private static Color StartingSunColor => Color.FromHtml("fde8d3");
 	private static float StartingSunEnergy => 1.8f;
 
-    public override async void _Ready()
-    {
+	public override async void _Ready()
+	{
 		await ToSignal(GetTree().CreateTimer(1), Timer.SignalName.Timeout);
 		BGM.Play();
-        var musicTween = GetTree().CreateTween();
-		musicTween.TweenProperty(BGM, "volume_db", -5f, 10d);
-    }
+		var musicTween = GetTree().CreateTween();
+		musicTween.TweenProperty(BGM, "volume_db", -10f, 10d);
+	}
 
-    private async void SunExplosion()
+	private async void SunExplosion()
 	{
 		GD.Print("Sun explosion!");
 		// End music
@@ -29,7 +29,7 @@ public partial class Space : Node3D
 		var volumeTween = GetTree().CreateTween().SetParallel(true);
 		EndMusic.Play();
 		volumeTween.TweenProperty(BGM, "volume_db", -60f, 20d);
-		volumeTween.TweenProperty(EndMusic, "volume_db", -5f, 20d);
+		volumeTween.TweenProperty(EndMusic, "volume_db", -10f, 20d);
 		await volumeTween.ToSignal(volumeTween, Tween.SignalName.Finished);
 		BGM.Stop();
 
@@ -67,7 +67,7 @@ public partial class Space : Node3D
 		reversionTween.TweenProperty(TheSun, "light_color", StartingSunColor, 5d);
 		reversionTween.TweenProperty(TheSun, "light_energy", StartingSunEnergy, 5d);
 		reversionTween.TweenProperty(TheSun, "light_angular_distance", 0f, 5d);
-		reversionTween.TweenProperty(BGM, "volume_db", -5f, 20d);
+		reversionTween.TweenProperty(BGM, "volume_db", -10f, 20d);
 		reversionTween.TweenProperty(EndMusic, "volume_db", -80f, 20d);
 		await reversionTween.ToSignal(reversionTween, Tween.SignalName.Finished);
 		EndMusic.Stop();

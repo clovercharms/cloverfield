@@ -1,12 +1,19 @@
-[gd_scene load_steps=133 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=140 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
+[ext_resource type="Script" path="res://scenes/space/UboaScare.cs" id="2_c6g4y"]
+[ext_resource type="Texture2D" uid="uid://cuqbdwp7nnb30" path="res://assets/textures/uboa.png" id="3_6b7et"]
+[ext_resource type="Texture2D" uid="uid://dqb5y1s20fm0j" path="res://assets/textures/lightswitch_off.png" id="3_y1d6y"]
+[ext_resource type="Texture2D" uid="uid://b0dwl852c76jd" path="res://assets/textures/lightswitch_on.png" id="4_fl2k8"]
 [ext_resource type="PackedScene" uid="uid://cf0kerida4ex4" path="res://scenes/space/charm_prison.tscn" id="4_inpb6"]
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="4_wkhvl"]
+[ext_resource type="AudioStream" uid="uid://hgxrd3sj6fbr" path="res://assets/audio/lightswitch_on.mp3" id="6_5cdab"]
+[ext_resource type="AudioStream" uid="uid://bql6optdv6d8d" path="res://assets/audio/uboa.mp3" id="6_bb1s5"]
 [ext_resource type="PackedScene" uid="uid://b2aiqkh3ha6lr" path="res://scenes/space/mitty_cam.tscn" id="6_vgivq"]
 [ext_resource type="PackedScene" uid="uid://d1yjtkbiyq1wo" path="res://scenes/space/charm_summoner.tscn" id="7_6byia"]
 [ext_resource type="Texture2D" uid="uid://ds8ea8qf7gsgq" path="res://assets/textures/charms/charm_00_banana.PNG" id="7_gkk20"]
+[ext_resource type="AudioStream" uid="uid://b5ijm3pb6eiwk" path="res://assets/audio/lightswitch_off.mp3" id="7_hlgwf"]
 [ext_resource type="AudioStream" uid="uid://bgcgb0jui654b" path="res://assets/05_Mitty valentines 25 bgm_space_1.mp3" id="7_rr2ua"]
 [ext_resource type="Texture2D" uid="uid://c8g3qiefq6a1n" path="res://assets/textures/charms/charm_01_beard.PNG" id="8_c4yeu"]
 [ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="8_o85dv"]
@@ -535,11 +542,79 @@ TheSun = NodePath("Sun")
 BGM = NodePath("BGM")
 EndMusic = NodePath("Sun/End Music")
 
+[node name="UboaScare" type="Control" parent="." node_paths=PackedStringArray("Env", "Sun", "LightSwitch", "Uboa", "BGM", "SoundOn", "SoundOff", "SoundUboa")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_c6g4y")
+Env = NodePath("../Environment")
+Sun = NodePath("../Sun")
+LightSwitch = NodePath("LightSwitch")
+BtnOff = ExtResource("3_y1d6y")
+BtnOn = ExtResource("4_fl2k8")
+Uboa = NodePath("CenterContainer/Uboa")
+BGM = NodePath("../BGM")
+SoundOn = NodePath("SwitchOn")
+SoundOff = NodePath("SwitchOff")
+SoundUboa = NodePath("Uboa")
+
+[node name="CenterContainer" type="CenterContainer" parent="UboaScare"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Uboa" type="TextureRect" parent="UboaScare/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("3_6b7et")
+expand_mode = 1
+
+[node name="LightSwitch" type="CheckButton" parent="UboaScare"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -67.0
+offset_right = 496.0
+offset_bottom = 493.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("3_y1d6y")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Uboa" type="AudioStreamPlayer" parent="UboaScare"]
+stream = ExtResource("6_bb1s5")
+volume_db = -10.0
+
+[node name="SwitchOn" type="AudioStreamPlayer" parent="UboaScare"]
+stream = ExtResource("6_5cdab")
+volume_db = -20.0
+
+[node name="SwitchOff" type="AudioStreamPlayer" parent="UboaScare"]
+stream = ExtResource("7_hlgwf")
+volume_db = -20.0
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -737,7 +812,7 @@ bus = &"Normal"
 [node name="Timers" type="Node" parent="."]
 
 [node name="Sunsplosion Timer" type="Timer" parent="Timers"]
-wait_time = 10.0
+wait_time = 1320.0
 one_shot = true
 autostart = true
 
@@ -802,5 +877,6 @@ bus = &"Jumpscare"
 [node name="JumpscareBGM" type="AudioStreamPlayer" parent="Jumpscare/Manager"]
 bus = &"Jumpscare"
 
+[connection signal="pressed" from="UboaScare/LightSwitch" to="UboaScare" method="OnButtonPressed"]
 [connection signal="CatgirlFound" from="Charm Summoner" to="Jumpscare/Manager" method="_on_charm_summoner_catgirl_found"]
 [connection signal="timeout" from="Timers/Sunsplosion Timer" to="." method="SunExplosion"]

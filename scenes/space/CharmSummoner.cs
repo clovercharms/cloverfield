@@ -57,7 +57,7 @@ public partial class CharmSummoner : Node3D
 
 		GodotObject fileResource = ResourceLoader.Load(ResponsesPath);
 		var responsesArray = (Godot.Collections.Array)fileResource.Get("records");
-		ResponsesCount = responsesArray.Count;
+		ResponsesCount = responsesArray.Count -1;
 
 		Godot.Collections.Array<int> indexDeck = [];
 		for (int i = 0; i < BodiesBase.Count; ++i) {
