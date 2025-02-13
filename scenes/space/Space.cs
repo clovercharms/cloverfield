@@ -9,6 +9,8 @@ public partial class Space : Node3D
 	[Export] private DirectionalLight3D TheSun { get; set; }
 	[Export] private AudioStreamPlayer3D BGM { get; set; }
 	[Export] private AudioStreamPlayer3D EndMusic { get; set; }
+	[Export] private Timer SunsplosionTimer { get; set; }
+	[ExportGroup("Heart Particles")]
 	[Export] private GpuParticles2D[] HeartParticles { get; set; }
 	[Export] private GpuParticles2D HeartParticlesTopLeft { get; set; }
 	[Export] private GpuParticles2D HeartParticlesTopRight { get; set; }
@@ -51,6 +53,7 @@ public partial class Space : Node3D
 
     private async void SunExplosion()
 	{
+		SunsplosionTimer.Paused = true;
 		GD.Print("Sun explosion!");
 		WorldEvents.Instance.StartEvent("SunExplosion");
 		SetHeartsEmitting(false);
@@ -105,7 +108,7 @@ public partial class Space : Node3D
 		EndMusic.Stop();
 		WorldEvents.Instance.ClearCurrentEvent();
 		SetHeartsEmitting(true);
-
+		SunsplosionTimer.Paused = false;
     }
 
 	private void SetHeartsEmitting(bool emitting)

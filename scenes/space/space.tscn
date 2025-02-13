@@ -627,11 +627,12 @@ _data = {
 "jumpscare": SubResource("Animation_02jly")
 }
 
-[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic", "HeartParticles", "HeartParticlesTopLeft", "HeartParticlesTopRight", "HeartParticlesBottomLeft", "HeartParticlesBottomRight")]
+[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic", "SunsplosionTimer", "HeartParticles", "HeartParticlesTopLeft", "HeartParticlesTopRight", "HeartParticlesBottomLeft", "HeartParticlesBottomRight")]
 script = ExtResource("1_0ype4")
 TheSun = NodePath("Sun")
 BGM = NodePath("BGM")
 EndMusic = NodePath("Sun/End Music")
+SunsplosionTimer = NodePath("Timers/Sunsplosion Timer")
 HeartParticles = [NodePath("UI/Hearts B Left"), NodePath("UI/Hearts B Right"), NodePath("UI/Hearts T Left"), NodePath("UI/Hearts T Right")]
 HeartParticlesTopLeft = NodePath("UI/Hearts T Left")
 HeartParticlesTopRight = NodePath("UI/Hearts T Right")
@@ -957,7 +958,7 @@ bus = &"Normal"
 [node name="Timers" type="Node" parent="."]
 
 [node name="Sunsplosion Timer" type="Timer" parent="Timers"]
-wait_time = 1320.0
+wait_time = 10.0
 autostart = true
 script = ExtResource("107_i54xb")
 
