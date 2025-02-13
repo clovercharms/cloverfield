@@ -14,6 +14,10 @@ config/name="Cloverfield"
 run/main_scene="res://scenes/space/space.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 
+[autoload]
+
+WorldEvents="*res://WorldEvents.cs"
+
 [dotnet]
 
 project/assembly_name="Cloverfield"

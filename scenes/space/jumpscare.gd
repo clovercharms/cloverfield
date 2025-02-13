@@ -42,7 +42,9 @@ func _ready() -> void:
 func _on_charm_summoner_catgirl_found() -> void:
 	if playedEver:
 		return
-	playedEver = true;
+	if not WorldEvents.StartEvent("Anglerfish"):
+		return
+	playedEver = true
 	mainAnimation.play("jumpscare")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -156,3 +158,4 @@ func cleanup() -> void:
 	AudioServer.remove_bus_effect(audioBusIndex, 0)
 	
 	mainAnimation.play("RESET")
+	WorldEvents.ClearCurrentEvent()

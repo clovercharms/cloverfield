@@ -227,6 +227,7 @@ public partial class LuckyCharm : CharacterBody3D
 		if (@event is not InputEventMouseButton mouse) return;
 		if (mouse.ButtonIndex != MouseButton.Left || !mouse.Pressed) return;
 		if (SelectionDisabled || IsSelected) return;
+		if (WorldEvents.Instance.GetCurrentEvent() == "Uboa" || WorldEvents.Instance.GetCurrentEvent() == "Anglerfish") return;
 
 		if (!IsDummy)
 		{

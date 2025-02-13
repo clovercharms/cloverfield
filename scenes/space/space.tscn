@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=141 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -114,6 +114,7 @@
 [ext_resource type="AudioStream" uid="uid://bdtsc1yaa5bh5" path="res://assets/audio/effects/Anglerfish_Awake4.wav" id="104_bx8va"]
 [ext_resource type="AudioStream" uid="uid://cptnpnlmfiisw" path="res://assets/audio/effects/Anglerfish_Chase_Breathing.wav" id="105_my3e7"]
 [ext_resource type="AudioStream" uid="uid://d3mlftcljh53m" path="res://assets/audio/effects/AnglerFish_OpenMouth_v2_01.wav" id="106_dumfy"]
+[ext_resource type="Script" path="res://scenes/space/SunsplosionTimer.cs" id="107_i54xb"]
 [ext_resource type="AudioStream" uid="uid://kr7jj0e2ych4" path="res://assets/audio/music/dark_bramble.mp3" id="107_y1bg3"]
 [ext_resource type="AudioStream" uid="uid://bcrsprq0t2ot2" path="res://assets/audio/effects/catgirl_nya.wav" id="108_fog62"]
 [ext_resource type="AudioStream" uid="uid://bhuxi54al8bwo" path="res://assets/audio/effects/party_horn.mp3" id="109_nu8aa"]
@@ -296,6 +297,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../UboaScare:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_02jly"]
@@ -528,6 +541,18 @@ tracks/16/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [-30.0, 10.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../../UboaScare:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(-0.2, 0),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mud7s"]
@@ -815,6 +840,7 @@ bus = &"Normal"
 wait_time = 1320.0
 one_shot = true
 autostart = true
+script = ExtResource("107_i54xb")
 
 [node name="Jumpscare" type="Node3D" parent="."]
 

@@ -24,8 +24,9 @@ public partial class Space : Node3D
 	private async void SunExplosion()
 	{
 		GD.Print("Sun explosion!");
-		// End music
-		GD.Print("Phase 1!");
+		WorldEvents.Instance.StartEvent("SunExplosion");
+        // End music
+        GD.Print("Phase 1!");
 		var volumeTween = GetTree().CreateTween().SetParallel(true);
 		EndMusic.Play();
 		volumeTween.TweenProperty(BGM, "volume_db", -60f, 20d);
@@ -71,6 +72,8 @@ public partial class Space : Node3D
 		reversionTween.TweenProperty(EndMusic, "volume_db", -80f, 20d);
 		await reversionTween.ToSignal(reversionTween, Tween.SignalName.Finished);
 		EndMusic.Stop();
-	}
+		WorldEvents.Instance.ClearCurrentEvent();
+
+    }
 	
 }
