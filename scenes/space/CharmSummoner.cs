@@ -180,6 +180,7 @@ public partial class CharmSummoner : Node3D
 				
 				if(Drawings.ContainsKey(responsesArray[i].AsStringArray()[1]))
 					charm.Drawing = (Texture2D)Drawings[responsesArray[i].AsStringArray()[1]];
+				else if (charm.Avatar != null) charm.Drawing = charm.Avatar;
 			}
 			else
 			{

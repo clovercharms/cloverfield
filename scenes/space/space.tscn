@@ -648,7 +648,6 @@ mouse_filter = 2
 [node name="Hearts Left" type="GPUParticles2D" parent="UI"]
 position = Vector2(100, 675)
 rotation = -0.380482
-scale = Vector2(1, 1)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_agklt")
 texture = ExtResource("3_067ob")
@@ -658,7 +657,6 @@ explosiveness = 0.2
 [node name="Hearts Right" type="GPUParticles2D" parent="UI"]
 position = Vector2(1068, 675)
 rotation = -0.380482
-scale = Vector2(1, 1)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_okqb6")
 texture = ExtResource("3_067ob")
@@ -668,7 +666,6 @@ explosiveness = 0.2
 [node name="Hearts Left2" type="GPUParticles2D" parent="UI"]
 position = Vector2(100, -25)
 rotation = -0.380482
-scale = Vector2(1, 1)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_c42kj")
 texture = ExtResource("3_067ob")
@@ -678,7 +675,6 @@ explosiveness = 0.2
 [node name="Hearts Right2" type="GPUParticles2D" parent="UI"]
 position = Vector2(1068, -25)
 rotation = -0.380482
-scale = Vector2(1, 1)
 amount = 16
 process_material = SubResource("ParticleProcessMaterial_w0cfh")
 texture = ExtResource("3_067ob")
