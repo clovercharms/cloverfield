@@ -13,6 +13,8 @@
 [ext_resource type="AudioStream" uid="uid://w4tk44ly4u56" path="res://assets/audio/Open_Text_box.mp3" id="11_2t4gj"]
 [ext_resource type="AudioStream" uid="uid://dyxpvoybug7ep" path="res://assets/audio/Close_Text_box.mp3" id="12_ie3ic"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_snchh"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn0pt"]
 transparency = 1
 albedo_texture = ExtResource("2_4mu82")
@@ -21,8 +23,6 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_t56yg"]
 material = SubResource("StandardMaterial3D_pn0pt")
 size = Vector2(2.5, 2)
-
-[sub_resource type="SphereShape3D" id="SphereShape3D_snchh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i8frn"]
 render_priority = 1
@@ -134,14 +134,21 @@ SFX = NodePath("SFX")
 AuraLight = NodePath("OmniLight3D")
 Acceleration = 10.0
 
-[node name="Body" type="MeshInstance3D" parent="."]
-mesh = SubResource("QuadMesh_t56yg")
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Collider" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0593262, 0)
+shape = SubResource("SphereShape3D_snchh")
 
 [node name="Collider" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0593262, 0)
 shape = SubResource("SphereShape3D_snchh")
 
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_t56yg")
+
 [node name="Navigator" type="NavigationAgent3D" parent="."]
+debug_enabled = true
 
 [node name="Visibility Checker" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
@@ -276,12 +283,6 @@ stream = ExtResource("11_2t4gj")
 
 [node name="Close" type="AudioStreamPlayer3D" parent="SFX/Open_Close"]
 stream = ExtResource("12_ie3ic")
-
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="Collider" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0593262, 0)
-shape = SubResource("SphereShape3D_snchh")
 
 [connection signal="Deselected" from="." to="MiniLabel" method="OnCharmDeselected"]
 [connection signal="Hit" from="." to="." method="OnHit"]

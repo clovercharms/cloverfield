@@ -10,6 +10,10 @@ public partial class Space : Node3D
 	[Export] private AudioStreamPlayer3D BGM { get; set; }
 	[Export] private AudioStreamPlayer3D EndMusic { get; set; }
 	[Export] private GpuParticles2D[] HeartParticles { get; set; }
+	[Export] private GpuParticles2D HeartParticlesTopLeft { get; set; }
+	[Export] private GpuParticles2D HeartParticlesTopRight { get; set; }
+	[Export] private GpuParticles2D HeartParticlesBottomLeft { get; set; }
+	[Export] private GpuParticles2D HeartParticlesBottomRight { get; set; }
 
 	private static Color StartingSunColor => Color.FromHtml("fde8d3");
 	private static float StartingSunEnergy => 1.8f;
@@ -21,8 +25,31 @@ public partial class Space : Node3D
 		var musicTween = GetTree().CreateTween();
 		musicTween.TweenProperty(BGM, "volume_db", -10f, 10d);
 	}
+	
+	private double AccumulatedTime { get; set; } = 0d;
+    public override void _Process(double delta)
+    {
+        AccumulatedTime += delta;
+		if (AccumulatedTime < 1d) return;
+		AdjustHeartParticlePositions();
+    }
 
-	private async void SunExplosion()
+	private void AdjustHeartParticlePositions()
+	{
+		var viewport = GetViewport();
+		var rect = viewport.GetVisibleRect();
+		var tl = rect.Position;
+		var tr = new Vector2(rect.End.X, rect.Position.Y);
+		var bl = new Vector2(rect.Position.X, rect.End.Y);
+		var br = rect.End;
+
+		HeartParticlesTopLeft.Position = new(tl.X + 100, tl.Y - 25);
+		HeartParticlesTopRight.Position = new(tr.X - 100, tr.Y - 25);
+		HeartParticlesBottomLeft.Position = new(bl.X + 100, bl.Y + 25);
+		HeartParticlesBottomRight.Position = new(br.X - 100, br.Y + 25);
+	}
+
+    private async void SunExplosion()
 	{
 		GD.Print("Sun explosion!");
 		WorldEvents.Instance.StartEvent("SunExplosion");

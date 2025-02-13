@@ -1,4 +1,4 @@
-[gd_scene load_steps=150 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=149 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bv6vcmryt52xv" path="res://assets/textures/heart_particles.png" id="3_067ob"]
 [ext_resource type="Texture2D" uid="uid://dqb5y1s20fm0j" path="res://assets/textures/lightswitch_off.png" id="3_y1d6y"]
 [ext_resource type="Texture2D" uid="uid://b0dwl852c76jd" path="res://assets/textures/lightswitch_on.png" id="4_fl2k8"]
-[ext_resource type="Script" path="res://scenes/space/fps_counter.gd" id="4_i53ej"]
 [ext_resource type="PackedScene" uid="uid://cf0kerida4ex4" path="res://scenes/space/charm_prison.tscn" id="4_inpb6"]
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="4_wkhvl"]
 [ext_resource type="AudioStream" uid="uid://hgxrd3sj6fbr" path="res://assets/audio/lightswitch_on.mp3" id="6_5cdab"]
@@ -214,6 +213,10 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.0
 volumetric_fog_emission = Color(0.255659, 0.255659, 0.255659, 1)
 
+[sub_resource type="FogMaterial" id="FogMaterial_1sca5"]
+density = 0.005
+albedo = Color(0.989566, 0.816051, 0.866304, 1)
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncmjl"]
 lifetime_randomness = 0.5
 emission_shape_scale = Vector3(10, 10, 10)
@@ -234,10 +237,6 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_w1kuo"]
 material = SubResource("StandardMaterial3D_l7wmx")
-
-[sub_resource type="FogMaterial" id="FogMaterial_1sca5"]
-density = 0.005
-albedo = Color(0.971861, 0.52349, 0.680035, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eckrm"]
 radius = 9.846
@@ -628,12 +627,16 @@ _data = {
 "jumpscare": SubResource("Animation_02jly")
 }
 
-[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic", "HeartParticles")]
+[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic", "HeartParticles", "HeartParticlesTopLeft", "HeartParticlesTopRight", "HeartParticlesBottomLeft", "HeartParticlesBottomRight")]
 script = ExtResource("1_0ype4")
 TheSun = NodePath("Sun")
 BGM = NodePath("BGM")
 EndMusic = NodePath("Sun/End Music")
-HeartParticles = [NodePath("UI/Hearts Left"), NodePath("UI/Hearts Right"), NodePath("UI/Hearts Left2"), NodePath("UI/Hearts Right2")]
+HeartParticles = [NodePath("UI/Hearts B Left"), NodePath("UI/Hearts B Right"), NodePath("UI/Hearts T Left"), NodePath("UI/Hearts T Right")]
+HeartParticlesTopLeft = NodePath("UI/Hearts T Left")
+HeartParticlesTopRight = NodePath("UI/Hearts T Right")
+HeartParticlesBottomLeft = NodePath("UI/Hearts B Left")
+HeartParticlesBottomRight = NodePath("UI/Hearts B Right")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
@@ -646,7 +649,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Hearts Left" type="GPUParticles2D" parent="UI"]
+[node name="Hearts B Left" type="GPUParticles2D" parent="UI"]
 position = Vector2(100, 675)
 rotation = -0.380482
 amount = 16
@@ -655,7 +658,7 @@ texture = ExtResource("3_067ob")
 lifetime = 7.5
 explosiveness = 0.2
 
-[node name="Hearts Right" type="GPUParticles2D" parent="UI"]
+[node name="Hearts B Right" type="GPUParticles2D" parent="UI"]
 position = Vector2(1068, 675)
 rotation = -0.380482
 amount = 16
@@ -664,7 +667,7 @@ texture = ExtResource("3_067ob")
 lifetime = 7.5
 explosiveness = 0.2
 
-[node name="Hearts Left2" type="GPUParticles2D" parent="UI"]
+[node name="Hearts T Left" type="GPUParticles2D" parent="UI"]
 position = Vector2(100, -25)
 rotation = -0.380482
 amount = 16
@@ -673,7 +676,7 @@ texture = ExtResource("3_067ob")
 lifetime = 7.5
 explosiveness = 0.2
 
-[node name="Hearts Right2" type="GPUParticles2D" parent="UI"]
+[node name="Hearts T Right" type="GPUParticles2D" parent="UI"]
 position = Vector2(1068, -25)
 rotation = -0.380482
 amount = 16
@@ -701,16 +704,6 @@ grow_horizontal = 0
 text = "Hold Right Mouse Button to move the camera"
 label_settings = SubResource("LabelSettings_8cdok")
 autowrap_mode = 3
-
-[node name="FPSCounter" type="Label" parent="UI"]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_top = -23.0
-offset_right = 40.0
-grow_vertical = 0
-script = ExtResource("4_i53ej")
 
 [node name="UboaScare" type="Control" parent="." node_paths=PackedStringArray("Env", "Sun", "LightSwitch", "Uboa", "BGM", "SoundOn", "SoundOff", "SoundUboa")]
 layout_mode = 3
@@ -781,6 +774,11 @@ volume_db = -20.0
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uvixq")
 
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+shape = 4
+material = SubResource("FogMaterial_1sca5")
+
 [node name="Stars" type="GPUParticles3D" parent="."]
 cast_shadow = 0
 gi_mode = 0
@@ -809,10 +807,6 @@ enable_pan = false
 [node name="Mitty Cam" parent="." instance=ExtResource("6_vgivq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 current = true
-
-[node name="FogVolume" type="FogVolume" parent="Mitty Cam"]
-shape = 4
-material = SubResource("FogMaterial_1sca5")
 
 [node name="Charm Summoner" parent="." node_paths=PackedStringArray("Counter") instance=ExtResource("7_6byia")]
 Counter = NodePath("../UI/Counter")

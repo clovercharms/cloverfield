@@ -306,11 +306,15 @@ public partial class LuckyCharm : CharacterBody3D
 		
 		Destination = NavigationServer3D.MapGetClosestPoint(NavigationServer3D.GetMaps()[0], Destination);
 		Navigation.TargetPosition = Destination;
+
+		GD.Print($"{CharmName} has chosen a new destination: {Destination}");
 	}
 
 	public void RedirectWander()
 	{
 		if (NavigationServer3D.MapGetIterationId(NavigationServer3D.GetMaps()[0]) == 0) return;
+
+		
 
 		var theta = GD.RandRange(0, Math.PI * 2);
 		var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN?
