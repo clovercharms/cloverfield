@@ -1,9 +1,10 @@
-[gd_scene load_steps=141 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=147 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
 [ext_resource type="Script" path="res://scenes/space/UboaScare.cs" id="2_c6g4y"]
 [ext_resource type="Texture2D" uid="uid://cuqbdwp7nnb30" path="res://assets/textures/uboa.png" id="3_6b7et"]
+[ext_resource type="Texture2D" uid="uid://bv6vcmryt52xv" path="res://assets/textures/heart_particles.png" id="3_067ob"]
 [ext_resource type="Texture2D" uid="uid://dqb5y1s20fm0j" path="res://assets/textures/lightswitch_off.png" id="3_y1d6y"]
 [ext_resource type="Texture2D" uid="uid://b0dwl852c76jd" path="res://assets/textures/lightswitch_on.png" id="4_fl2k8"]
 [ext_resource type="PackedScene" uid="uid://cf0kerida4ex4" path="res://scenes/space/charm_prison.tscn" id="4_inpb6"]
@@ -120,6 +121,62 @@
 [ext_resource type="AudioStream" uid="uid://bhuxi54al8bwo" path="res://assets/audio/effects/party_horn.mp3" id="109_nu8aa"]
 [ext_resource type="AudioStream" uid="uid://qfjtb3adkhkr" path="res://assets/audio/effects/cartoon-laugh.wav" id="110_063nk"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_agklt"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(-5, -10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_okqb6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(5, -10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c42kj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(-5, 10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w0cfh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(5, 10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
 [sub_resource type="LabelSettings" id="LabelSettings_got7r"]
 font = ExtResource("14_nrlmp")
 font_size = 48
@@ -175,6 +232,10 @@ particles_anim_loop = false
 
 [sub_resource type="QuadMesh" id="QuadMesh_w1kuo"]
 material = SubResource("StandardMaterial3D_l7wmx")
+
+[sub_resource type="FogMaterial" id="FogMaterial_1sca5"]
+density = 0.005
+albedo = Color(0.971861, 0.52349, 0.680035, 1)
 
 [sub_resource type="Gradient" id="Gradient_7yqem"]
 
@@ -561,11 +622,83 @@ _data = {
 "jumpscare": SubResource("Animation_02jly")
 }
 
-[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic")]
+[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic", "HeartParticles")]
 script = ExtResource("1_0ype4")
 TheSun = NodePath("Sun")
 BGM = NodePath("BGM")
 EndMusic = NodePath("Sun/End Music")
+HeartParticles = [NodePath("UI/Hearts Left"), NodePath("UI/Hearts Right"), NodePath("UI/Hearts Left2"), NodePath("UI/Hearts Right2")]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Hearts Left" type="GPUParticles2D" parent="UI"]
+position = Vector2(100, 675)
+rotation = -0.380482
+scale = Vector2(1, 1)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_agklt")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Hearts Right" type="GPUParticles2D" parent="UI"]
+position = Vector2(1068, 675)
+rotation = -0.380482
+scale = Vector2(1, 1)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_okqb6")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Hearts Left2" type="GPUParticles2D" parent="UI"]
+position = Vector2(100, -25)
+rotation = -0.380482
+scale = Vector2(1, 1)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_c42kj")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Hearts Right2" type="GPUParticles2D" parent="UI"]
+position = Vector2(1068, -25)
+rotation = -0.380482
+scale = Vector2(1, 1)
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_w0cfh")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Counter" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 430.0
+offset_bottom = 71.0
+text = "Messages Read xx/xx"
+label_settings = SubResource("LabelSettings_got7r")
+
+[node name="Label" type="Label" parent="UI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Hold Right Mouse Button to move the camera"
+label_settings = SubResource("LabelSettings_8cdok")
+autowrap_mode = 3
 
 [node name="UboaScare" type="Control" parent="." node_paths=PackedStringArray("Env", "Sun", "LightSwitch", "Uboa", "BGM", "SoundOn", "SoundOff", "SoundUboa")]
 layout_mode = 3
@@ -633,37 +766,6 @@ volume_db = -20.0
 stream = ExtResource("7_hlgwf")
 volume_db = -20.0
 
-[node name="UI" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 6.0
-offset_right = 6.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Counter" type="Label" parent="UI"]
-layout_mode = 0
-offset_right = 430.0
-offset_bottom = 71.0
-text = "Messages Read xx/xx"
-label_settings = SubResource("LabelSettings_got7r")
-
-[node name="Label" type="Label" parent="UI"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 23.0
-grow_horizontal = 0
-text = "Hold Right Mouse Button to move the camera"
-label_settings = SubResource("LabelSettings_8cdok")
-autowrap_mode = 3
-
 [node name="Environment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_uvixq")
 
@@ -695,6 +797,10 @@ enable_pan = false
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
 current = true
 
+[node name="FogVolume" type="FogVolume" parent="Mitty Cam"]
+shape = 4
+material = SubResource("FogMaterial_1sca5")
+
 [node name="Charm Summoner" parent="." node_paths=PackedStringArray("Counter") instance=ExtResource("7_6byia")]
 Counter = NodePath("../UI/Counter")
 ResponsesPath = "res://responses2025.csv"
@@ -709,7 +815,7 @@ volume_db = -18.0
 bus = &"Normal"
 
 [node name="Trees" type="Node3D" parent="."]
-transform = Transform3D(0.546637, 0.692779, 0.470366, 0.464202, 0.2168, -0.858787, -0.696925, 0.68779, -0.203078, 0, 0, 0)
+transform = Transform3D(0.546637, 0.692779, 0.470367, 0.464202, 0.2168, -0.858786, -0.696925, 0.68779, -0.203078, 0, 0, 0)
 
 [node name="sakura_tree_2" parent="Trees" instance=ExtResource("8_o85dv")]
 transform = Transform3D(0.207747, 0.235025, 0.0407169, -0.230637, 0.211699, -0.0452032, -0.0608377, -2.25846e-08, 0.310406, 18.5179, 16.7914, -0.367874)
@@ -838,7 +944,6 @@ bus = &"Normal"
 
 [node name="Sunsplosion Timer" type="Timer" parent="Timers"]
 wait_time = 1320.0
-one_shot = true
 autostart = true
 script = ExtResource("107_i54xb")
 

@@ -9,6 +9,7 @@ public partial class Space : Node3D
 	[Export] private DirectionalLight3D TheSun { get; set; }
 	[Export] private AudioStreamPlayer3D BGM { get; set; }
 	[Export] private AudioStreamPlayer3D EndMusic { get; set; }
+	[Export] private GpuParticles2D[] HeartParticles { get; set; }
 
 	private static Color StartingSunColor => Color.FromHtml("fde8d3");
 	private static float StartingSunEnergy => 1.8f;
@@ -25,6 +26,7 @@ public partial class Space : Node3D
 	{
 		GD.Print("Sun explosion!");
 		WorldEvents.Instance.StartEvent("SunExplosion");
+		SetHeartsEmitting(false);
         // End music
         GD.Print("Phase 1!");
 		var volumeTween = GetTree().CreateTween().SetParallel(true);
@@ -33,6 +35,8 @@ public partial class Space : Node3D
 		volumeTween.TweenProperty(EndMusic, "volume_db", -10f, 20d);
 		await volumeTween.ToSignal(volumeTween, Tween.SignalName.Finished);
 		BGM.Stop();
+
+		
 
 		GD.Print("Setting timer for 20 seconds.");
 		var explodingTime = GetTree().CreateTimer(20f);
@@ -73,7 +77,16 @@ public partial class Space : Node3D
 		await reversionTween.ToSignal(reversionTween, Tween.SignalName.Finished);
 		EndMusic.Stop();
 		WorldEvents.Instance.ClearCurrentEvent();
+		SetHeartsEmitting(true);
 
     }
+
+	private void SetHeartsEmitting(bool emitting)
+	{
+		foreach (var particles in HeartParticles)
+		{
+			particles.Emitting = emitting;
+		}
+	}
 	
 }
