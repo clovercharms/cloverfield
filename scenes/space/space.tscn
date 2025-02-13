@@ -1,4 +1,4 @@
-[gd_scene load_steps=149 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=150 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bv6vcmryt52xv" path="res://assets/textures/heart_particles.png" id="3_067ob"]
 [ext_resource type="Texture2D" uid="uid://dqb5y1s20fm0j" path="res://assets/textures/lightswitch_off.png" id="3_y1d6y"]
 [ext_resource type="Texture2D" uid="uid://b0dwl852c76jd" path="res://assets/textures/lightswitch_on.png" id="4_fl2k8"]
+[ext_resource type="Script" path="res://scenes/space/fps_counter.gd" id="4_i53ej"]
 [ext_resource type="PackedScene" uid="uid://cf0kerida4ex4" path="res://scenes/space/charm_prison.tscn" id="4_inpb6"]
 [ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="4_wkhvl"]
 [ext_resource type="AudioStream" uid="uid://hgxrd3sj6fbr" path="res://assets/audio/lightswitch_on.mp3" id="6_5cdab"]
@@ -700,6 +701,16 @@ grow_horizontal = 0
 text = "Hold Right Mouse Button to move the camera"
 label_settings = SubResource("LabelSettings_8cdok")
 autowrap_mode = 3
+
+[node name="FPSCounter" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 40.0
+grow_vertical = 0
+script = ExtResource("4_i53ej")
 
 [node name="UboaScare" type="Control" parent="." node_paths=PackedStringArray("Env", "Sun", "LightSwitch", "Uboa", "BGM", "SoundOn", "SoundOff", "SoundUboa")]
 layout_mode = 3
