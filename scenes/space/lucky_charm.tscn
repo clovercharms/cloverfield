@@ -135,6 +135,7 @@ AuraLight = NodePath("OmniLight3D")
 Acceleration = 10.0
 
 [node name="Area3D" type="Area3D" parent="."]
+input_ray_pickable = false
 
 [node name="Collider" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0593262, 0)
