@@ -119,6 +119,9 @@ public partial class LuckyCharm : CharacterBody3D
 	public bool HasBeenSelected { get; set; } = false;
 	public bool IsCatgirl { get; set; } = false;
 
+	private const double pathfindingIntervalSeconds = 0.1d;
+	private double accumulatedDelta = 0; // if this >= pathfindingIntervalSeconds, refresh pathfinding <- conserves CPU cycles
+
 	#endregion
 
 	public override void _Ready()
@@ -139,8 +142,34 @@ public partial class LuckyCharm : CharacterBody3D
 		ApplyBodyTexture(BodyTexture);
 	}
 
+
+	public override void _Process(double delta)
+	{
+		accumulatedDelta += delta;
+		if (accumulatedDelta >= pathfindingIntervalSeconds){
+			// Face the center of the planet
+			if (GlobalPosition != Vector3.Zero)
+			{
+				LookAt(Vector3.Zero, Vector3.Up);
+				//MiniLabel.LookAt(Vector3.Zero, Vector3.Up);
+			}
+
+			Wander();
+
+			// var direction = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
+			// velocity = velocity.lerp(direction * speed, accel * delta)
+
+			var direction = (Navigation.GetNextPathPosition() - GlobalPosition).Normalized();
+			Velocity = Velocity.Lerp(direction * Speed, (float)(Acceleration * delta));
+			accumulatedDelta -= pathfindingIntervalSeconds;
+		}
+	}
+
+	
+	
 	public override void _PhysicsProcess(double delta)
 	{
+
 		SnapCamera();
 		
 		Vector3 velocity = Velocity;
@@ -167,32 +196,16 @@ public partial class LuckyCharm : CharacterBody3D
 		// 	}
 		// }
 
-		// Face the center of the planet
-		if (GlobalPosition != Vector3.Zero)
-		{
-			LookAt(Vector3.Zero, Vector3.Up);
-			//MiniLabel.LookAt(Vector3.Zero, Vector3.Up);
-		}
-
-        // Add the gravity.
-        if (!IsOnFloor())
+		// Add the gravity.
+		if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
 		}
-
-		Wander();
-
-		// var direction = ($NavigationAgent3D.get_next_path_position() - global_position).normalized()
-		// velocity = velocity.lerp(direction * speed, accel * delta)
-
-		var direction = (Navigation.GetNextPathPosition() - GlobalPosition).Normalized();
-		Velocity = Velocity.Lerp(direction * Speed, (float)(Acceleration * delta));
-
 		MoveAndSlide();
 
 		// Jump();	// Nixed.  They jump out of the world.  Woops.
 
-		Speed = HasBeenSelected ? 0f : 3f;
+		Speed = HasBeenSelected ? 0f : 4f;
 	}
 
 
@@ -365,8 +378,8 @@ public partial class LuckyCharm : CharacterBody3D
 		else
 		{
 			GD.Print("catgirl found!");
-            EmitSignal(SignalName.CatgirlFound);
-        }
+			EmitSignal(SignalName.CatgirlFound);
+		}
 
 		if (!IsDummy)
 		{
