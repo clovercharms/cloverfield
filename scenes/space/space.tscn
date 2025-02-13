@@ -143,6 +143,9 @@ fog_light_color = Color(0, 0, 0, 1)
 fog_height_density = 16.0
 fog_depth_begin = 0.0
 fog_depth_end = 5.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_emission = Color(0.255659, 0.255659, 0.255659, 1)
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncmjl"]
 lifetime_randomness = 0.5
@@ -262,6 +265,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam:current")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_02jly"]
@@ -431,11 +458,11 @@ tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "clips": [{
-"end_offset": 3.0,
+"end_offset": 2.6,
 "start_offset": 0.0,
 "stream": ExtResource("106_dumfy")
 }],
-"times": PackedFloat32Array(50.7)
+"times": PackedFloat32Array(50.3)
 }
 tracks/10/use_blend = true
 tracks/11/type = "rotation_3d"
@@ -471,6 +498,30 @@ tracks/14/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper")
 tracks/14/interp = 2
 tracks/14/loop_wrap = true
 tracks/14/keys = PackedFloat32Array(11.5, 1, 0, 0, 0, 1, 15, 1, 0.99922, 0, 0, 0.0394866)
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam:current")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase:volume_db")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(44, 51.2667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-30.0, 10.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mud7s"]
 _data = {
@@ -555,6 +606,7 @@ CatgirlTexture = ExtResource("90_7gvru")
 stream = ExtResource("7_rr2ua")
 attenuation_model = 3
 volume_db = -18.0
+bus = &"Normal"
 
 [node name="Trees" type="Node3D" parent="."]
 transform = Transform3D(0.546637, 0.692779, 0.470366, 0.464202, 0.2168, -0.858787, -0.696925, 0.68779, -0.203078, 0, 0, 0)
@@ -680,6 +732,7 @@ script = ExtResource("97_4yllf")
 stream = ExtResource("98_ojeow")
 attenuation_model = 3
 volume_db = -12.0
+bus = &"Normal"
 
 [node name="Timers" type="Node" parent="."]
 
@@ -723,9 +776,10 @@ billboard = 1
 no_depth_test = true
 texture = ExtResource("100_4mchp")
 
-[node name="Manager" type="Node" parent="Jumpscare" node_paths=PackedStringArray("mainAnimation", "mainCamera")]
+[node name="Manager" type="Node" parent="Jumpscare" node_paths=PackedStringArray("mainAnimation", "mainEnvironment", "mainCamera")]
 script = ExtResource("101_ks1mg")
 mainAnimation = NodePath("JumpscarePlayer")
+mainEnvironment = NodePath("../../Environment")
 mainCamera = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam")
 fogCurve = SubResource("Curve_bv46q")
 lureScene = ExtResource("102_peblc")
