@@ -249,7 +249,8 @@ BodiesHeart = Array[Texture2D]([ExtResource("47_qo5q6"), ExtResource("48_4t74s")
 
 [node name="BGM" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("7_rr2ua")
-volume_db = -50.0
+attenuation_model = 3
+volume_db = -18.0
 
 [node name="Trees" type="Node3D" parent="."]
 transform = Transform3D(0.546637, 0.692779, 0.470366, 0.464202, 0.2168, -0.858787, -0.696925, 0.68779, -0.203078, 0, 0, 0)
@@ -354,12 +355,12 @@ transform = Transform3D(0.731986, 0.810555, -0.393085, 0.575639, -0.810457, -0.5
 transform = Transform3D(-0.731986, -0.810555, -0.393085, -0.575639, 0.810457, -0.599264, 0.692932, -0.182966, -0.913064, -16.9697, 16.8048, -3.76235)
 
 [node name="crater" parent="Decorations" instance=ExtResource("93_k6dtw")]
-transform = Transform3D(-0.201201, 0.560476, -0.0159248, -0.251172, -0.105219, -0.529821, -0.501298, -0.172234, 0.271854, 23.2615, -3.52441, -8.52771)
+transform = Transform3D(-0.253535, 0.706261, -0.020067, -0.316504, -0.132587, -0.667632, -0.63169, -0.217034, 0.342566, 23.2615, -3.52441, -8.52771)
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="Decorations"]
-transform = Transform3D(1, 1.49012e-08, -4.17233e-07, -1.49012e-08, 1, -4.76837e-07, 0, 0, 1, 23.8714, -4.45012, -8.38776)
-amount = 20
-lifetime = 5.0
+transform = Transform3D(1.00508, 1.49012e-08, -4.76837e-07, 1.49012e-08, 1.00508, -5.06639e-07, 0, 0, 1.00508, 23.8714, -4.45012, -8.38776)
+amount = 50
+lifetime = 3.0
 speed_scale = 0.5
 randomness = 0.52
 process_material = SubResource("ParticleProcessMaterial_sqcv5")
@@ -373,12 +374,14 @@ script = ExtResource("97_4yllf")
 
 [node name="End Music" type="AudioStreamPlayer3D" parent="Sun"]
 stream = ExtResource("98_ojeow")
-volume_db = -80.0
+attenuation_model = 3
+volume_db = -12.0
 
 [node name="Timers" type="Node" parent="."]
 
 [node name="Sunsplosion Timer" type="Timer" parent="Timers"]
-wait_time = 1320.0
+wait_time = 10.0
+one_shot = true
 autostart = true
 
 [connection signal="timeout" from="Timers/Sunsplosion Timer" to="." method="SunExplosion"]
