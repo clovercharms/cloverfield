@@ -6,19 +6,19 @@ namespace CloverField.Space;
 
 public partial class CharmSummoner : Node3D
 {
-    [Signal] public delegate void CatgirlFoundEventHandler();
+	[Signal] public delegate void CatgirlFoundEventHandler();
 
-    [Export] private Godot.Label Counter { get; set; }
-	[Export] private int Amount  { get; set; } = 100;
+	[Export] private Godot.Label Counter { get; set; }
+	[Export] private int Amount  { get; set; } = 75;
 	[Export] private int PositionRange { get; set; } = 20;
 	[Export] private float MinDistance { get; set; } = 3.0f;
 	//[Export] private Godot.Collections.Array<Texture2D> Avatars { get; set; }
 	[Export] private string ResponsesPath { get; set; }
 	[Export] private Godot.Collections.Array<Texture2D> BodiesBase { get; set; }
 	[Export] private Godot.Collections.Array<Texture2D> BodiesHeart { get; set; } // indices must match base
-    [Export] private Texture2D CatgirlTexture { get; set; }
+	[Export] private Texture2D CatgirlTexture { get; set; }
 
-    private float HalfRange => PositionRange / 2;
+	private float HalfRange => PositionRange / 2;
 	private Vector3[] GeneratedPosition { get; set; } = [];
 	private LuckyCharm[] Instances { get; set; } = [];
 	private bool SelectionActive { get; set; } = false;
@@ -45,8 +45,8 @@ public partial class CharmSummoner : Node3D
 
 	public void ForwardCatgirlFound()
 	{
-        EmitSignal(SignalName.CatgirlFound);
-    }
+		EmitSignal(SignalName.CatgirlFound);
+	}
 
 	public override void _Ready()
 	{
@@ -120,6 +120,7 @@ public partial class CharmSummoner : Node3D
 			{ "DWraith23", ResourceLoader.Load(basePathDrawings + "DWraith23.png") },
 			{ "Endor", ResourceLoader.Load(basePathDrawings + "Endor.png") },
 			{ "Firebreath", ResourceLoader.Load(basePathDrawings + "Firebreath.png") },
+			{ "Gotz", ResourceLoader.Load(basePathDrawings + "Gotz.png") },
 			{ "Herbie_Cucumber", ResourceLoader.Load(basePathDrawings + "Herbie_Cucumber.png") },
 			{ "iSneeze", ResourceLoader.Load(basePathDrawings + "iSneeze.png") },
 			{ "Joseku", ResourceLoader.Load(basePathDrawings + "Joseku.png") },
@@ -196,7 +197,7 @@ public partial class CharmSummoner : Node3D
 				charm.BodyTexture = CatgirlTexture;
 				charm.BodyTextureHeart = CatgirlTexture;
 				charm.CatgirlFound += () => ForwardCatgirlFound();
-            }
+			}
 
 			if (charm.IsDummy) charm.Avatar = charm.BodyTexture;
 
