@@ -277,6 +277,12 @@ stream = ExtResource("11_2t4gj")
 [node name="Close" type="AudioStreamPlayer3D" parent="SFX/Open_Close"]
 stream = ExtResource("12_ie3ic")
 
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="Collider" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0593262, 0)
+shape = SubResource("SphereShape3D_snchh")
+
 [connection signal="Deselected" from="." to="MiniLabel" method="OnCharmDeselected"]
 [connection signal="Hit" from="." to="." method="OnHit"]
 [connection signal="HoverEntered" from="." to="MiniLabel" method="OnCharmHoverEntered"]

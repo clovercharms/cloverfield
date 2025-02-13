@@ -1,4 +1,4 @@
-[gd_scene load_steps=147 format=3 uid="uid://c7vweyfl2bkm2"]
+[gd_scene load_steps=149 format=3 uid="uid://c7vweyfl2bkm2"]
 
 [ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
 [ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
@@ -114,6 +114,7 @@
 [ext_resource type="AudioStream" uid="uid://cehxl8u754k0q" path="res://assets/audio/effects/Anglerfish_Awake2.wav" id="103_fafur"]
 [ext_resource type="AudioStream" uid="uid://bdtsc1yaa5bh5" path="res://assets/audio/effects/Anglerfish_Awake4.wav" id="104_bx8va"]
 [ext_resource type="AudioStream" uid="uid://cptnpnlmfiisw" path="res://assets/audio/effects/Anglerfish_Chase_Breathing.wav" id="105_my3e7"]
+[ext_resource type="Script" path="res://scenes/space/TentacleBlocker.cs" id="105_p7yyu"]
 [ext_resource type="AudioStream" uid="uid://d3mlftcljh53m" path="res://assets/audio/effects/AnglerFish_OpenMouth_v2_01.wav" id="106_dumfy"]
 [ext_resource type="Script" path="res://scenes/space/SunsplosionTimer.cs" id="107_i54xb"]
 [ext_resource type="AudioStream" uid="uid://kr7jj0e2ych4" path="res://assets/audio/music/dark_bramble.mp3" id="107_y1bg3"]
@@ -236,6 +237,10 @@ material = SubResource("StandardMaterial3D_l7wmx")
 [sub_resource type="FogMaterial" id="FogMaterial_1sca5"]
 density = 0.005
 albedo = Color(0.971861, 0.52349, 0.680035, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eckrm"]
+radius = 9.846
+height = 23.43
 
 [sub_resource type="Gradient" id="Gradient_7yqem"]
 
@@ -789,6 +794,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("4_wkhvl")
 _camera = NodePath("../Mitty Cam")
+rotate_speed = 0.5
 min_distance = 26.0
 max_distance = 35.0
 enable_pan = false
@@ -916,6 +922,13 @@ transform = Transform3D(0.731986, 0.810555, -0.393085, 0.575639, -0.810457, -0.5
 [node name="TentacleSouth" parent="Decorations" instance=ExtResource("92_nbqgp")]
 transform = Transform3D(-0.731986, -0.810555, -0.393085, -0.575639, 0.810457, -0.599264, 0.692932, -0.182966, -0.913064, -16.9697, 16.8048, -3.76235)
 
+[node name="Tentacle Blocker" type="Area3D" parent="Decorations/TentacleSouth"]
+collision_layer = 3
+script = ExtResource("105_p7yyu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/TentacleSouth/Tentacle Blocker"]
+shape = SubResource("CapsuleShape3D_eckrm")
+
 [node name="crater" parent="Decorations" instance=ExtResource("93_k6dtw")]
 transform = Transform3D(-0.253535, 0.706261, -0.020067, -0.316504, -0.132587, -0.667632, -0.63169, -0.217034, 0.342566, 23.2615, -3.52441, -8.52771)
 
@@ -1010,4 +1023,5 @@ bus = &"Jumpscare"
 
 [connection signal="pressed" from="UboaScare/LightSwitch" to="UboaScare" method="OnButtonPressed"]
 [connection signal="CatgirlFound" from="Charm Summoner" to="Jumpscare/Manager" method="_on_charm_summoner_catgirl_found"]
+[connection signal="area_entered" from="Decorations/TentacleSouth/Tentacle Blocker" to="Decorations/TentacleSouth/Tentacle Blocker" method="OnCharmAreaEntered"]
 [connection signal="timeout" from="Timers/Sunsplosion Timer" to="." method="SunExplosion"]

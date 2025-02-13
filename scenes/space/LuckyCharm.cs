@@ -308,6 +308,25 @@ public partial class LuckyCharm : CharacterBody3D
 		Navigation.TargetPosition = Destination;
 	}
 
+	public void RedirectWander()
+	{
+		if (NavigationServer3D.MapGetIterationId(NavigationServer3D.GetMaps()[0]) == 0) return;
+
+		var theta = GD.RandRange(0, Math.PI * 2);
+		var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN?
+		var radius = 50f;       // WHAT THE FUCK WAS THIS BULLSHIT?!
+
+		var x = (float)(radius * Math.Sin(theta) * Math.Cos(phi));
+		var y = (float)(radius * Math.Sin(theta) * Math.Sin(phi));
+		var z = (float)(radius * Math.Cos(theta));
+
+		Destination = new Vector3(x, y, z);
+		
+		Destination = NavigationServer3D.MapGetClosestPoint(NavigationServer3D.GetMaps()[0], Destination);
+		Navigation.TargetPosition = Destination;
+		GD.Print($"{CharmName} redirected to {Destination}");
+	}
+
 	private void Jump()
 	{
 		if ((int)Time.GetTicksMsec() < NextJumpMS || (JumpTween != null && JumpTween.IsRunning())) return;
