@@ -16,6 +16,7 @@ public partial class LuckyCharm : CharacterBody3D
 	[Signal] public delegate void HoverEnteredEventHandler();
 	[Signal] public delegate void HoverExitedEventHandler();
 	[Signal] public delegate void HitEventHandler();
+	[Signal] public delegate void CatgirlFoundEventHandler();
 
 
 	[ExportGroup("Nodes")]
@@ -116,6 +117,7 @@ public partial class LuckyCharm : CharacterBody3D
 	public bool HasBeenFound { get; set; } = false;
 	public bool IsDummy { get; set; } = false;
 	public bool HasBeenSelected { get; set; } = false;
+	public bool IsCatgirl { get; set; } = false;
 
 	#endregion
 
@@ -347,9 +349,17 @@ public partial class LuckyCharm : CharacterBody3D
 
 	private void OnHit()
 	{
-		var sfx = SFX.FindChild("Hit").GetChildren();
-		var randSfx = (AudioStreamPlayer3D) sfx[GD.RandRange(0, sfx.Count -1)];
-		randSfx.Play();
+		if (!IsCatgirl)
+		{
+			var sfx = SFX.FindChild("Hit").GetChildren();
+			var randSfx = (AudioStreamPlayer3D)sfx[GD.RandRange(0, sfx.Count - 1)];
+			randSfx.Play();
+		}
+		else
+		{
+			GD.Print("catgirl found!");
+            EmitSignal(SignalName.CatgirlFound);
+        }
 
 		if (!IsDummy)
 		{

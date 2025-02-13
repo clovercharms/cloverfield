@@ -197,7 +197,7 @@ _data = {
 
 [sub_resource type="Curve" id="Curve_glddm"]
 max_value = 0.1
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.0679934), 0.183504, 0.257671, 0, 0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.0685269), 0.183504, 0.257671, 0, 0]
 point_count = 2
 
 [node name="JumpscareRoot" type="Node3D"]
@@ -221,10 +221,6 @@ mainEnvironment = NodePath("../Environment")
 mainCamera = NodePath("../JumpscareCamera")
 fogCurve = SubResource("Curve_glddm")
 lureScene = ExtResource("13_4xbh0")
-minLureSpawnDistance = 15.0
-maxLureSpawnDistance = 30.0
-lureSpawnAmount = 60
-lureSpawnTime = 10.0
 
 [node name="JumpscareBGM" type="AudioStreamPlayer" parent="."]
 
