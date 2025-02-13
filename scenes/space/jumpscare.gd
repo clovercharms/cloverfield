@@ -8,10 +8,19 @@ extends Node
 @export var fogFadeInTime: float = 10
 
 @export var lureScene: PackedScene
-@export var minLureSpawnDistance: float = 100
-@export var maxLureSpawnDistance: float = 1000
-@export var lureSpawnAmount: int = 100
-@export var lureSpawnTime: float = 5
+@export var minLureSpawnDistance: float = 15
+@export var maxLureSpawnDistance: float = 30
+@export var lureSpawnAmount: int = 60
+@export var lureSpawnTime: float = 10
+
+@export var lowShelfCurve: Curve
+@export var pitchShiftCurve: Curve
+@export var reverbCurve: Curve
+@export var volumeCurve: Curve
+@export var musicFadeTime: float = 10
+const HzMultiplier = 1000 #curves can't go high enough for hertz, so multiply by this factor
+
+var playedEver = false
 
 var isFadingFog = false
 var fogFade = 0
@@ -21,15 +30,26 @@ var lureSpawnTimer = 0
 var lureSpawnCount: int = 0
 var lures: Array[Node] = []
 
+var isFadingMusic = false
+var musicFade = 0
+var audioBusIndex = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pass
+	#mainAnimation.play("jumpscare")
+	
+func _on_charm_summoner_catgirl_found() -> void:
+	if playedEver:
+		return
+	playedEver = true;
 	mainAnimation.play("jumpscare")
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	updateFog(delta)
 	updateLureSpawns(delta)
+	updateMusicFade(delta)
 
 func startFadingFog() -> void:
 	fogFade = 0
@@ -47,6 +67,44 @@ func updateFog(delta: float) -> void:
 		isFadingFog = false
 	
 	mainEnvironment.environment.volumetric_fog_density = fogCurve.sample_baked(fogFade / fogFadeInTime)
+
+func startFadingMusic() -> void:
+	musicFade = 0
+	isFadingMusic = true;
+	
+	audioBusIndex = AudioServer.get_bus_index("Normal")
+	
+	var lowShelf = AudioEffectLowShelfFilter.new()
+	lowShelf.cutoff_hz = lowShelfCurve.sample_baked(0) * HzMultiplier
+	AudioServer.add_bus_effect(audioBusIndex, lowShelf, 0)
+	
+	var pitchShift = AudioEffectPitchShift.new()
+	pitchShift.pitch_scale = pitchShiftCurve.sample_baked(0)
+	AudioServer.add_bus_effect(audioBusIndex, pitchShift, 1)
+	
+	var reverb = AudioEffectReverb.new();
+	reverb.hipass = reverbCurve.sample_baked(0);
+	reverb.predelay_feedback = 0;
+	AudioServer.add_bus_effect(audioBusIndex, reverb, 2)
+	
+
+func updateMusicFade(delta: float) -> void:
+	if not isFadingMusic:
+		return
+	
+	musicFade += delta
+	
+	if musicFade >= musicFadeTime:
+		musicFade = musicFadeTime
+		isFadingMusic = false
+		AudioServer.set_bus_mute(audioBusIndex, true)
+	
+	var fadeProgress = musicFade / musicFadeTime
+	
+	AudioServer.set_bus_volume_db(audioBusIndex, volumeCurve.sample_baked(fadeProgress))
+	AudioServer.get_bus_effect(audioBusIndex,0).cutoff_hz = lowShelfCurve.sample_baked(fadeProgress) * HzMultiplier
+	AudioServer.get_bus_effect(audioBusIndex,1).pitch_scale = pitchShiftCurve.sample_baked(fadeProgress)
+	AudioServer.get_bus_effect(audioBusIndex,2).hipass = reverbCurve.sample_baked(fadeProgress);
 
 func startSpawningLures() -> void:
 	lureSpawnTimer = 0
@@ -79,10 +137,22 @@ func updateLureSpawns(delta: float) -> void:
 		rotator = rotator.normalized()
 		var relativePos = Vector3.RIGHT * rotator
 		relativePos *= randf_range(minLureSpawnDistance, maxLureSpawnDistance)
-		spawnLureAtPoint(mainCamera.position + relativePos)
+		spawnLureAtPoint(mainCamera.global_position + relativePos)
 
 func cleanup() -> void:
 	isFadingFog = false
+	isFadingMusic = false
 	isSpawningLures = false
 	for lure in lures:
 		lure.queue_free()
+	
+	mainEnvironment.environment.fog_enabled = false
+	mainEnvironment.environment.volumetric_fog_density = 0
+	
+	AudioServer.set_bus_mute(audioBusIndex, false)
+	AudioServer.set_bus_volume_db(audioBusIndex, 0)
+	AudioServer.remove_bus_effect(audioBusIndex, 2)
+	AudioServer.remove_bus_effect(audioBusIndex, 1)
+	AudioServer.remove_bus_effect(audioBusIndex, 0)
+	
+	mainAnimation.play("RESET")

@@ -6,7 +6,9 @@ namespace CloverField.Space;
 
 public partial class CharmSummoner : Node3D
 {
-	[Export] private Godot.Label Counter { get; set; }
+    [Signal] public delegate void CatgirlFoundEventHandler();
+
+    [Export] private Godot.Label Counter { get; set; }
 	[Export] private int Amount  { get; set; } = 100;
 	[Export] private int PositionRange { get; set; } = 20;
 	[Export] private float MinDistance { get; set; } = 3.0f;
@@ -14,8 +16,9 @@ public partial class CharmSummoner : Node3D
 	[Export] private string ResponsesPath { get; set; }
 	[Export] private Godot.Collections.Array<Texture2D> BodiesBase { get; set; }
 	[Export] private Godot.Collections.Array<Texture2D> BodiesHeart { get; set; } // indices must match base
+    [Export] private Texture2D CatgirlTexture { get; set; }
 
-	private float HalfRange => PositionRange / 2;
+    private float HalfRange => PositionRange / 2;
 	private Vector3[] GeneratedPosition { get; set; } = [];
 	private LuckyCharm[] Instances { get; set; } = [];
 	private bool SelectionActive { get; set; } = false;
@@ -39,6 +42,11 @@ public partial class CharmSummoner : Node3D
 		MessagesRead += 1;
 		Counter.Text = $"Messages Read: {MessagesRead}/{ResponsesCount}";
 	}
+
+	public void ForwardCatgirlFound()
+	{
+        EmitSignal(SignalName.CatgirlFound);
+    }
 
 	public override void _Ready()
 	{
@@ -172,6 +180,8 @@ public partial class CharmSummoner : Node3D
 				charm.IsDummy = true;
 			}
 
+			if (i == Amount - 1) charm.IsCatgirl = true;
+
 			// Shuffle all bodies, then draw one until none remain, shuffle and go again
 			// aka Tetris piece selection logic
 			int deckPos = i % BodiesBase.Count;
@@ -181,6 +191,12 @@ public partial class CharmSummoner : Node3D
 			
 			charm.BodyTexture = BodiesBase[indexDeck[deckPos]];
 			charm.BodyTextureHeart = BodiesHeart[indexDeck[deckPos]];
+
+			if (charm.IsCatgirl) {
+				charm.BodyTexture = CatgirlTexture;
+				charm.BodyTextureHeart = CatgirlTexture;
+				charm.CatgirlFound += () => ForwardCatgirlFound();
+            }
 
 			if (charm.IsDummy) charm.Avatar = charm.BodyTexture;
 
