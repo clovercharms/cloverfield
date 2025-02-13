@@ -124,7 +124,6 @@ public partial class LuckyCharm : CharacterBody3D
 	public override void _Ready()
 	{
 		MessageLabel.Camera = Camera;
-		MiniLabel.Camera = Camera;
 
 		// var bigLabelAvatar = MessageLabel.FindChild("Avatar") as MeshInstance3D;
 		// var smallLabelAvatar = MiniLabel.FindChild("Avatar") as MeshInstance3D;
@@ -168,8 +167,15 @@ public partial class LuckyCharm : CharacterBody3D
 		// 	}
 		// }
 
-		// Add the gravity.
-		if (!IsOnFloor())
+		// Face the center of the planet
+		if (GlobalPosition != Vector3.Zero)
+		{
+			LookAt(Vector3.Zero, Vector3.Up);
+			//MiniLabel.LookAt(Vector3.Zero, Vector3.Up);
+		}
+
+        // Add the gravity.
+        if (!IsOnFloor())
 		{
 			velocity += GetGravity() * (float)delta;
 		}

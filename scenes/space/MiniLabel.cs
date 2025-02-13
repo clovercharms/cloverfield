@@ -6,15 +6,7 @@ namespace CloverField.Space;
 
 public partial class MiniLabel : Node3D
 {
-    public Camera3D Camera { get; set; }
     [Export] public MeshInstance3D Avatar { get; set; }
-
-    public override void _Process(double delta)
-    {
-        if (Camera == null) return;
-
-        Rotation = new(0f, Camera.Rotation.Y, 0f);
-    }
 
     public void OnCharmHoverEntered()
     {
