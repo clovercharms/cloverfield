@@ -30,9 +30,14 @@ public partial class CharmSummoner : Node3D
 	{
 		foreach (var child in GetChildren())
 		{
-			if (child is not LuckyCharm instance) continue;
-			if (instance == charm) continue;
-			instance.SelectionDisabled = disabled;
+			if (child is not Marker3D marker) continue;
+			foreach (var spawn in marker.GetChildren())
+			{
+				if (spawn is not LuckyCharm instance) continue;
+				if (instance == charm) continue;
+				instance.SelectionDisabled = disabled;
+				instance.MiniLabel.Visible = !disabled;
+			}
 		}
 	}
 

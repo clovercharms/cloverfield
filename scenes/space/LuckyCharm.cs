@@ -25,7 +25,7 @@ public partial class LuckyCharm : CharacterBody3D
 	[Export] private CollisionShape3D Collider { get; set; }
 	[Export] private VisibleOnScreenNotifier3D VisibilityChecker { get; set; }
 	[Export] private Label MessageLabel { get; set; }
-	[Export] private MiniLabel MiniLabel { get; set; }
+	[Export] public MiniLabel MiniLabel { get; set; }
 	[Export] private Node3D Particles { get; set; }
 	[Export] private Node3D SFX { get; set; }
 	[Export] private OmniLight3D AuraLight { get; set; }
