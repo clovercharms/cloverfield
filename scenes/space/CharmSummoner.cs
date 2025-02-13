@@ -218,7 +218,7 @@ public partial class CharmSummoner : Node3D
 		Counter.Text = $"Messages Read: {MessagesRead}/{ResponsesCount}";
 	}
 
-	private Vector3 MakeRandomPlanetPosition()
+	public static Vector3 MakeRandomPlanetPosition()
 	{
 		var theta = GD.RandRange(0, Math.PI * 2);
 		var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN? // Theta and phi are traditional variable names for angles in math equations.

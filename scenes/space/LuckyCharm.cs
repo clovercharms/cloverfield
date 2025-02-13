@@ -162,6 +162,10 @@ public partial class LuckyCharm : CharacterBody3D
 			var direction = (Navigation.GetNextPathPosition() - GlobalPosition).Normalized();
 			Velocity = Velocity.Lerp(direction * Speed, (float)(Acceleration * delta));
 			accumulatedDelta -= pathfindingIntervalSeconds;
+			
+			if (HasBeenSelected) return;
+			var rand = new Random().NextDouble();
+			if (rand < 0.001) TeleportRandomly();
 		}
 	}
 
@@ -314,7 +318,7 @@ public partial class LuckyCharm : CharacterBody3D
 	{
 		if (NavigationServer3D.MapGetIterationId(NavigationServer3D.GetMaps()[0]) == 0) return;
 
-		
+		TeleportRandomly();
 
 		var theta = GD.RandRange(0, Math.PI * 2);
 		var phi = GD.RandRange(0, Math.PI); // I"M NOT GREEK!  THE FUCK DOES THIS MEAN?
@@ -329,6 +333,23 @@ public partial class LuckyCharm : CharacterBody3D
 		Destination = NavigationServer3D.MapGetClosestPoint(NavigationServer3D.GetMaps()[0], Destination);
 		Navigation.TargetPosition = Destination;
 		GD.Print($"{CharmName} redirected to {Destination}");
+	}
+
+	private async void TeleportRandomly()
+	{
+		// Teleport
+		var teleportTween = GetTree().CreateTween().SetParallel(true);
+		teleportTween.TweenProperty(AuraLight, "light_energy", 16f, 0.75d);
+		teleportTween.TweenProperty(AuraLight, "light_indirect_energy", 16f, 0.75d);
+		teleportTween.TweenProperty(AuraLight, "omni_attenuation", 10f, 0.75d);
+		await teleportTween.ToSignal(teleportTween, Tween.SignalName.Finished);
+		Position = CharmSummoner.MakeRandomPlanetPosition();
+
+		// Fade back in
+		var unTeleportTween = GetTree().CreateTween().SetParallel(true);
+		unTeleportTween.TweenProperty(AuraLight, "light_energy", 1, 0.25d);
+		unTeleportTween.TweenProperty(AuraLight, "light_indirect_energy", 1, 0.25d);
+		unTeleportTween.TweenProperty(AuraLight, "omni_attenuation", 1, 0.25d);
 	}
 
 	private void Jump()

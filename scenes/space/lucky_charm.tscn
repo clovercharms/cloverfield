@@ -148,13 +148,12 @@ shape = SubResource("SphereShape3D_snchh")
 mesh = SubResource("QuadMesh_t56yg")
 
 [node name="Navigator" type="NavigationAgent3D" parent="."]
-debug_enabled = true
 
 [node name="Visibility Checker" type="VisibleOnScreenNotifier3D" parent="."]
 aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-light_color = Color(0.882353, 0.694118, 0, 1)
+light_color = Color(0.360511, 0.767367, 1, 1)
 omni_range = 2.0
 
 [node name="MiniLabel" type="Node3D" parent="." node_paths=PackedStringArray("Avatar")]
