@@ -9,7 +9,7 @@ public partial class CharmSummoner : Node3D
 	[Signal] public delegate void CatgirlFoundEventHandler();
 
 	[Export] private Godot.Label Counter { get; set; }
-	[Export] private int Amount  { get; set; } = 75;
+	[Export] private int Amount  { get; set; } = 75 + 1; // 1st gets skipped because of headerline in csv
 	[Export] private int PositionRange { get; set; } = 20;
 	[Export] private float MinDistance { get; set; } = 3.0f;
 	//[Export] private Godot.Collections.Array<Texture2D> Avatars { get; set; }
