@@ -87,6 +87,7 @@ public partial class CharmSummoner : Node3D
 			{ "GerardoS23", ResourceLoader.Load(basePathAvatars + "GerardoS23.png") },
 			{ "Gotz", ResourceLoader.Load(basePathAvatars + "Gotz.png") },
 			{ "Herbie_Cucumber", ResourceLoader.Load(basePathAvatars + "Herbie_Cucumber.png") },
+			{ "impost0r", ResourceLoader.Load(basePathAvatars + "impost0r.png") },
 			{ "iSneeze", ResourceLoader.Load(basePathAvatars + "iSneeze.png") },
 			{ "Joseku", ResourceLoader.Load(basePathAvatars + "Joseku.png") },
 			{ "Konsulus", ResourceLoader.Load(basePathAvatars + "Konsulus.png") },
