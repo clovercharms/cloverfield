@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d1yjtkbiyq1wo"]
+
+[ext_resource type="Script" path="res://scenes/space/CharmSummoner.cs" id="1_rsafk"]
+
+[node name="Charm Summoner" type="Node3D"]
+script = ExtResource("1_rsafk")

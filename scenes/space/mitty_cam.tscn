@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2aiqkh3ha6lr"]
+
+[ext_resource type="Script" path="res://scenes/space/MittyCam.cs" id="1_jlqt5"]
+
+[node name="Mitty Cam" type="Camera3D"]
+script = ExtResource("1_jlqt5")

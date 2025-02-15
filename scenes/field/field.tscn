@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://mjp0ng7ap4du" path="res://assets/textures/button.png" id="14_c7brm"]
 [ext_resource type="AudioStream" uid="uid://qp2vc7mwopdl" path="res://assets/audio/Under_the_Tree_wip2.wav" id="14_uw48u"]
 [ext_resource type="AudioStream" uid="uid://gdvjkwxiv8xn" path="res://assets/audio/Reaper_Leviathan_Roar_1.mp3" id="15_f3vda"]
-[ext_resource type="PackedScene" path="res://assets/models/single_stem_rose.glb" id="18_dvh8p"]
+[ext_resource type="PackedScene" uid="uid://b2xr0leynxbyy" path="res://assets/models/single_stem_rose.glb" id="18_dvh8p"]
 [ext_resource type="PackedScene" uid="uid://bjmtdpfnmbt12" path="res://assets/models/margarita_flower.glb" id="19_46jux"]
 [ext_resource type="PackedScene" uid="uid://ue2nairp2hc2" path="res://assets/models/sunflower_low_poly.glb" id="20_gcu8g"]
 [ext_resource type="PackedScene" uid="uid://qismqnre6r7p" path="res://scenes/sunflower.tscn" id="20_ngjdl"]

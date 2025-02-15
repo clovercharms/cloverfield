@@ -1,0 +1,32 @@
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://bk1vmxbhrchp5"]
+
+[sub_resource type="AudioEffectLowShelfFilter" id="AudioEffectLowShelfFilter_ineoi"]
+resource_name = "LowShelfFilter"
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_xokro"]
+resource_name = "PitchShift"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_c0uaf"]
+resource_name = "Reverb"
+predelay_feedback = 0.0
+hipass = 1.0
+
+[resource]
+bus/1/name = &"Jumpscare"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/2/name = &"Normal"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectLowShelfFilter_ineoi")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectPitchShift_xokro")
+bus/2/effect/1/enabled = true
+bus/2/effect/2/effect = SubResource("AudioEffectReverb_c0uaf")
+bus/2/effect/2/enabled = true

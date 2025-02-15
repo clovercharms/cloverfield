@@ -1,0 +1,1029 @@
+[gd_scene load_steps=149 format=3 uid="uid://c7vweyfl2bkm2"]
+
+[ext_resource type="Script" path="res://scenes/space/Space.cs" id="1_0ype4"]
+[ext_resource type="Texture2D" uid="uid://7qvs0b701o5p" path="res://assets/textures/star.png" id="1_e78pj"]
+[ext_resource type="Script" path="res://scenes/space/UboaScare.cs" id="2_c6g4y"]
+[ext_resource type="Texture2D" uid="uid://cuqbdwp7nnb30" path="res://assets/textures/uboa.png" id="3_6b7et"]
+[ext_resource type="Texture2D" uid="uid://bv6vcmryt52xv" path="res://assets/textures/heart_particles.png" id="3_067ob"]
+[ext_resource type="Texture2D" uid="uid://dqb5y1s20fm0j" path="res://assets/textures/lightswitch_off.png" id="3_y1d6y"]
+[ext_resource type="Texture2D" uid="uid://b0dwl852c76jd" path="res://assets/textures/lightswitch_on.png" id="4_fl2k8"]
+[ext_resource type="PackedScene" uid="uid://cf0kerida4ex4" path="res://scenes/space/charm_prison.tscn" id="4_inpb6"]
+[ext_resource type="Script" path="res://addons/orbit-controls/orbit-controls.gd" id="4_wkhvl"]
+[ext_resource type="AudioStream" uid="uid://hgxrd3sj6fbr" path="res://assets/audio/lightswitch_on.mp3" id="6_5cdab"]
+[ext_resource type="AudioStream" uid="uid://bql6optdv6d8d" path="res://assets/audio/uboa.mp3" id="6_bb1s5"]
+[ext_resource type="PackedScene" uid="uid://b2aiqkh3ha6lr" path="res://scenes/space/mitty_cam.tscn" id="6_vgivq"]
+[ext_resource type="PackedScene" uid="uid://d1yjtkbiyq1wo" path="res://scenes/space/charm_summoner.tscn" id="7_6byia"]
+[ext_resource type="Texture2D" uid="uid://ds8ea8qf7gsgq" path="res://assets/textures/charms/charm_00_banana.PNG" id="7_gkk20"]
+[ext_resource type="AudioStream" uid="uid://b5ijm3pb6eiwk" path="res://assets/audio/lightswitch_off.mp3" id="7_hlgwf"]
+[ext_resource type="AudioStream" uid="uid://bgcgb0jui654b" path="res://assets/05_Mitty valentines 25 bgm_space_1.mp3" id="7_rr2ua"]
+[ext_resource type="Texture2D" uid="uid://c8g3qiefq6a1n" path="res://assets/textures/charms/charm_01_beard.PNG" id="8_c4yeu"]
+[ext_resource type="PackedScene" uid="uid://cs5ea3np81gnt" path="res://assets/models/sakura_tree_1.glb" id="8_o85dv"]
+[ext_resource type="Texture2D" uid="uid://w2itmroee250" path="res://assets/textures/charms/charm_02_big_stem.PNG" id="9_jn8oa"]
+[ext_resource type="Texture2D" uid="uid://5auaat3uu0lq" path="res://assets/textures/charms/charm_03_booty.PNG" id="10_oracb"]
+[ext_resource type="Texture2D" uid="uid://y63lfjaqi6b5" path="res://assets/textures/charms/charm_04_bowtie.PNG" id="11_av46x"]
+[ext_resource type="Texture2D" uid="uid://dihr5la8yr3j" path="res://assets/textures/charms/charm_05_brazil.PNG" id="12_ufb2s"]
+[ext_resource type="Texture2D" uid="uid://03sr5aff2byp" path="res://assets/textures/charms/charm_06_chad.PNG" id="13_0tvqj"]
+[ext_resource type="Texture2D" uid="uid://dfkrh5y055bbs" path="res://assets/textures/charms/charm_07_clover.PNG" id="14_5l3su"]
+[ext_resource type="FontFile" uid="uid://b2rb2n0xt52yx" path="res://assets/fonts/IndieFlower-Regular.ttf" id="14_nrlmp"]
+[ext_resource type="Texture2D" uid="uid://isholef525yx" path="res://assets/textures/charms/charm_08_CUNY.PNG" id="15_ry8ss"]
+[ext_resource type="Texture2D" uid="uid://bbpom44ve2ufv" path="res://assets/textures/charms/charm_09_dapper.PNG" id="16_tdhd0"]
+[ext_resource type="Texture2D" uid="uid://bvlus8yq5xue0" path="res://assets/textures/charms/charm_10_doodle.PNG" id="17_s8rpk"]
+[ext_resource type="Texture2D" uid="uid://b5tha411hmpk0" path="res://assets/textures/charms/charm_11_drip.PNG" id="18_y5451"]
+[ext_resource type="Texture2D" uid="uid://c3moj1qv3xsog" path="res://assets/textures/charms/charm_12_ear.PNG" id="19_sto8h"]
+[ext_resource type="Texture2D" uid="uid://c2l1ihed3dfwv" path="res://assets/textures/charms/charm_13_excited_dog.PNG" id="20_8g1xj"]
+[ext_resource type="Texture2D" uid="uid://dufn8wpeb3cyr" path="res://assets/textures/charms/charm_14_floppy.PNG" id="22_7doh7"]
+[ext_resource type="Texture2D" uid="uid://c6sd6up2cqqwl" path="res://assets/textures/charms/charm_15_fluffy.PNG" id="23_4lxfo"]
+[ext_resource type="Texture2D" uid="uid://bhphg0c8scmyi" path="res://assets/textures/charms/charm_16_glassesadjust.PNG" id="24_3bfgo"]
+[ext_resource type="Texture2D" uid="uid://bumivvcw6qrmm" path="res://assets/textures/charms/charm_17_incoherent.PNG" id="25_bjqi1"]
+[ext_resource type="Texture2D" uid="uid://cgg40a3t87nhw" path="res://assets/textures/charms/charm_18_jorkin.PNG" id="26_qo3xy"]
+[ext_resource type="Texture2D" uid="uid://d38ynbox0d28w" path="res://assets/textures/charms/charm_19_kissy.PNG" id="27_8n4u5"]
+[ext_resource type="Texture2D" uid="uid://croeckbk7vapr" path="res://assets/textures/charms/charm_20_minion.PNG" id="28_df577"]
+[ext_resource type="Texture2D" uid="uid://dfmhq51e8xfws" path="res://assets/textures/charms/charm_21_mittynade.PNG" id="29_56tvy"]
+[ext_resource type="Texture2D" uid="uid://k03vixos1o5g" path="res://assets/textures/charms/charm_22_nervous.PNG" id="30_dh7y8"]
+[ext_resource type="Texture2D" uid="uid://dsq7cdi5nal13" path="res://assets/textures/charms/charm_23_ohoho.PNG" id="31_0w7as"]
+[ext_resource type="Texture2D" uid="uid://qswtn6c6nq1j" path="res://assets/textures/charms/charm_24_pantsu.PNG" id="32_el2mr"]
+[ext_resource type="Texture2D" uid="uid://odrmnd4kpyil" path="res://assets/textures/charms/charm_25_pp.PNG" id="33_nc6rf"]
+[ext_resource type="Texture2D" uid="uid://bf7vcunwomyf8" path="res://assets/textures/charms/charm_26_ripped.PNG" id="34_a18hh"]
+[ext_resource type="Texture2D" uid="uid://cnatrlnxw47kd" path="res://assets/textures/charms/charm_27_rose.PNG" id="35_8jgll"]
+[ext_resource type="Texture2D" uid="uid://i1bmkld5u7mg" path="res://assets/textures/charms/charm_28_slender.PNG" id="36_cril7"]
+[ext_resource type="Texture2D" uid="uid://cs6fe660dayop" path="res://assets/textures/charms/charm_29_smitten.PNG" id="37_38auu"]
+[ext_resource type="Texture2D" uid="uid://bx4to1xuoowby" path="res://assets/textures/charms/charm_30_snail.PNG" id="38_scuk2"]
+[ext_resource type="Texture2D" uid="uid://cki3rmxpwbyys" path="res://assets/textures/charms/charm_31_splat.PNG" id="39_6p3uf"]
+[ext_resource type="Texture2D" uid="uid://dffvcdr4jmguj" path="res://assets/textures/charms/charm_31_splat_shadow.PNG" id="39_uaa5i"]
+[ext_resource type="Texture2D" uid="uid://bav2fm21eowb2" path="res://assets/textures/charms/charm_32_spring.PNG" id="40_eg8q8"]
+[ext_resource type="Texture2D" uid="uid://cevta1kvqdgvy" path="res://assets/textures/charms/charm_33_sully.PNG" id="41_iynw0"]
+[ext_resource type="Texture2D" uid="uid://cjjbdbguami33" path="res://assets/textures/charms/charm_34_tentacle.PNG" id="42_ypnvt"]
+[ext_resource type="Texture2D" uid="uid://bgcbga045a7e4" path="res://assets/textures/charms/charm_35_top_hat.PNG" id="43_csrvj"]
+[ext_resource type="Texture2D" uid="uid://mdlcctar1l5b" path="res://assets/textures/charms/charm_36_tsundere.PNG" id="44_3qrsp"]
+[ext_resource type="Texture2D" uid="uid://dlp47v02juj1y" path="res://assets/textures/charms/charm_37_wave.PNG" id="45_6ey38"]
+[ext_resource type="Texture2D" uid="uid://cl3mt3ugvd41f" path="res://assets/textures/charms/charm_38_weed.PNG" id="46_2mprd"]
+[ext_resource type="Texture2D" uid="uid://d1y230t0oi0g0" path="res://assets/textures/charms/charm_39_wrinkled.PNG" id="47_5xrkd"]
+[ext_resource type="Texture2D" uid="uid://0rkbf37yxbgt" path="res://assets/textures/charms/Heart eyes alts/charm_00_banana_heart.PNG" id="47_qo5q6"]
+[ext_resource type="Texture2D" uid="uid://5kqslv10ra0d" path="res://assets/textures/charms/Heart eyes alts/charm_01_beard_heart.PNG" id="48_4t74s"]
+[ext_resource type="Texture2D" uid="uid://d0oiwihvcx5av" path="res://assets/textures/charms/Heart eyes alts/charm_02_big_stem_heart.PNG" id="49_5uk0x"]
+[ext_resource type="Texture2D" uid="uid://drars8nrhrjcm" path="res://assets/textures/charms/Heart eyes alts/charm_03_booty_heart.PNG" id="50_xqfb6"]
+[ext_resource type="Texture2D" uid="uid://btw0ylx1oxydx" path="res://assets/textures/charms/Heart eyes alts/charm_04_bowtie_heart.PNG" id="51_dpb2j"]
+[ext_resource type="PackedScene" uid="uid://bw6mlcy6ywssg" path="res://assets/models/rock1.fbx" id="52_jd3x8"]
+[ext_resource type="Texture2D" uid="uid://8l2rifryppx5" path="res://assets/textures/charms/Heart eyes alts/charm_05_brazil_heart.PNG" id="52_tycdx"]
+[ext_resource type="PackedScene" uid="uid://dxjvm36k67bno" path="res://assets/models/rocket.fbx" id="53_qid5k"]
+[ext_resource type="Texture2D" uid="uid://do20f47mn2keh" path="res://assets/textures/charms/Heart eyes alts/charm_06_chad_heart.PNG" id="53_vixt8"]
+[ext_resource type="Texture2D" uid="uid://c1kes5ncihepb" path="res://assets/textures/charms/Heart eyes alts/charm_07_clover_heart.PNG" id="54_0wx14"]
+[ext_resource type="Texture2D" uid="uid://dv3v5ksok14tv" path="res://assets/textures/charms/Heart eyes alts/charm_08_CUNY_heart.PNG" id="55_2or1u"]
+[ext_resource type="Texture2D" uid="uid://bsswypis4si4y" path="res://assets/textures/charms/Heart eyes alts/charm_09_dapper_heart.PNG" id="56_vxi5h"]
+[ext_resource type="Texture2D" uid="uid://cd26fk2gondo5" path="res://assets/textures/charms/Heart eyes alts/charm_10_doodle_heart.PNG" id="57_mujqs"]
+[ext_resource type="Texture2D" uid="uid://cotyw2d3lie3x" path="res://assets/textures/charms/Heart eyes alts/charm_11_drip_heart.PNG" id="58_vbuyt"]
+[ext_resource type="Texture2D" uid="uid://cmw5iymbekaiy" path="res://assets/textures/charms/Heart eyes alts/charm_12_ear_heart.PNG" id="59_tlwhh"]
+[ext_resource type="Texture2D" uid="uid://bsgbib7ckjpd7" path="res://assets/textures/charms/Heart eyes alts/charm_13_excited_dog_heart.PNG" id="60_mj1ee"]
+[ext_resource type="Texture2D" uid="uid://jh22c04m0231" path="res://assets/textures/charms/Heart eyes alts/charm_14_floppy_heart.PNG" id="61_en2gl"]
+[ext_resource type="Texture2D" uid="uid://cpxifyyp2kfyq" path="res://assets/textures/charms/Heart eyes alts/charm_15_fluffy_heart.PNG" id="62_5cldm"]
+[ext_resource type="Texture2D" uid="uid://cqlwyn4wa16g4" path="res://assets/textures/charms/Heart eyes alts/charm_16_glassesadjust_heart.PNG" id="63_m42up"]
+[ext_resource type="Texture2D" uid="uid://5122u32hbeo0" path="res://assets/textures/charms/Heart eyes alts/charm_17_incoherent_heart.PNG" id="64_8tmbf"]
+[ext_resource type="Texture2D" uid="uid://c33t3t6h83386" path="res://assets/textures/charms/Heart eyes alts/charm_18_jorkin_heart.PNG" id="65_rnfej"]
+[ext_resource type="Texture2D" uid="uid://dy1yh53h50jf7" path="res://assets/textures/charms/Heart eyes alts/charm_19_kissy_heart.PNG" id="66_66se3"]
+[ext_resource type="Texture2D" uid="uid://b7ss5y8p0s8bn" path="res://assets/textures/charms/Heart eyes alts/charm_20_minion_heart.PNG" id="67_5f3ij"]
+[ext_resource type="Texture2D" uid="uid://v1w7g37h77kt" path="res://assets/textures/charms/Heart eyes alts/charm_21_mittynade_heart.PNG" id="68_wyanq"]
+[ext_resource type="Texture2D" uid="uid://wmiy0ihdij5v" path="res://assets/textures/charms/Heart eyes alts/charm_22_nervous_heart.PNG" id="69_m3ndd"]
+[ext_resource type="Texture2D" uid="uid://xml20cfw71s3" path="res://assets/textures/charms/Heart eyes alts/charm_23_ohoho_heart.PNG" id="70_t7bta"]
+[ext_resource type="Texture2D" uid="uid://dmfgcog0gkr5a" path="res://assets/textures/charms/Heart eyes alts/charm_24_pantsu_heart.PNG" id="71_b3x71"]
+[ext_resource type="Texture2D" uid="uid://s0r4nfkp1827" path="res://assets/textures/charms/Heart eyes alts/charm_25_pp_heart.PNG" id="72_mc4ku"]
+[ext_resource type="Texture2D" uid="uid://c1xfuqumr0fde" path="res://assets/textures/charms/Heart eyes alts/charm_26_ripped_heart.PNG" id="73_r6in8"]
+[ext_resource type="Texture2D" uid="uid://b6yyeui5ou00" path="res://assets/textures/charms/Heart eyes alts/charm_27_rose_heart.PNG" id="74_lcc34"]
+[ext_resource type="Texture2D" uid="uid://qi86xke55f3o" path="res://assets/textures/charms/Heart eyes alts/charm_28_slender_heart.PNG" id="75_ythoy"]
+[ext_resource type="Texture2D" uid="uid://c48u5o7ci13u1" path="res://assets/textures/charms/Heart eyes alts/charm_29_smitten_heart.PNG" id="76_qyumw"]
+[ext_resource type="Texture2D" uid="uid://cbfvl54od3tt3" path="res://assets/textures/charms/Heart eyes alts/charm_30_snail_heart.PNG" id="77_re4rp"]
+[ext_resource type="Texture2D" uid="uid://sxvxuqrcnmui" path="res://assets/textures/charms/Heart eyes alts/charm_31_splat_shadow_heart.PNG" id="78_jawkc"]
+[ext_resource type="Texture2D" uid="uid://d24muqdhwn668" path="res://assets/textures/charms/Heart eyes alts/charm_32_spring_heart.PNG" id="79_54gtq"]
+[ext_resource type="Texture2D" uid="uid://btsepisxt4bqd" path="res://assets/textures/charms/Heart eyes alts/charm_31_splat_heart.PNG" id="79_iqa2g"]
+[ext_resource type="Texture2D" uid="uid://kak26u3kdmes" path="res://assets/textures/charms/Heart eyes alts/charm_33_sully_heart.PNG" id="80_d4utj"]
+[ext_resource type="Texture2D" uid="uid://05a63v415yx3" path="res://assets/textures/charms/Heart eyes alts/charm_34_tentacle_heart.PNG" id="81_oswqi"]
+[ext_resource type="Texture2D" uid="uid://djg446821e5fe" path="res://assets/textures/charms/Heart eyes alts/charm_35_tophat_heart.PNG" id="82_8yrd0"]
+[ext_resource type="Texture2D" uid="uid://dxvvxoelsdrfj" path="res://assets/textures/charms/Heart eyes alts/charm_36_tsundere_heart.PNG" id="83_mb6pj"]
+[ext_resource type="Texture2D" uid="uid://dm1o6c2ypdmo6" path="res://assets/textures/charms/Heart eyes alts/charm_37_wave_heart.PNG" id="84_7f3q5"]
+[ext_resource type="Texture2D" uid="uid://bef5hhc6jrsp0" path="res://assets/textures/charms/Heart eyes alts/charm_38_weed_heart.PNG" id="85_2sdgx"]
+[ext_resource type="Texture2D" uid="uid://2vi2s2mn6hpp" path="res://assets/textures/charms/Heart eyes alts/charm_39_wrinkled_heart.PNG" id="86_wlfsi"]
+[ext_resource type="Texture2D" uid="uid://dfx4dlvkg5uja" path="res://assets/textures/charms/charm_catgirl.PNG" id="90_7gvru"]
+[ext_resource type="PackedScene" uid="uid://b2xr0leynxbyy" path="res://assets/models/single_stem_rose.glb" id="91_fbucj"]
+[ext_resource type="PackedScene" uid="uid://cacd6dji5qgqi" path="res://assets/models/LRGTentacle_STATIC.fbx" id="92_nbqgp"]
+[ext_resource type="PackedScene" uid="uid://grs730d5sv2c" path="res://assets/models/crater.fbx" id="93_k6dtw"]
+[ext_resource type="Script" path="res://scenes/space/Sun.cs" id="97_4yllf"]
+[ext_resource type="AudioStream" uid="uid://t81juywnnnin" path="res://assets/audio/sun_kaboom.mp3" id="98_ojeow"]
+[ext_resource type="Script" path="res://scenes/space/jumpscare_camera_wrapper.gd" id="99_egf0e"]
+[ext_resource type="Texture2D" uid="uid://c0oquoalobej7" path="res://assets/textures/smug_charm.png" id="100_4mchp"]
+[ext_resource type="Script" path="res://scenes/space/jumpscare.gd" id="101_ks1mg"]
+[ext_resource type="PackedScene" uid="uid://c343nkatui2ly" path="res://scenes/space/anglerfish_lure.tscn" id="102_peblc"]
+[ext_resource type="AudioStream" uid="uid://cehxl8u754k0q" path="res://assets/audio/effects/Anglerfish_Awake2.wav" id="103_fafur"]
+[ext_resource type="AudioStream" uid="uid://bdtsc1yaa5bh5" path="res://assets/audio/effects/Anglerfish_Awake4.wav" id="104_bx8va"]
+[ext_resource type="AudioStream" uid="uid://cptnpnlmfiisw" path="res://assets/audio/effects/Anglerfish_Chase_Breathing.wav" id="105_my3e7"]
+[ext_resource type="Script" path="res://scenes/space/TentacleBlocker.cs" id="105_p7yyu"]
+[ext_resource type="AudioStream" uid="uid://d3mlftcljh53m" path="res://assets/audio/effects/AnglerFish_OpenMouth_v2_01.wav" id="106_dumfy"]
+[ext_resource type="Script" path="res://scenes/space/SunsplosionTimer.cs" id="107_i54xb"]
+[ext_resource type="AudioStream" uid="uid://kr7jj0e2ych4" path="res://assets/audio/music/dark_bramble.mp3" id="107_y1bg3"]
+[ext_resource type="AudioStream" uid="uid://bcrsprq0t2ot2" path="res://assets/audio/effects/catgirl_nya.wav" id="108_fog62"]
+[ext_resource type="AudioStream" uid="uid://bhuxi54al8bwo" path="res://assets/audio/effects/party_horn.mp3" id="109_nu8aa"]
+[ext_resource type="AudioStream" uid="uid://qfjtb3adkhkr" path="res://assets/audio/effects/cartoon-laugh.wav" id="110_063nk"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_agklt"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(-5, -10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_okqb6"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(5, -10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c42kj"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(-5, 10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w0cfh"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 10)
+angular_velocity_min = -5.00002
+angular_velocity_max = 4.99998
+orbit_velocity_min = -0.0499999
+orbit_velocity_max = 0.0500001
+radial_velocity_min = -5.00002
+radial_velocity_max = 2.99998
+gravity = Vector3(5, 10, 0)
+scale_min = 0.02
+scale_max = 0.05
+
+[sub_resource type="LabelSettings" id="LabelSettings_got7r"]
+font = ExtResource("14_nrlmp")
+font_size = 48
+outline_size = 8
+outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8cdok"]
+font = ExtResource("14_nrlmp")
+font_size = 24
+outline_size = 8
+outline_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jl760"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0.101961, 1)
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0, 0, 0.211765, 1)
+
+[sub_resource type="Sky" id="Sky_fy0p3"]
+sky_material = SubResource("ProceduralSkyMaterial_jl760")
+
+[sub_resource type="Environment" id="Environment_uvixq"]
+background_mode = 2
+sky = SubResource("Sky_fy0p3")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.1
+fog_light_color = Color(0, 0, 0, 1)
+fog_height_density = 16.0
+fog_depth_begin = 0.0
+fog_depth_end = 5.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0
+volumetric_fog_emission = Color(0.255659, 0.255659, 0.255659, 1)
+
+[sub_resource type="FogMaterial" id="FogMaterial_1sca5"]
+density = 0.005
+albedo = Color(0.989566, 0.816051, 0.866304, 1)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ncmjl"]
+lifetime_randomness = 0.5
+emission_shape_scale = Vector3(10, 10, 10)
+emission_shape = 1
+emission_sphere_radius = 75.0
+gravity = Vector3(0, 0, 0)
+scale_min = 100.0
+scale_max = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l7wmx"]
+transparency = 4
+cull_mode = 2
+albedo_texture = ExtResource("1_e78pj")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_w1kuo"]
+material = SubResource("StandardMaterial3D_l7wmx")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_eckrm"]
+radius = 9.846
+height = 23.43
+
+[sub_resource type="Gradient" id="Gradient_7yqem"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ghct2"]
+gradient = SubResource("Gradient_7yqem")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sqcv5"]
+lifetime_randomness = 0.48
+angle_min = -5.89999
+angle_max = 11.8
+velocity_pivot = Vector3(1, 1, 0)
+spread = 49.361
+initial_velocity_max = 1.0
+angular_velocity_min = -159.34
+angular_velocity_max = 59.02
+gravity = Vector3(0.74, 1, 0)
+color_ramp = SubResource("GradientTexture1D_ghct2")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qkh6r"]
+transparency = 1
+albedo_color = Color(0.611765, 0.611765, 0.611765, 0.721569)
+
+[sub_resource type="SphereMesh" id="SphereMesh_wyhjn"]
+material = SubResource("StandardMaterial3D_qkh6r")
+
+[sub_resource type="Curve" id="Curve_bv46q"]
+max_value = 0.1
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.07), 0.169295, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_w3kjy"]
+max_value = 8.0
+_data = [Vector2(0, 8), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5ivmy"]
+_data = [Vector2(0, 1), 0.0, -0.2, 0, 1, Vector2(1, 0.8), -0.2, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vveh1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.31616, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1o4sb"]
+min_value = -80.0
+max_value = 0.0
+_data = [Vector2(0, 0.0172729), 0.0, 0.0, 0, 0, Vector2(1, -78.8295), -196.169, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_sscwo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../Stars:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/SmugCharm:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../Sun:light_energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../UI:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam:current")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../UboaScare:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_02jly"]
+resource_name = "jumpscare"
+length = 58.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(5, 5.33333, 18.1667, 57.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"startFadingMusic"
+}, {
+"args": [],
+"method": &"startFadingFog"
+}, {
+"args": [],
+"method": &"startSpawningLures"
+}, {
+"args": [],
+"method": &"cleanup"
+}]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("JumpscareBGM")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 179.68,
+"start_offset": 0.0,
+"stream": ExtResource("107_y1bg3")
+}],
+"times": PackedFloat32Array(15)
+}
+tracks/1/use_blend = true
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("JumpscareSFX")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("108_fog62")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("109_nu8aa")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("110_063nk")
+}],
+"times": PackedFloat32Array(0, 52.5667, 54.0333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../JumpscareOrbitalWrapper")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PositionForJumpscare"
+}]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../../Stars:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/SmugCharm:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 49.5667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../../Sun:light_energy")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(5, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.8, 0.0]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishAwake1")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("103_fafur")
+}],
+"times": PackedFloat32Array(26.3)
+}
+tracks/7/use_blend = true
+tracks/8/type = "audio"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishAwake2")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("104_bx8va")
+}],
+"times": PackedFloat32Array(35.6)
+}
+tracks/8/use_blend = true
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 2.1478,
+"start_offset": 0.0,
+"stream": ExtResource("105_my3e7")
+}],
+"times": PackedFloat32Array(44.3)
+}
+tracks/9/use_blend = true
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishRoar")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 2.6,
+"start_offset": 0.0,
+"stream": ExtResource("106_dumfy")
+}],
+"times": PackedFloat32Array(50.3)
+}
+tracks/10/use_blend = true
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(28.6, 1, 0, 0, 0, 1, 29.6, 1, -4.15712e-09, 0.442423, 0.0350215, 0.896123, 36.4667, 1, 1.03928e-09, 0.442423, 0.0350215, 0.896123, 37.3333, 1, -2.06118e-09, -0.426874, -0.0337907, 0.903679, 50.9, 1, -2.06118e-09, -0.426874, -0.0337907, 0.903679, 51.9, 1, 1.33152e-08, 0.712458, 0.056397, 0.699445)
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../../UI:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "position_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper")
+tracks/13/interp = 2
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(10, 1, 0, 0, 0, 15, 1, 0, 0, 70)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(11.5, 1, 0, 0, 0, 1, 15, 1, 0.99922, 0, 0, 0.0394866)
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam:current")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase:volume_db")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(44, 51.2667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-30.0, 10.0]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("../../UboaScare:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(-0.2, 0),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mud7s"]
+_data = {
+"RESET": SubResource("Animation_sscwo"),
+"jumpscare": SubResource("Animation_02jly")
+}
+
+[node name="Space" type="Node3D" node_paths=PackedStringArray("TheSun", "BGM", "EndMusic", "SunsplosionTimer", "HeartParticles", "HeartParticlesTopLeft", "HeartParticlesTopRight", "HeartParticlesBottomLeft", "HeartParticlesBottomRight")]
+script = ExtResource("1_0ype4")
+TheSun = NodePath("Sun")
+BGM = NodePath("BGM")
+EndMusic = NodePath("Sun/End Music")
+SunsplosionTimer = NodePath("Timers/Sunsplosion Timer")
+HeartParticles = [NodePath("UI/Hearts B Left"), NodePath("UI/Hearts B Right"), NodePath("UI/Hearts T Left"), NodePath("UI/Hearts T Right")]
+HeartParticlesTopLeft = NodePath("UI/Hearts T Left")
+HeartParticlesTopRight = NodePath("UI/Hearts T Right")
+HeartParticlesBottomLeft = NodePath("UI/Hearts B Left")
+HeartParticlesBottomRight = NodePath("UI/Hearts B Right")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Hearts B Left" type="GPUParticles2D" parent="UI"]
+position = Vector2(100, 675)
+rotation = -0.380482
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_agklt")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Hearts B Right" type="GPUParticles2D" parent="UI"]
+position = Vector2(1068, 675)
+rotation = -0.380482
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_okqb6")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Hearts T Left" type="GPUParticles2D" parent="UI"]
+position = Vector2(100, -25)
+rotation = -0.380482
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_c42kj")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Hearts T Right" type="GPUParticles2D" parent="UI"]
+position = Vector2(1068, -25)
+rotation = -0.380482
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_w0cfh")
+texture = ExtResource("3_067ob")
+lifetime = 7.5
+explosiveness = 0.2
+
+[node name="Counter" type="Label" parent="UI"]
+layout_mode = 0
+offset_right = 430.0
+offset_bottom = 71.0
+text = "Messages Read xx/xx"
+label_settings = SubResource("LabelSettings_got7r")
+
+[node name="Label" type="Label" parent="UI"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "Hold Right Mouse Button to move the camera"
+label_settings = SubResource("LabelSettings_8cdok")
+autowrap_mode = 3
+
+[node name="UboaScare" type="Control" parent="." node_paths=PackedStringArray("Env", "Sun", "LightSwitch", "Uboa", "BGM", "SoundOn", "SoundOff", "SoundUboa")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_c6g4y")
+Env = NodePath("../Environment")
+Sun = NodePath("../Sun")
+LightSwitch = NodePath("LightSwitch")
+BtnOff = ExtResource("3_y1d6y")
+BtnOn = ExtResource("4_fl2k8")
+Uboa = NodePath("CenterContainer/Uboa")
+BGM = NodePath("../BGM")
+SoundOn = NodePath("SwitchOn")
+SoundOff = NodePath("SwitchOff")
+SoundUboa = NodePath("Uboa")
+
+[node name="CenterContainer" type="CenterContainer" parent="UboaScare"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Uboa" type="TextureRect" parent="UboaScare/CenterContainer"]
+visible = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("3_6b7et")
+expand_mode = 1
+
+[node name="LightSwitch" type="CheckButton" parent="UboaScare"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -67.0
+offset_right = 496.0
+offset_bottom = 493.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.1, 0.1)
+icon = ExtResource("3_y1d6y")
+icon_alignment = 1
+expand_icon = true
+
+[node name="Uboa" type="AudioStreamPlayer" parent="UboaScare"]
+stream = ExtResource("6_bb1s5")
+volume_db = -10.0
+
+[node name="SwitchOn" type="AudioStreamPlayer" parent="UboaScare"]
+stream = ExtResource("6_5cdab")
+volume_db = -20.0
+
+[node name="SwitchOff" type="AudioStreamPlayer" parent="UboaScare"]
+stream = ExtResource("7_hlgwf")
+volume_db = -20.0
+
+[node name="Environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_uvixq")
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+shape = 4
+material = SubResource("FogMaterial_1sca5")
+
+[node name="Stars" type="GPUParticles3D" parent="."]
+cast_shadow = 0
+gi_mode = 0
+amount = 1000
+lifetime = 10.0
+explosiveness = 0.25
+randomness = 0.5
+visibility_aabb = AABB(-488.524, -490.506, -486.248, 957.523, 966.392, 979.165)
+process_material = SubResource("ParticleProcessMaterial_ncmjl")
+draw_pass_1 = SubResource("QuadMesh_w1kuo")
+
+[node name="Charm Prison" parent="." instance=ExtResource("4_inpb6")]
+
+[node name="OrbitControls" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_wkhvl")
+_camera = NodePath("../Mitty Cam")
+rotate_speed = 0.5
+min_distance = 26.0
+max_distance = 35.0
+enable_pan = false
+
+[node name="Mitty Cam" parent="." instance=ExtResource("6_vgivq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 0)
+current = true
+
+[node name="Charm Summoner" parent="." node_paths=PackedStringArray("Counter") instance=ExtResource("7_6byia")]
+Counter = NodePath("../UI/Counter")
+ResponsesPath = "res://responses2025.csv"
+BodiesBase = Array[Texture2D]([ExtResource("7_gkk20"), ExtResource("8_c4yeu"), ExtResource("9_jn8oa"), ExtResource("10_oracb"), ExtResource("11_av46x"), ExtResource("12_ufb2s"), ExtResource("13_0tvqj"), ExtResource("14_5l3su"), ExtResource("15_ry8ss"), ExtResource("16_tdhd0"), ExtResource("17_s8rpk"), ExtResource("18_y5451"), ExtResource("19_sto8h"), ExtResource("20_8g1xj"), ExtResource("22_7doh7"), ExtResource("23_4lxfo"), ExtResource("24_3bfgo"), ExtResource("25_bjqi1"), ExtResource("26_qo3xy"), ExtResource("27_8n4u5"), ExtResource("28_df577"), ExtResource("29_56tvy"), ExtResource("30_dh7y8"), ExtResource("31_0w7as"), ExtResource("32_el2mr"), ExtResource("33_nc6rf"), ExtResource("34_a18hh"), ExtResource("35_8jgll"), ExtResource("36_cril7"), ExtResource("37_38auu"), ExtResource("38_scuk2"), ExtResource("39_6p3uf"), ExtResource("39_uaa5i"), ExtResource("40_eg8q8"), ExtResource("41_iynw0"), ExtResource("42_ypnvt"), ExtResource("43_csrvj"), ExtResource("44_3qrsp"), ExtResource("45_6ey38"), ExtResource("46_2mprd"), ExtResource("47_5xrkd")])
+BodiesHeart = Array[Texture2D]([ExtResource("47_qo5q6"), ExtResource("48_4t74s"), ExtResource("49_5uk0x"), ExtResource("50_xqfb6"), ExtResource("51_dpb2j"), ExtResource("52_tycdx"), ExtResource("53_vixt8"), ExtResource("54_0wx14"), ExtResource("55_2or1u"), ExtResource("56_vxi5h"), ExtResource("57_mujqs"), ExtResource("58_vbuyt"), ExtResource("59_tlwhh"), ExtResource("60_mj1ee"), ExtResource("61_en2gl"), ExtResource("62_5cldm"), ExtResource("63_m42up"), ExtResource("64_8tmbf"), ExtResource("65_rnfej"), ExtResource("66_66se3"), ExtResource("67_5f3ij"), ExtResource("68_wyanq"), ExtResource("69_m3ndd"), ExtResource("70_t7bta"), ExtResource("71_b3x71"), ExtResource("72_mc4ku"), ExtResource("73_r6in8"), ExtResource("74_lcc34"), ExtResource("75_ythoy"), ExtResource("76_qyumw"), ExtResource("77_re4rp"), ExtResource("79_iqa2g"), ExtResource("78_jawkc"), ExtResource("79_54gtq"), ExtResource("80_d4utj"), ExtResource("81_oswqi"), ExtResource("82_8yrd0"), ExtResource("83_mb6pj"), ExtResource("84_7f3q5"), ExtResource("85_2sdgx"), ExtResource("86_wlfsi")])
+CatgirlTexture = ExtResource("90_7gvru")
+
+[node name="BGM" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("7_rr2ua")
+attenuation_model = 3
+volume_db = -18.0
+bus = &"Normal"
+
+[node name="Trees" type="Node3D" parent="."]
+transform = Transform3D(0.546637, 0.692779, 0.470367, 0.464202, 0.2168, -0.858786, -0.696925, 0.68779, -0.203078, 0, 0, 0)
+
+[node name="sakura_tree_2" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.207747, 0.235025, 0.0407169, -0.230637, 0.211699, -0.0452032, -0.0608377, -2.25846e-08, 0.310406, 18.5179, 16.7914, -0.367874)
+
+[node name="sakura_tree_1" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.333114, 0, 0, 1.49012e-08, 0.333114, 1.49012e-08, -7.45058e-09, 0, 0.333114, 0.00118446, 24.9999, 0.0556931)
+
+[node name="sakura_tree_3" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.0941554, -0.0504528, 0.386883, -0.33507, 0.193435, 0.106771, -0.19988, -0.348033, 0.00325808, -3.50803, 11.9558, -21.6738)
+
+[node name="sakura_tree_4" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.217906, -0.0771637, -0.0798476, -0.107422, 0.101963, 0.19462, -0.0281156, 0.208475, -0.12474, -7.75459, 10.1263, 21.5017)
+
+[node name="sakura_tree_5" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.271248, 0.0814736, -0.111658, -0.133718, -0.216943, 0.166541, -0.0349981, 0.19743, 0.22908, 6.83731, -18.0148, 15.9285)
+
+[node name="sakura_tree_6" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.279886, 0.141198, -0.0514729, -0.0959553, -0.251634, -0.16851, -0.115668, -0.132914, 0.264344, 11.1805, -19.5969, -10.7683)
+
+[node name="sakura_tree_7" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.259326, -0.272994, -0.0618247, 0.25617, -0.197508, -0.202399, 0.112804, -0.179062, 0.317506, -17.8159, -12.746, -12.0472)
+
+[node name="sakura_tree_8" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.111525, -0.166558, -0.0329127, 0.132486, 0.110003, -0.107749, 0.106172, 0.0376906, 0.169026, -20.441, 13.7299, 4.31909)
+
+[node name="sakura_tree_9" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.111123, 0.324105, 0.084934, 0.304588, 0.0604419, 0.167865, 0.139583, 0.126131, -0.298687, 22.8638, 4.09193, 9.24666)
+
+[node name="sakura_tree_10" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(-0.0804204, -0.31058, 0.0795292, -0.269178, 0.109949, 0.157183, -0.174149, -0.0265234, -0.27968, -23.5763, 8.14433, -1.68147)
+
+[node name="sakura_tree_11" parent="Trees" instance=ExtResource("8_o85dv")]
+transform = Transform3D(0.194041, 0.143508, -0.276061, -0.308986, 0.127039, -0.151144, 0.0364898, 0.312606, 0.188153, 10.0613, 8.82451, 21.1163)
+
+[node name="Small_Decorations" type="Node3D" parent="."]
+transform = Transform3D(0.630619, 0.495924, -0.596974, 0.698309, -0.698225, 0.15763, -0.33865, -0.516276, -0.786622, 0, 0, 0)
+
+[node name="Rose" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0338802, 25, 0.027273)
+
+[node name="Rose2" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.770884, -0.502452, -0.391509, 0.555309, 0.831217, 0.0266442, 0.312042, -0.237948, 0.919788, -12.5981, 20.7623, -5.93418)
+
+[node name="Rose3" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.840439, -0.220151, 0.495172, 0.404936, 0.862372, -0.303879, -0.360123, 0.455905, 0.813918, -5.51873, 21.5372, 11.432)
+
+[node name="Rose4" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.840439, 0.253878, 0.478757, 0.404936, 0.292891, -0.866165, -0.360123, 0.921825, 0.143352, 6.33152, 7.28492, 23.0617)
+
+[node name="Rose5" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.775914, 0.166081, 0.608584, 0.606823, -0.460155, -0.648093, 0.172407, 0.872166, -0.457823, 4.14234, -11.5421, 21.7858)
+
+[node name="Rose6" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.586429, -0.534534, 0.608584, -0.0213186, -0.761263, -0.648093, 0.80972, 0.367086, -0.457823, -13.3666, -19.0485, 9.13721)
+
+[node name="Rose7" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.0051744, -0.793472, 0.608584, -0.57372, -0.500821, -0.648093, 0.819035, -0.345803, -0.457823, -19.8204, -12.5187, -8.68531)
+
+[node name="Rose8" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(-0.342573, -0.477047, 0.809364, -0.735032, -0.400455, -0.547143, 0.585126, -0.782344, -0.21346, -11.8925, -10.0014, -19.5842)
+
+[node name="Rose9" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(-0.424066, -0.221944, 0.878014, -0.808479, 0.52964, -0.2566, -0.40808, -0.818671, -0.404039, -5.51027, 13.2614, -20.4639)
+
+[node name="Rose10" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.281596, 0.889149, 0.360718, 0.95953, -0.261939, -0.103398, 0.00254998, 0.375236, -0.926926, 22.229, -6.58378, 9.35552)
+
+[node name="Rose11" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.281596, 0.36936, -0.885594, 0.95953, -0.105944, 0.260919, 0.00254998, -0.923228, -0.384245, 9.2003, -2.67399, -23.0912)
+
+[node name="Rose12" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.437929, -0.15473, -0.885594, 0.193475, -0.945774, 0.260919, -0.877944, -0.285604, -0.384245, -3.90725, -23.6438, -7.12084)
+
+[node name="Rose13" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.0170884, -0.907584, 0.419523, -0.808431, 0.234354, 0.539924, -0.588344, -0.348381, -0.729714, -22.6787, 5.90095, -8.70949)
+
+[node name="Rose14" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(-0.220369, 0.78563, 0.578119, -0.352704, 0.488406, -0.79816, -0.909416, -0.379795, 0.169465, 19.664, 12.2003, -9.45943)
+
+[node name="Rose15" parent="Small_Decorations" instance=ExtResource("91_fbucj")]
+transform = Transform3D(0.238175, -0.961574, -0.136557, -0.968738, -0.245256, 0.0373615, -0.0694181, 0.12339, -0.989927, -24.0511, -6.09754, 3.06009)
+
+[node name="rock1" parent="Small_Decorations" instance=ExtResource("52_jd3x8")]
+transform = Transform3D(-0.970105, 0.0627264, -0.23444, 0.19733, 0.766208, -0.611544, 0.141271, -0.639523, -0.75568, 1.04246, 18.6892, -15.9709)
+
+[node name="rock2" parent="Small_Decorations" instance=ExtResource("52_jd3x8")]
+transform = Transform3D(0.667005, 0.455458, 0.589629, -0.608972, 0.789222, 0.0792544, -0.429253, -0.41193, 0.803776, 2.37232, 19.8621, -14.0034)
+
+[node name="Decorations" type="Node3D" parent="."]
+transform = Transform3D(0.630619, 0.495924, -0.596974, 0.698309, -0.698225, 0.15763, -0.33865, -0.516276, -0.786622, 0, 0, 0)
+
+[node name="rocket" parent="Decorations" instance=ExtResource("53_qid5k")]
+transform = Transform3D(-0.566318, 0.751399, -0.33865, 0.779472, 0.354796, -0.516277, -0.267777, -0.556346, -0.786623, 23.1588, -3.77703, -8.22572)
+
+[node name="TentacleNorth" parent="Decorations" instance=ExtResource("92_nbqgp")]
+transform = Transform3D(0.731986, 0.810555, -0.393085, 0.575639, -0.810457, -0.599264, -0.692932, 0.182966, -0.913064, 17.0945, -16.6413, 4.04284)
+
+[node name="TentacleSouth" parent="Decorations" instance=ExtResource("92_nbqgp")]
+transform = Transform3D(-0.731986, -0.810555, -0.393085, -0.575639, 0.810457, -0.599264, 0.692932, -0.182966, -0.913064, -16.9697, 16.8048, -3.76235)
+
+[node name="Tentacle Blocker" type="Area3D" parent="Decorations/TentacleSouth"]
+collision_layer = 3
+script = ExtResource("105_p7yyu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorations/TentacleSouth/Tentacle Blocker"]
+shape = SubResource("CapsuleShape3D_eckrm")
+
+[node name="crater" parent="Decorations" instance=ExtResource("93_k6dtw")]
+transform = Transform3D(-0.253535, 0.706261, -0.020067, -0.316504, -0.132587, -0.667632, -0.63169, -0.217034, 0.342566, 23.2615, -3.52441, -8.52771)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Decorations"]
+transform = Transform3D(1.00508, 1.49012e-08, -4.76837e-07, 1.49012e-08, 1.00508, -5.06639e-07, 0, 0, 1.00508, 23.8714, -4.45012, -8.38776)
+amount = 50
+lifetime = 3.0
+speed_scale = 0.5
+randomness = 0.52
+process_material = SubResource("ParticleProcessMaterial_sqcv5")
+draw_pass_1 = SubResource("SphereMesh_wyhjn")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+light_color = Color(0.992732, 0.910877, 0.826542, 1)
+light_energy = 1.8
+shadow_enabled = true
+script = ExtResource("97_4yllf")
+
+[node name="End Music" type="AudioStreamPlayer3D" parent="Sun"]
+stream = ExtResource("98_ojeow")
+attenuation_model = 3
+volume_db = -12.0
+bus = &"Normal"
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Sunsplosion Timer" type="Timer" parent="Timers"]
+wait_time = 1320.0
+autostart = true
+script = ExtResource("107_i54xb")
+
+[node name="Jumpscare" type="Node3D" parent="."]
+
+[node name="JumpscareOrbitalWrapper" type="Node3D" parent="Jumpscare" node_paths=PackedStringArray("TrackingCamera")]
+script = ExtResource("99_egf0e")
+TrackingCamera = NodePath("../../Mitty Cam")
+
+[node name="SceneWrapper" type="Node3D" parent="Jumpscare/JumpscareOrbitalWrapper"]
+
+[node name="JumpscareCam" type="Camera3D" parent="Jumpscare/JumpscareOrbitalWrapper/SceneWrapper"]
+
+[node name="AnglerfishAwake1" type="AudioStreamPlayer3D" parent="Jumpscare/JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, -1.83094, 4.76837e-07, -1.21471)
+volume_db = -25.0
+
+[node name="AnglerfishAwake2" type="AudioStreamPlayer3D" parent="Jumpscare/JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, 1.64059, 0, -1.14439)
+volume_db = -10.0
+
+[node name="AnglerfishChase" type="AudioStreamPlayer3D" parent="Jumpscare/JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, -1.70054, 0.0476718, 0.0557404)
+
+[node name="AnglerfishRoar" type="AudioStreamPlayer3D" parent="Jumpscare/JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, -1.70054, 0.0476718, 0.0557404)
+
+[node name="SmugCharm" type="Node3D" parent="Jumpscare/JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 6.70552e-08, 0, 0, 1, -1.77835, -4.72069e-05, 0.00063324)
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/SmugCharm"]
+sorting_offset = 1.0
+pixel_size = 0.001
+billboard = 1
+no_depth_test = true
+texture = ExtResource("100_4mchp")
+
+[node name="Manager" type="Node" parent="Jumpscare" node_paths=PackedStringArray("mainAnimation", "mainEnvironment", "mainCamera")]
+script = ExtResource("101_ks1mg")
+mainAnimation = NodePath("JumpscarePlayer")
+mainEnvironment = NodePath("../../Environment")
+mainCamera = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam")
+fogCurve = SubResource("Curve_bv46q")
+lureScene = ExtResource("102_peblc")
+lureSpawnAmount = 80
+lureSpawnTime = 15.0
+lowShelfCurve = SubResource("Curve_w3kjy")
+pitchShiftCurve = SubResource("Curve_5ivmy")
+reverbCurve = SubResource("Curve_vveh1")
+volumeCurve = SubResource("Curve_1o4sb")
+musicFadeTime = 12.0
+
+[node name="JumpscarePlayer" type="AnimationPlayer" parent="Jumpscare/Manager"]
+libraries = {
+"": SubResource("AnimationLibrary_mud7s")
+}
+
+[node name="JumpscareSFX" type="AudioStreamPlayer" parent="Jumpscare/Manager"]
+bus = &"Jumpscare"
+
+[node name="JumpscareBGM" type="AudioStreamPlayer" parent="Jumpscare/Manager"]
+bus = &"Jumpscare"
+
+[connection signal="pressed" from="UboaScare/LightSwitch" to="UboaScare" method="OnButtonPressed"]
+[connection signal="CatgirlFound" from="Charm Summoner" to="Jumpscare/Manager" method="_on_charm_summoner_catgirl_found"]
+[connection signal="area_entered" from="Decorations/TentacleSouth/Tentacle Blocker" to="Decorations/TentacleSouth/Tentacle Blocker" method="OnCharmAreaEntered"]
+[connection signal="timeout" from="Timers/Sunsplosion Timer" to="." method="SunExplosion"]

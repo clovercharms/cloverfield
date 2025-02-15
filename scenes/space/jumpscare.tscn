@@ -1,0 +1,426 @@
+[gd_scene load_steps=21 format=3 uid="uid://dy1n3nyt2f4ey"]
+
+[ext_resource type="Script" path="res://scenes/space/jumpscare_camera_wrapper.gd" id="1_kngvb"]
+[ext_resource type="Texture2D" uid="uid://c0oquoalobej7" path="res://assets/textures/smug_charm.png" id="2_md2pr"]
+[ext_resource type="Script" path="res://scenes/space/jumpscare.gd" id="3_2nk4r"]
+[ext_resource type="PackedScene" uid="uid://c343nkatui2ly" path="res://scenes/space/anglerfish_lure.tscn" id="4_imjlh"]
+[ext_resource type="AudioStream" uid="uid://cehxl8u754k0q" path="res://assets/audio/effects/Anglerfish_Awake2.wav" id="5_3rek4"]
+[ext_resource type="AudioStream" uid="uid://bdtsc1yaa5bh5" path="res://assets/audio/effects/Anglerfish_Awake4.wav" id="6_yr87f"]
+[ext_resource type="AudioStream" uid="uid://cptnpnlmfiisw" path="res://assets/audio/effects/Anglerfish_Chase_Breathing.wav" id="7_fowxg"]
+[ext_resource type="AudioStream" uid="uid://d3mlftcljh53m" path="res://assets/audio/effects/AnglerFish_OpenMouth_v2_01.wav" id="8_j1gux"]
+[ext_resource type="AudioStream" uid="uid://kr7jj0e2ych4" path="res://assets/audio/music/dark_bramble.mp3" id="9_q8vn7"]
+[ext_resource type="AudioStream" uid="uid://bcrsprq0t2ot2" path="res://assets/audio/effects/catgirl_nya.wav" id="10_s21ma"]
+[ext_resource type="AudioStream" uid="uid://bhuxi54al8bwo" path="res://assets/audio/effects/party_horn.mp3" id="11_e61qu"]
+[ext_resource type="AudioStream" uid="uid://qfjtb3adkhkr" path="res://assets/audio/effects/cartoon-laugh.wav" id="12_1tj3m"]
+
+[sub_resource type="Curve" id="Curve_bv46q"]
+max_value = 0.1
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.07), 0.169295, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_w3kjy"]
+max_value = 8.0
+_data = [Vector2(0, 8), 0.0, 0.0, 0, 0, Vector2(1, 0.5), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_5ivmy"]
+_data = [Vector2(0, 1), 0.0, -0.2, 0, 1, Vector2(1, 0.8), -0.2, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_vveh1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.31616, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_1o4sb"]
+min_value = -80.0
+max_value = 0.0
+_data = [Vector2(0, 0.0172729), 0.0, 0.0, 0, 0, Vector2(1, -78.8295), -196.169, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_sscwo"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../UI:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam:current")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Stars:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sun:light_energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.8]
+}
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1)
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/SmugCharm:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_02jly"]
+resource_name = "jumpscare"
+length = 58.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(10, 1, 0, 0, 0, 15.0333, 1, 0, 0, 70)
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PositionForJumpscare"
+}]
+}
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(11.5, 1, 0, 0, 0, 1, 15.0333, 1, 0.99922, 0, 0, 0.0394866)
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../UI:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(10),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam:current")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(10, 57.9333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(5, 5.33333, 18.1667, 57.9333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"startFadingMusic"
+}, {
+"args": [],
+"method": &"startFadingFog"
+}, {
+"args": [],
+"method": &"startSpawningLures"
+}, {
+"args": [],
+"method": &"cleanup"
+}]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("JumpscareBGM")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 179.68,
+"start_offset": 0.0,
+"stream": ExtResource("9_q8vn7")
+}],
+"times": PackedFloat32Array(15)
+}
+tracks/6/use_blend = true
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("JumpscareSFX")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_s21ma")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_e61qu")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("12_1tj3m")
+}],
+"times": PackedFloat32Array(0, 52.5667, 54.0333)
+}
+tracks/7/use_blend = true
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../Stars:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.0666667),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../Sun:light_energy")
+tracks/9/interp = 2
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(4.86667, 15),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.8, 0.0]
+}
+tracks/10/type = "rotation_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(28, 1, 0, 0, 0, 1, 29, 1, -4.15712e-09, 0.442423, 0.0350215, 0.896123, 35.8667, 1, 1.03928e-09, 0.442423, 0.0350215, 0.896123, 36.7333, 1, -2.06118e-09, -0.426874, -0.0337907, 0.903679, 50.3, 1, -2.06118e-09, -0.426874, -0.0337907, 0.903679, 51.3, 1, 1.33152e-08, 0.712458, 0.056397, 0.699445)
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/AnglerfishAwake1")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_3rek4")
+}],
+"times": PackedFloat32Array(26.3)
+}
+tracks/11/use_blend = true
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/AnglerfishAwake2")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_yr87f")
+}],
+"times": PackedFloat32Array(35.6)
+}
+tracks/12/use_blend = true
+tracks/13/type = "audio"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"clips": [{
+"end_offset": 2.1478,
+"start_offset": 0.0,
+"stream": ExtResource("7_fowxg")
+}],
+"times": PackedFloat32Array(44.3)
+}
+tracks/13/use_blend = true
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/AnglerfishChase:volume_db")
+tracks/14/interp = 2
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(44.2333, 51.2667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-30.0, 10.0]
+}
+tracks/15/type = "audio"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/AnglerfishRoar")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"clips": [{
+"end_offset": 3.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_j1gux")
+}],
+"times": PackedFloat32Array(50.7333)
+}
+tracks/15/use_blend = true
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("../Jumpscare/JumpscareOrbitalWrapper/SceneWrapper/SmugCharm:visible")
+tracks/16/interp = 0
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 49.3, 57.9667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mud7s"]
+_data = {
+"RESET": SubResource("Animation_sscwo"),
+"jumpscare": SubResource("Animation_02jly")
+}
+
+[node name="Jumpscare" type="Node3D"]
+
+[node name="JumpscareOrbitalWrapper" type="Node3D" parent="." node_paths=PackedStringArray("TrackingCamera")]
+script = ExtResource("1_kngvb")
+TrackingCamera = NodePath("")
+
+[node name="SceneWrapper" type="Node3D" parent="JumpscareOrbitalWrapper"]
+
+[node name="JumpscareCam" type="Camera3D" parent="JumpscareOrbitalWrapper/SceneWrapper"]
+
+[node name="AnglerfishAwake1" type="AudioStreamPlayer3D" parent="JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, -1.83094, 4.76837e-07, -1.21471)
+volume_db = -25.0
+
+[node name="AnglerfishAwake2" type="AudioStreamPlayer3D" parent="JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, 1.64059, 0, -1.14439)
+volume_db = -10.0
+
+[node name="AnglerfishChase" type="AudioStreamPlayer3D" parent="JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, -1.70054, 0.0476718, 0.0557404)
+
+[node name="AnglerfishRoar" type="AudioStreamPlayer3D" parent="JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 7.45058e-09, 0, 0, 1, -1.70054, 0.0476718, 0.0557404)
+
+[node name="SmugCharm" type="Node3D" parent="JumpscareOrbitalWrapper/SceneWrapper"]
+transform = Transform3D(1, 0, 0, 0, 1, 6.70552e-08, 0, 0, 1, -1.77835, -4.72069e-05, 0.00063324)
+visible = false
+
+[node name="Sprite3D" type="Sprite3D" parent="JumpscareOrbitalWrapper/SceneWrapper/SmugCharm"]
+sorting_offset = 1.0
+pixel_size = 0.001
+billboard = 1
+no_depth_test = true
+texture = ExtResource("2_md2pr")
+
+[node name="Manager" type="Node" parent="." node_paths=PackedStringArray("mainAnimation", "mainEnvironment", "mainCamera")]
+script = ExtResource("3_2nk4r")
+mainAnimation = NodePath("JumpscarePlayer")
+mainEnvironment = NodePath("")
+mainCamera = NodePath("../JumpscareOrbitalWrapper/SceneWrapper/JumpscareCam")
+fogCurve = SubResource("Curve_bv46q")
+lureScene = ExtResource("4_imjlh")
+lureSpawnAmount = 80
+lureSpawnTime = 15.0
+lowShelfCurve = SubResource("Curve_w3kjy")
+pitchShiftCurve = SubResource("Curve_5ivmy")
+reverbCurve = SubResource("Curve_vveh1")
+volumeCurve = SubResource("Curve_1o4sb")
+musicFadeTime = 12.0
+
+[node name="JumpscarePlayer" type="AnimationPlayer" parent="Manager"]
+libraries = {
+"": SubResource("AnimationLibrary_mud7s")
+}
+
+[node name="JumpscareSFX" type="AudioStreamPlayer" parent="Manager"]
+bus = &"Jumpscare"
+
+[node name="JumpscareBGM" type="AudioStreamPlayer" parent="Manager"]
+bus = &"Jumpscare"
